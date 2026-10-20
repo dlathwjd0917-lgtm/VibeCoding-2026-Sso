@@ -7,14 +7,106 @@
     <style>
       /* 웹폰트 로딩하기(CDN방식) */
       /* CDN은 Content Delivery Network 즉, 네트워크 망으로 컨텐트를 배달시켜 쓰는 방식 */
-
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nanum+Gothic&display=swap");
       @import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css");
 
-        /* 전체 루트 설정 */
-      html, body{
+      /* 전체 루트 설정 */
+      html {
+        /* rem단위를 위한 Root 글자크기설정 */
+        font-size: 10px;
+        /* 왜 10px인가? rem단위에 계산이 용이함! */
+      }
+      html,
+      body {
         /* 웹폰트체 지정 (콤마는 우선순위) */
         font-family: Montserrat, "Nanum Barun Gothic", Dotum, sans-serif;
-        }
+      }
+
+      /* 공통요소 초기화 */
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+      }
 
       /* 헤더 영역 내부 스타일: 최대 너비 1440px, 가운데 정렬, flex 레이아웃 배치 */
       .header-area-inner {
@@ -41,15 +133,19 @@
       .menu-list li a {
         text-decoration: none;
         color: inherit;
+        text-transform: uppercase; /* 대문자 변환 */
+        text-decoration: none; /* 밑줄 제거 */
+        font-size: 1.6rem;
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
       }
 
       .banner-area {
         background: url("./images/main_visual_bg.jpg") repeat 0 0/50px;
         padding: 80px 0;
+        padding-bottom: 160px;
         text-align: center;
-        /* display: flex; */
-        /* justify-content: center; */
-        /* align-items: center; */
       }
       .banner-area-content {
         /* display: flex; */
@@ -69,6 +165,175 @@
         top: 50px;
         right: 50px;
       }
+
+      .scroll_btn {
+        left: 50%;
+        translate: -50%;
+        bottom: 100px;
+        position: absolute;
+        width: 79px;
+        height: 70px;
+        /*outline: 2px solid blue;*/
+      }
+
+      /* 마우스 글자박스 */
+      .scrll_btn p {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        outline: 1px solid red;
+        text-transform: uppercase;
+      }
+
+      .scroll.btn p {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1rem;
+        outline: 1px solid red;
+      }
+
+      .scroll_btn p {
+        .scroll_btn p {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1rem;
+          outline: 1px solid red;
+        }
+        .scroll_btn p {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1rem;
+          outline: 1px solid red;
+        }
+        .scroll_btn p {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1rem;
+          outline: 1px solid red;
+        }
+        .scroll_btn p {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1rem;
+          outline: 1px solid red;
+        }
+        .scroll_btn p {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1rem;
+          outline: 1px solid red;
+        }
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1rem;
+        /* outline: 1px solid red; */
+      }
+
+      .scroll_btn .mouse {
+        position: absolute;
+        left: 50%;
+        translate: -50%;
+        top: 0px;
+        display: block;
+        width: 26px;
+        height: 36px;
+        border: 1px solid #222;
+        border-radius: 15px;
+        background: white;
+
+        /* 애니메이션 호출 : (이시 이지반방마)
+        이름 시간 이징 지연시간 반복 방향 마지막상태 */
+        animation: mouse-ani 0.5s ease-in-out infinite alternate;
+      }
+      /* 마우스 애니메이션 키프레임 */
+      @keyframes mouse-ani {
+        /* 시작값 from이 처음셋팅값과 같으면 생략가능 */
+        form {
+          top: 0;
+        }
+        to {
+          top: 15px;
+        }
+      }
+
+      /* 움직일 대상 마우스 */
+      .scroll_btn .mouse span {
+        position: absolute;
+        top: 27%;
+        left: 50%;
+        translate: -50% -50%;
+        width: 5px;
+        height: 5px;
+        background-color: #222;
+        border-radius: 50%;
+        opacity: 0;
+        /* 마우스휠 키프레임 호출 : 이시이지반방마 */
+        animation: span-ani 1.5s linear infinite;
+      }
+      /* 마우스휠 애니메이션 키프레임 */
+      @keyframes span-ani {
+        /* 0~20%: opacity 0→1, top 27% */
+        0% {
+          opacity: 0;
+          top: 27%;
+        }
+        10% {
+          opacity: 1;
+          top: 27%;
+        }
+        /* 20~55%: top 27%→50%, opacity 유지 */
+        40% {
+          opacity: 1;
+          top: 50%;
+        }
+        /* 55~70%: opacity 1→0, top 유지 */
+        60% {
+          opacity: 0;
+          top: 50%;
+        }
+        /* 70~100%: opacity 0, top 50%, 쉬는구간 */
+        100% {
+          opacity: 0;
+          top: 50%;
+        }
+      }
+
+      .sns-button-box {
+        display: flex;
+        gap: 8px;
+      }
+      .sns-button-box a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+      }
+      .sns-button-box a img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
     </style>
   </head>
   <body>
@@ -87,10 +352,10 @@
           <!-- 메뉴리스트 -->
           <nav>
             <ul class="menu-list">
-              <li><a href="#company">COMPANY</a></li>
-              <li><a href="#character">CHARACTER</a></li>
-              <li><a href="#place">PLACE</a></li>
-              <li><a href="#recruit">RECRUIT</a></li>
+              <li><a href="#company">company</a></li>
+              <li><a href="#character">character</a></li>
+              <li><a href="#place">place</a></li>
+              <li><a href="#recruit">recruit</a></li>
             </ul>
           </nav>
         </div>
@@ -115,16 +380,18 @@
           <div class="banner-area-content">
             <img src="./images/main_visual_pc_v1.png" alt="Main Visual" />
           </div>
+
           <!-- SNS 이동 버튼 박스 -->
           <div class="sns-button-box">
-            <a href="https://www.instagram.com/sanrio_kr/" target="_blank"
-              ><img src="./images/i_ins_pc_v3.png" alt="instargram"
-            /></a>
+            <a href="https://www.instagram.com/sanrio_kr/" target="_blank">
+              <img src="./images/i_ins_pc_v3.png" alt="instargram" />
+            </a>
             <a
               href="https://www.youtube.com/c/sanriokorea/featured"
               target="_blank"
-              ><img src="./images/i_you_pc_v3.png" alt="youtube"
-            /></a>
+            >
+              <img src="./images/i_you_pc_v3.png" alt="youtube" />
+            </a>
           </div>
           <!-- 스크롤 유도 애니박스 -->
           <div class="scroll_btn">
@@ -133,7 +400,17 @@
           </div>
         </section>
         <!-- 캐릭터영역 -->
-        <section class="character-area"></section>
+        <section class="character-area">
+            <!-- 캐릭터영역 내용-->
+            <div class="tit-box">
+              <h2 class="part-tit">character</h2>
+              <div class="btn-box">
+                <a href="#" class="btn-view">view-more</a>
+              </div>
+            </div>
+
+        </section>
+        
         <!-- 컴퍼니영역 -->
         <section class="company-area"></section>
         <!-- 리쿠르트영역 -->
