@@ -1,6 +1,8 @@
-/* main.css — 메인 페이지 전용 스타일 (배너 · 캐릭터 · 컴퍼니 · 리쿠르트 · 플레이스 · 컨택트)
-   ※ 로드 순서: reset.css → common.css → main.css
-   ※ 이미지 경로는 css 폴더 기준 ../images/ */
+/* =====================================================
+   main.css : 메인 페이지 전용 스타일
+   배너 / 캐릭터 / 컴퍼니 / 리쿠르트 / 플레이스 / 컨택트
+   (공통 규칙은 common.css 에 있다. 반드시 common.css 다음에 불러온다.)
+   ===================================================== */
 
 /* 배너영역 스타일 */
 .banner-area {
@@ -23,6 +25,24 @@
   /* display: block; */
   width: 984px;
   max-width: 100%;
+  /* 로딩 애니메이션 호출 : 이름 시간 이징 지연시간 마지막상태
+  both = 지연시간(1s) 동안에도 시작상태(투명, 위쪽)를 유지하고, 끝난 뒤엔 마지막 상태를 유지 */
+  animation: visual-down 1s ease-out .5s both;
+}
+/* 모바일용 이미지는 PC에서 숨김 */
+.banner-area .main-visual-m {
+  display: none;
+}
+/* 메인 비주얼 등장 키프레임 : 투명 + 20% 위 → 원래 위치 + 보임 */
+@keyframes visual-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* SNS 버튼 박스 스타일 */
@@ -143,7 +163,7 @@
 /* 캐릭터카드 */
 .character-card {
   width: calc(25% - 15px);
-  /* calc(계산식)
+  /* calc(계산식) 
     +,-는 기호 앞뒤를 반드시 띄어서야함!
     *,/ 곱하기 나누기는 붙여써도 됨
   */
@@ -154,8 +174,8 @@
   border: 1px solid #ddd;
   border-radius: 16px;
   /* 박스그림자
-  box-shadow: inset hoff voff blur spread color;
-  inset은 내부그림자,
+  box-shadow: inset hoff voff blur spread color; 
+  inset은 내부그림자, 
   hoff -x축이동, voff-y축이동, blur 경계선흐림
   spread - 그림자크기(확장분만씀) color - 그림자색
   */
@@ -169,7 +189,7 @@
 .character-card .card-imgs {
   /* 포지션을 준 이유: 자식요소중 앱솔루트 기준 */
   position: relative;
-  /* height: 204px;
+  /* height: 204px; 
   내용물만큼 늘어나려면 높이값 주면 안됨! */
   /* 플렉스 모두 불필요!
   display: flex;
@@ -239,9 +259,23 @@
 
 /* 플레이스 영역 */
 .place-area {
-  /* 배경:색이반고윙/크 */
-  background: url(../images/bg_shop.jpg) no-repeat center;
-  height: 30vh;
+  background: url(../images/bg_shop.jpg) no-repeat 0 / 100%;
+  /* height: 30vh; */
+  /* aspect-ratio 속성 비율은 가로/세로 
+  -> 높이값 없이 비율로 유지
+  비율값은 이미지 가로,세로 값을 써도 된다. 
+  단, 단위는 없음! */
+  aspect-ratio: 1920 / 500;
+  /* box-sizing 속성은 기본값으로 'content-box'이다.
+  즉, 박스의 크기외에 패딩과 보더값이 있으면 커진다!
+  크기가 지정될때 더 커지고 기본값인 width:auto인 경우
+  패딩과 보더는 포함된다.
+  이때 높이값 설정이 있으면 패딩과 보더를 포함하는
+  속성값인 'border-box'로 설정해야함! */
+  box-sizing: border-box;
+  /* 더 강한 패딩설정이 덮어쓰므로 !important로 가장 강하게 우선순위를 높여줌(주의: !important남발은 하지말것!) */
+  padding: 3vw !important;
+  /* vw단위는 뷰포트 단위로 보이는 화면 가로크기기준 %크기임. */
 }
 
 /* 컨텍어스 영역 */
@@ -355,257 +389,270 @@
   line-height: 1.8;
 }
 
-/* ===== 반응형 (큰 값 → 작은 값 순서) : 메인 페이지 영역 ===== */
-
 /* ---------- 1199px 이하 ---------- */
 @media screen and (max-width: 1199px) {
-  /* 공통 컨테이너: 고정 너비 → 가로 꽉 참 + 좌우 14px 여백 */
-    .character-card-box,
-    .card-part-box {
-      box-sizing: border-box;
-      padding-left: 14px;
-      padding-right: 14px;
-    }
-
-    /* 컨택트 박스: 흰 박스 바깥쪽 좌우 여백 20px */
-    .contact-box {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
+  /* 1. 공통 컨테이너: 고정 너비 → 가로 꽉 참 + 좌우 14px 여백 */
+  .character-card-box,
+  .card-part-box {
+    box-sizing: border-box;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  /* contact-box는 흰 배경이 있어 padding이 아닌 margin으로 바깥 여백 20px */
+  .contact-box {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
+/* 1199px 이하 미디어쿼리 종료 */
 
 /* ---------- 1024px 이하 ---------- */
 @media screen and (max-width: 1024px) {
-    /* SNS 아이콘: 고정 배치, 헤더 아래(top 112px) */
-    .sns {
-      position: fixed;
-      top: 112px;
-      z-index: 50;
-    }
+  /* SNS 아이콘: 고정 배치, 헤더 아래(top 112px) */
+  .sns {
+    position: fixed;
+    top: 112px;
+    z-index: 50;
+  }
 
-    /* 4. 메인 비주얼: 좌우 여백 30px
-       (PC/모바일 슬로건 이미지 교체는 파일이 없어 적용 보류 - 설명 참고) */
-    .banner-area {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
+  /* 4. 메인 비주얼: 좌우 여백 30px
+     (PC/모바일 슬로건 이미지 교체는 파일이 없어 적용 보류 - 설명 참고) */
+  .banner-area {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 
-    /* 9. recruit: 좌우 여백 9% (배경은 태블릿용 이미지로 교체 가능)
-       background-image: url(../images/bg_recruit_tablet.png); */
-    .main-area > section.recruit-area {
-      padding-left: 9%;
-      padding-right: 9%;
-    }
+  /* 9. recruit: 좌우 여백 9% (배경은 태블릿용 이미지로 교체 가능)
+     background-image: url(../images/bg_recruit_tablet.png); */
+  .main-area > section.recruit-area {
+    padding-left: 9%;
+    padding-right: 9%;
+  }
 
-    /* 10. place: 배경 태블릿용 교체 자리
-       .place-area { background-image: url(../images/bg_shop_tablet.jpg); } */
+  /* 10. place: 배경 태블릿용 교체 자리
+     .place-area { background-image: url(../images/bg_shop_tablet.jpg); } */
 
-    /* 11. contact us: 아래 여백 150px, 스티커 위치 변경 */
-    .main-area > section.contactus-area {
-      padding-bottom: 150px;
-    }
-    #kitty-car {
-      right: 40px;
-      bottom: -120px;
-      transform: none;
-    }
+  /* 11. contact us: 아래 여백 150px, 스티커 위치 변경 */
+  .main-area > section.contactus-area {
+    padding-bottom: 150px;
+  }
+  #kitty-car {
+    right: 40px;
+    bottom: -120px;
+    transform: none;
+  }
 }
+/* 1024px 이하 미디어쿼리 종료 */
 
 /* ---------- 800px 이하 ---------- */
 @media screen and (max-width: 800px) {
-    /* 6. character: 2열, 정사각형 카드, 이미지 중앙 */
-    .character-card {
-      width: calc(50% - 10px);
-      aspect-ratio: 1 / 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .character-card .card-imgs {
-      flex: 1;
-      min-height: 0;
-    }
-    .character-area .character-card .card-imgs img:first-child,
-    .character-area .character-card .card-imgs img:last-child {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* 카드 중앙에 놓임 */
-    }
-    .character-card .card-desc {
-      flex: none;
-    }
+  /* 메인 비주얼: PC용 이미지 숨기고 모바일용 이미지 표시 */
+  .banner-area .main-visual-pc {
+    display: none;
+  }
+  .banner-area .main-visual-m {
+    display: inline-block;
+  }
 
-    /* 8. company: 2×2 배치, 회색 선, 오른쪽 세로선 제거, 행 간 여백 5% */
-    .company-area .card-part-box {
-      flex-wrap: wrap;
-      gap: 0;
-    }
-    .company-area .card-part {
-      flex: 0 0 50%;
-      box-sizing: border-box;
-      padding: 0 0 5% 0;
-      border-right: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-    }
-    .company-area .card-part:nth-child(even) {
-      border-right: 0;
-    }
-    .company-area .card-part:nth-child(n + 3) {
-      padding: 5% 0 0 0;
-      border-bottom: 0;
-    }
-    /* 홀수 개일 때 마지막 항목은 한 줄 전체 사용 */
-    .company-area .card-part:last-child:nth-child(odd) {
-      flex-basis: 100%;
-      border-right: 0;
-    }
+  /* 6. character: 2열, 정사각형 카드, 이미지 중앙 */
+  .character-card {
+    width: calc(50% - 10px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .character-card .card-imgs {
+    flex: 1;
+    min-height: 0;
+  }
+  .character-area .character-card .card-imgs img:first-child,
+  .character-area .character-card .card-imgs img:last-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 카드 중앙에 놓임 */
+  }
+  .character-card .card-desc {
+    flex: none;
+  }
 
-    /* 9. recruit: 배경 모바일용(90% 크기, 상단 30px), 항목 가로 배치 */
-    .recruit-area {
-      background-size: 90%;
-      background-position: center 30px;
-      /* background-image: url(../images/bg_recruit_mobile.png); */
-    }
-    .recruit-area .card-part-box {
-      flex-direction: column;
-      gap: 30px;
-    }
-    .recruit-area .card-part {
-      display: grid;
-      grid-template-columns: 57% 33%; /* 아이콘 57% + 텍스트 33% */
-      gap: 6px 10%;
-      align-items: center;
-      justify-items: start;
-      flex: none;
-      width: 100%;
-    }
-    .recruit-area .img-box {
-      grid-column: 1;
-      grid-row: 1 / span 3;
-      width: 100%;
-    }
-    .recruit-area .img-box img {
-      max-width: 100%;
-    }
-    .recruit-area .card-title,
-    .recruit-area .card-desc,
-    .recruit-area .btn-box {
-      grid-column: 2;
-    }
-    .recruit-area .btn-box {
-      margin-bottom: 0;
-    }
+  /* 8. company: 2×2 배치, 회색 선, 오른쪽 세로선 제거, 행 간 여백 5% */
+  .company-area .card-part-box {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .company-area .card-part {
+    flex: 0 0 50%;
+    box-sizing: border-box;
+    padding: 0 0 5% 0;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .company-area .card-part:nth-child(even) {
+    border-right: 0;
+  }
+  .company-area .card-part:nth-child(n + 3) {
+    padding: 5% 0 0 0;
+    border-bottom: 0;
+  }
+  /* 홀수 개일 때 마지막 항목은 한 줄 전체 사용 */
+  .company-area .card-part:last-child:nth-child(odd) {
+    flex-basis: 100%;
+    border-right: 0;
+  }
 
-    /* 10. place: 모바일용 배경(cover) */
-    .place-area {
-      background-size: cover;
-      /* background-image: url(../images/bg_shop_mobile.jpg); */
-    }
+  /* 9. recruit: 배경 모바일용(90% 크기, 상단 30px), 항목 가로 배치 */
+  .recruit-area {
+    background-size: 90%;
+    background-position: center 30px;
+    /* background-image: url(../images/bg_recruit_mobile.png); */
+  }
+  .recruit-area .card-part-box {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .recruit-area .card-part {
+    display: grid;
+    grid-template-columns: 57% 33%; /* 아이콘 57% + 텍스트 33% */
+    gap: 6px 10%;
+    align-items: center;
+    justify-items: start;
+    flex: none;
+    width: 100%;
+  }
+  .recruit-area .img-box {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 100%;
+  }
+  .recruit-area .img-box img {
+    max-width: 100%;
+  }
+  .recruit-area .card-title,
+  .recruit-area .card-desc,
+  .recruit-area .btn-box {
+    grid-column: 2;
+  }
+  .recruit-area .btn-box {
+    margin-bottom: 0;
+  }
 
-    /* 11. contact us: 지도 상단 + 정보 하단 세로 배치, 지도 280px, 위쪽 모서리 20px */
-    .contact-box {
-      flex-direction: column;
-      height: auto;
-    }
-    .contact-box .map-box,
-    .contact-box .info-box {
-      width: 100%;
-    }
-    .contact-box .map-box {
-      height: 280px;
-      border-radius: 20px 20px 0 0;
-    }
-    .contact-box .info-box {
-      height: auto;
-      border-radius: 0 0 20px 20px;
-      padding-bottom: 70px; /* 스티커 공간 */
-    }
-    .contact-box .info-box h3,
-    .contact-box .info-box h4 {
-      font-size: 10px; /* 주소 글자 */
-    }
+  /* 10. place: 모바일용 배경(cover) */
+  .place-area {
+    background-size: cover;
+    /* background-image: url(../images/bg_shop_mobile.jpg); */
+  }
+
+  /* 11. contact us: 지도 상단 + 정보 하단 세로 배치, 지도 280px, 위쪽 모서리 20px */
+  .contact-box {
+    flex-direction: column;
+    height: auto;
+  }
+  .contact-box .map-box,
+  .contact-box .info-box {
+    width: 100%;
+  }
+  .contact-box .map-box {
+    height: 280px;
+    border-radius: 20px 20px 0 0;
+  }
+  .contact-box .info-box {
+    height: auto;
+    border-radius: 0 0 20px 20px;
+    padding-bottom: 70px; /* 스티커 공간 */
+  }
+  .contact-box .info-box h3,
+  .contact-box .info-box h4 {
+    font-size: 10px; /* 주소 글자 */
+  }
 }
+/* 800px 이하 미디어쿼리 종료 */
 
 /* ---------- 736px 이하 ---------- */
 @media screen and (max-width: 736px) {
-    /* 3. SNS: 화면 너비 기준 위치, 아이콘 34px */
-    .sns {
-      top: 20vw;
-    }
-    .sns img {
-      width: 34px;
-      height: 34px;
-    }
+  /* 3. SNS: 화면 너비 기준 위치, 아이콘 34px */
+  .sns {
+    /* 모바일에서는 안보임 */
+    display: none;
+    /* top: 20vw; */
+  }
+  .sns img {
+    width: 34px;
+    height: 34px;
+  }
 
-    /* 4. 메인 비주얼: 좌우 여백 20px, 스크롤 버튼 하단 20px */
-    .banner-area {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    .scroll_btn {
-      bottom: 20px;
-    }
+  /* 4. 메인 비주얼: 좌우 여백 20px, 스크롤 버튼 하단 20px */
+  .banner-area {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .scroll_btn {
+    bottom: 20px;
+  }
 
-    /* 6. character: 이름 영역 높이 축소 */
-    .character-card .card-desc {
-      aspect-ratio: auto;
-      padding: 8px 6px;
-    }
+  /* 6. character: 이름 영역 높이 축소 */
+  .character-card .card-desc {
+    aspect-ratio: auto;
+    padding: 8px 6px;
+  }
 
-    /* 8. company: 항목 50%, 아이콘 35% */
-    .company-area .card-part {
-      flex-basis: 50%;
-    }
-    .company-area .card-part:last-child:nth-child(odd) {
-      flex-basis: 100%;
-    }
-    .company-area .img-box {
-      width: 100%;
-      text-align: center;
-    }
-    .company-area .img-box img {
-      width: 35%;
-    }
-    /* 마지막(홀수) 카드는 가로 100%라 35%면 커지므로 다른 카드와 같은 크기(50%의 35%)로 */
-    .company-area .card-part:last-child:nth-child(odd) .img-box img {
-      width: 17.5%;
-    }
+  /* 8. company: 항목 50%, 아이콘 35% */
+  .company-area .card-part {
+    flex-basis: 50%;
+  }
+  .company-area .card-part:last-child:nth-child(odd) {
+    flex-basis: 100%;
+  }
+  .company-area .img-box {
+    width: 100%;
+    text-align: center;
+  }
+  .company-area .img-box img {
+    width: 35%;
+  }
+  /* 마지막 박스는 한 줄 전체(100%)라 이미지가 커지므로
+     img-box를 50%로 줄여 다른 아이콘과 같은 크기로 맞춤 */
+  .company-area .card-part:last-child:nth-child(odd) .img-box {
+    width: 50%;
+  }
 
-    /* 9. recruit: 아이콘 52% / 텍스트 48%, 더보기 버튼 최대 80px */
-    .recruit-area .card-part {
-      grid-template-columns: 52% 48%;
-      column-gap: 0;
-    }
-    /* 모바일에서는 설명 문구 숨김 */
-    .recruit-area .card-desc {
-      display: none;
-    }
-    .recruit-area .btn-view {
-      display: block;
-      max-width: 80px;
-      padding: 8px 0;
-      text-align: center;
-    }
+  /* recruit: 설명 글자 숨김 */
+  .recruit-area .card-desc {
+    display: none;
+  }
 
-    /* 10. place: 상하 여백 55px */
-    .main-area > section.place-area {
-      padding-top: 55px;
-      padding-bottom: 55px;
-    }
+  /* 9. recruit: 아이콘 52% / 텍스트 48%, 더보기 버튼 최대 80px */
+  .recruit-area .card-part {
+    grid-template-columns: 52% 48%;
+    column-gap: 0;
+  }
+  .recruit-area .btn-view {
+    display: block;
+    max-width: 80px;
+    padding: 8px 0;
+    text-align: center;
+  }
 
-    /* 11. contact us: 지도 150px, 스티커 40%, 연락처 글자 축소 */
-    .contact-box .map-box {
-      height: 150px;
-    }
-    #kitty-car {
-      width: 40%;
-      height: auto;
-      right: 10px;
-      bottom: -40px;
-    }
-    .contact-box .info-box h5 {
-      font-size: 13px;
-    }
+  /* 10. place: 상하 여백 55px */
+  .main-area > section.place-area {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  /* 11. contact us: 지도 150px, 스티커 40%, 연락처 글자 축소 */
+  .contact-box .map-box {
+    height: 150px;
+  }
+  #kitty-car {
+    width: 40%;
+    height: auto;
+    right: 10px;
+    bottom: -40px;
+  }
+  .contact-box .info-box h5 {
+    font-size: 13px;
+  }
 }
+/* 736px 이하 미디어쿼리 종료 */
