@@ -3,6 +3,12 @@
    배너 / 캐릭터 / 컴퍼니 / 리쿠르트 / 플레이스 / 컨택트
    (공통 규칙은 common.css 에 있다. 반드시 common.css 다음에 불러온다.)
    ===================================================== */
+/* 공통CSS 가져오기@import */
+@import url(./reset.css);
+@import url(./common.css);
+/* import의 장점은 한파일에서 모두 모아서 가져오므로
+html 파일에서 link를 최소화 할 수 있다!
+주의: import는 항상 CSS 문서 상단에 씀. */
 
 /* 배너영역 스타일 */
 .banner-area {
@@ -259,7 +265,9 @@
 
 /* 플레이스 영역 */
 .place-area {
-  background: url(../images/bg_shop.jpg) no-repeat 0 / 100%;
+  /* 배경이미지는 제거 -> .place-slider 안의 이미지박스 3개로 대체 */
+  position: relative; /* 슬라이더(absolute)의 기준 */
+  overflow: hidden; /* 박스 밖으로 나가는 슬라이드 숨김 */
   /* height: 30vh; */
   /* aspect-ratio 속성 비율은 가로/세로 
   -> 높이값 없이 비율로 유지
@@ -276,6 +284,82 @@
   /* 더 강한 패딩설정이 덮어쓰므로 !important로 가장 강하게 우선순위를 높여줌(주의: !important남발은 하지말것!) */
   padding: 3vw !important;
   /* vw단위는 뷰포트 단위로 보이는 화면 가로크기기준 %크기임. */
+}
+
+/* 플레이스 배경 슬라이더 : 현재 박스와 정확히 같은 크기(inset:0) */
+.place-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0; /* 가장 아래 */
+}
+/* 3개의 이미지박스를 가로 flex로 배치하는 트랙 */
+.place-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+/* 이미지박스 : 슬라이더와 정확히 같은 크기, 줄어들지 않게 */
+.place-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.place-slide.slide1 {
+  background-image: url(../images/bg_shop.jpg);
+}
+.place-slide.slide2 {
+  background-image: url(../images/bg_shop2.jpg);
+}
+.place-slide.slide3 {
+  background-image: url(../images/bg_shop3.jpg);
+}
+/* 가독성용 어두운 오버레이 (슬라이드가 움직여도 고정) */
+.place-slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* 타이틀/버튼은 슬라이더보다 위 + 배경과 무관하게 잘 보이게 */
+.place-area .tit-box {
+  position: relative;
+  z-index: 2;
+}
+.place-area .part-tit {
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 0, 0, 0.4);
+}
+.place-area .btn-view {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.place-area .btn-view:hover,
+.place-area .btn-view:focus-visible {
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  text-shadow: none;
+  
+}
+
+.place-area .btn-view::after {
+  content: url(../images/ico_more2.png);
+  padding-left: 20px;
 }
 
 /* 컨텍어스 영역 */
@@ -540,9 +624,9 @@
   }
 
   /* 10. place: 모바일용 배경(cover) */
-  .place-area {
+  /* 슬라이드 이미지는 .place-slide 에서 cover 로 처리 */
+  .place-slide {
     background-size: cover;
-    /* background-image: url(../images/bg_shop_mobile.jpg); */
   }
 
   /* 11. contact us: 지도 상단 + 정보 하단 세로 배치, 지도 280px, 위쪽 모서리 20px */
