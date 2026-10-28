@@ -968,8 +968,7 @@
           width: 36px;
           left: 30%;
           top: 80%; */
-        }
-      
+      }
 
       @media (max-width: 390px) {
         .mirae {
@@ -1012,13 +1011,25 @@
         --h-line: clamp(18px, 1.3vw, 24px);
         --h-closing-small: clamp(15px, 0.96vw, 18px);
         --h-closing-big: clamp(26px, 1.8vw, 34px);
+        /* 접힘 높이 제어용 토큰: 뷰포트 높이(100vh → 100dvh 우선) / 하단 여백 / 토글 버튼 높이 */
+        --h-vh: 100vh;
+        --h-bottom: clamp(64px, 6.5vw, 120px);
+        --h-toggle: 72px; /* padding 12*2 + 라벨 20 + gap 2 + 아이콘 24 = 70px + 여유 2px */
+        --h-min-collapsed: 160px;
         position: relative;
         z-index: 1;
         margin-top: calc(var(--h-curve) * -1);
-        padding-bottom: clamp(64px, 6.5vw, 120px);
+        padding-bottom: var(--h-bottom);
         border-radius: 50% 50% 0 0 / var(--h-curve) var(--h-curve) 0 0;
         background: var(--white);
         overflow: hidden;
+      }
+
+      /* dvh 지원 브라우저(모바일 주소창 대응)는 100dvh 우선 적용, 미지원은 100vh 폴백 */
+      @supports (height: 100dvh) {
+        .history {
+          --h-vh: 100dvh;
+        }
       }
 
       /* 접힘 영역: JS 가 높이 변수를 주입하기 전(또는 JS 미동작)에는 전체 노출 */
@@ -1027,11 +1038,26 @@
         overflow: hidden;
         transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
+      /* 접힘: JS 계산값(콘텐츠 2/3)과 '한 화면 − 하단여백 − 토글' 중 작은 값
+         → 섹션 전체(clip + 토글 + 여백)가 100dvh 를 넘지 않음 */
       .history.is-collapsible .history__clip {
-        height: var(--history-collapsed);
+        height: min(
+          var(--history-collapsed),
+          max(
+            var(--h-min-collapsed),
+            calc(var(--h-vh) - var(--h-bottom) - var(--h-toggle))
+          )
+        );
       }
+      /* 펼침: 높이 제한 해제(실측 높이), 트랜지션 종료 후 overflow 도 해제 */
       .history.is-collapsible.is-expanded .history__clip {
         height: var(--history-full);
+        animation: history-unclip 0s linear 0.6s forwards;
+      }
+      @keyframes history-unclip {
+        to {
+          overflow: visible;
+        }
       }
       /* 페이드아웃 오버레이: 투명 → #fff */
       .history__clip::after {
@@ -1041,7 +1067,7 @@
         right: 0;
         bottom: 0;
         z-index: 2;
-        height: clamp(140px, 14vw, 260px);
+        height: min(clamp(140px, 14vw, 260px), 40%);
         background: linear-gradient(
           180deg,
           rgba(255, 255, 255, 0) 0%,
@@ -1373,6 +1399,8 @@
           --h-line: clamp(14px, 2.4vw, 24px);
           --h-closing-small: clamp(13px, 1.9vw, 18px);
           --h-closing-big: clamp(20px, 3.6vw, 34px);
+          --h-bottom: clamp(64px, 6.5vw, 120px); /* 접힘 100dvh 계산과 동기화 */
+          --h-toggle: 72px;
         }
         /* 장식 오브젝트는 태블릿/모바일 덤프에 없음 → 컨테이너 1개만 숨김 */
         .history__deco {
@@ -1398,6 +1426,9 @@
           --h-block-gap: 20px;
           --h-closing-small: 13px;
           --h-closing-big: 20px;
+          --h-bottom: 64px; /* 접힘 100dvh 계산과 동기화 */
+          --h-toggle: 72px;
+          --h-min-collapsed: 140px;
         }
         .history__title {
           line-height: 1.5;
@@ -1472,6 +1503,329 @@
         .history__clip::after,
         .history__toggle svg {
           transition: none;
+        }
+        .history.is-expanded .history__clip {
+          animation: none;
+          overflow: visible;
+        }
+      }
+
+      /* ===== 직무소개 섹션 (.jobs) =====
+         - 시안 기준폭: Desktop 1440 / Tablet 1024 / Mobile 390
+         - 사이즈는 토큰(--j-*)으로 분리, 구간별로 값만 교체 (history 섹션과 동일한 방식)
+         - --j-w : 일러스트(캐릭터/약병) 비례 계산용 기준폭 (데스크탑은 1440 에서 고정) */
+      .jobs {
+        /* Desktop (1025px~): 1440 시안 값을 vw clamp 로 환산 */
+        --j-w: min(100vw, var(--inner));
+        --j-pad-x: clamp(24px, 3.9vw, 56px);
+        --j-top: clamp(110px, 13.2vw, 190px);
+        --j-bottom: clamp(64px, 6.9vw, 100px);
+        --j-title: clamp(32px, 3.9vw, 56px);
+        --j-lead: clamp(15px, 1.67vw, 24px);
+        --j-lead-gap: clamp(16px, 1.95vw, 28px);
+        --j-list-gap: clamp(40px, 5.55vw, 80px);
+        --j-col-gap: clamp(20px, 4.1vw, 59px);
+        --j-card-pad: clamp(20px, 2.8vw, 40px);
+        --j-card-pad-b: clamp(24px, 3.3vw, 48px);
+        --j-card-r: clamp(20px, 2.1vw, 30px);
+        --j-img-r: clamp(14px, 1.7vw, 24px);
+        --j-desc: clamp(15px, 1.53vw, 22px);
+        --j-desc-gap: clamp(18px, 1.95vw, 28px);
+        --j-meta: clamp(13px, 1.25vw, 18px);
+        --j-meta-gap: clamp(18px, 1.95vw, 28px);
+        --j-arrow: clamp(32px, 2.8vw, 40px);
+        --j-btn-gap: clamp(48px, 6.1vw, 88px);
+        position: relative;
+        overflow: hidden; /* 약병/캐릭터가 화면 밖으로 나가는 부분 클립 */
+        background:
+          radial-gradient(
+            ellipse 12% 8% at 100% 56%,
+            rgba(255, 170, 120, 0.3),
+            rgba(255, 170, 120, 0)
+          ),
+          radial-gradient(
+            ellipse 45% 30% at 95% 100%,
+            rgba(255, 205, 185, 0.4),
+            rgba(255, 205, 185, 0)
+          ),
+          #fdf5f2;
+      }
+      .jobs__inner {
+        position: relative;
+        max-width: var(--inner);
+        margin: 0 auto;
+        padding: var(--j-top) var(--j-pad-x) var(--j-bottom);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* 헤더: 로고 뱃지는 타이틀 폰트 크기(em) 기준으로 겹쳐 배치 */
+      .jobs__head {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+      .jobs__heading {
+        position: relative;
+        display: inline-block;
+        font-size: var(--j-title);
+      }
+      .jobs__logo {
+        position: absolute;
+        left: -0.77em;
+        top: -0.95em;
+        width: 1.93em;
+        height: auto;
+        pointer-events: none;
+      }
+      .jobs__title {
+        font-size: 1em;
+        line-height: 1.3;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .jobs__lead {
+        margin-top: var(--j-lead-gap);
+        font-size: var(--j-lead);
+        line-height: 1.6;
+        letter-spacing: -0.04em;
+        color: #222;
+      }
+
+      /* 카드 리스트: 데스크탑/태블릿 2열, 모바일 1열 */
+      .jobs__list {
+        width: 100%;
+        margin-top: var(--j-list-gap);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--j-col-gap);
+        position: relative;
+        z-index: 4;
+        backdrop-filter: blur(6px);
+      }
+      .jobs__card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: var(--j-card-pad) var(--j-card-pad) var(--j-card-pad-b);
+        border-radius: var(--j-card-r);
+        background: #fff9f773;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 8px 32px rgba(255, 120, 80, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background 0.5s;
+      }
+      .jobs__card:hover {
+        background: #fff9f7;
+      }
+      .jobs__media {
+        overflow: hidden;
+        border-radius: var(--j-img-r);
+        aspect-ratio: 1100 / 706;
+        background: #eee;
+      }
+      .jobs__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .jobs__desc {
+        margin-top: var(--j-desc-gap);
+        font-size: var(--j-desc);
+        line-height: 1.5;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+      .jobs__foot {
+        margin-top: var(--j-meta-gap);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto; /* 카드 높이가 달라도 하단 정렬 */
+        padding-top: var(--j-meta-gap);
+      }
+      .jobs__meta {
+        font-size: var(--j-meta);
+        line-height: 1.4;
+        letter-spacing: -0.03em;
+        color: #333;
+      }
+      .jobs__name::before {
+        content: "";
+        display: inline-block;
+        width: 1px;
+        height: 0.75em;
+        margin: 0 0.75em;
+        background: #666;
+        vertical-align: -0.05em;
+      }
+      .jobs__arrow {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--j-arrow);
+        height: var(--j-arrow);
+        border-radius: 50%;
+        color: var(--white);
+        background: linear-gradient(
+          135deg,
+          #e5714b 0%,
+          #ee9a7c 60%,
+          #f9dcd2 100%
+        );
+        transition: background-color var(--ease);
+      }
+      .jobs__arrow svg {
+        width: 50%;
+        height: 50%;
+      }
+      .jobs__card:hover,
+      .jobs__card:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 40px rgba(255, 93, 50, 0.18);
+      }
+      .jobs__card:hover .jobs__media img,
+      .jobs__card:focus-visible .jobs__media img {
+        transform: scale(1.04);
+      }
+      .jobs__card:hover .jobs__arrow,
+      .jobs__card:focus-visible .jobs__arrow {
+        background: var(--red-grad);
+      }
+      .jobs__card:focus-visible {
+        border-radius: var(--j-card-r);
+      }
+
+      .jobs__more {
+        position: relative;
+        z-index: 1;
+        margin-top: var(--j-btn-gap);
+      }
+
+      /* 장식 오브젝트: inner 기준 absolute (크기·위치는 --j-w 비례) */
+      .jobs__obj {
+        position: absolute;
+        height: auto;
+        max-width: none;
+        pointer-events: none;
+      }
+      .jobs__obj--char {
+        z-index: 2;
+        top: calc(var(--j-w) * 0.094);
+        right: calc(var(--j-w) * 0.007);
+        width: calc(var(--j-w) * 0.197);
+      }
+      .jobs__obj--bottle {
+        z-index: 3; /* 시안처럼 카드 위로 겹침 */
+        left: calc(var(--j-w) * -0.064);
+        bottom: calc(var(--j-w) * 0.075);
+        width: calc(var(--j-w) * 0.216);
+      }
+
+      /* ----- Tablet: 1024px 이하 (2열 유지, 값만 축소) ----- */
+      @media (max-width: 1024px) {
+        .jobs {
+          --j-w: 100vw;
+          --j-pad-x: clamp(20px, 3.5vw, 36px);
+          --j-top: clamp(104px, 14.2vw, 145px);
+          --j-bottom: clamp(88px, 12.7vw, 130px);
+          --j-title: clamp(28px, 3.9vw, 40px);
+          --j-lead: clamp(14px, 1.9vw, 19.5px);
+          --j-lead-gap: clamp(14px, 2vw, 21px);
+          --j-list-gap: clamp(28px, 4.5vw, 46px);
+          --j-col-gap: clamp(12px, 1.9vw, 19px);
+          --j-card-pad: clamp(16px, 2.5vw, 26px);
+          --j-card-pad-b: clamp(20px, 3.1vw, 32px);
+          --j-card-r: clamp(18px, 2.4vw, 25px);
+          --j-img-r: clamp(12px, 1.9vw, 19px);
+          --j-desc: clamp(13px, 1.75vw, 18px);
+          --j-desc-gap: clamp(16px, 2.4vw, 25px);
+          --j-meta: clamp(12px, 1.35vw, 14px);
+          --j-meta-gap: clamp(16px, 2.5vw, 26px);
+          --j-arrow: clamp(28px, 3vw, 32px);
+          --j-btn-gap: clamp(32px, 3.9vw, 40px);
+        }
+        .jobs__logo {
+          left: -1.9em;
+          top: -0.9em;
+        }
+        .jobs__obj--char {
+          top: calc(var(--j-w) * 0.029);
+          right: calc(var(--j-w) * 0.005);
+          width: calc(var(--j-w) * 0.198);
+        }
+        .jobs__obj--bottle {
+          /* left: calc(var(--j-w) * 0.036);
+          bottom: calc(var(--j-w) * 0.05);
+          width: calc(var(--j-w) * 0.209); */
+        }
+      }
+
+      /* ----- Mobile: 600px 이하 (1열, 약병 제거) ----- */
+      @media (max-width: 600px) {
+        .jobs {
+          --j-w: 100vw;
+          --j-pad-x: 20px;
+          --j-top: clamp(96px, 30vw, 130px);
+          --j-bottom: 60px;
+          --j-title: clamp(20px, 6.15vw, 26px);
+          --j-lead: clamp(13px, 3.6vw, 15px);
+          --j-lead-gap: 12px;
+          --j-list-gap: 20px;
+          --j-col-gap: 18px;
+          --j-card-pad: 24px;
+          --j-card-pad-b: 28px;
+          --j-card-r: 24px;
+          --j-img-r: 14px;
+          --j-desc: clamp(12.5px, 3.4vw, 14px);
+          --j-desc-gap: 18px;
+          --j-meta: 12px;
+          --j-meta-gap: 18px;
+          --j-arrow: 26px;
+          --j-btn-gap: 24px;
+        }
+        .jobs__logo {
+          left: -1.95em;
+          top: -1.55em;
+          width: 3.1em;
+        }
+        .jobs__lead {
+          line-height: 1.65;
+        }
+        .jobs__list {
+          grid-template-columns: 1fr;
+        }
+        .jobs__br {
+          display: none; /* 모바일은 자연 줄바꿈 */
+        }
+        .jobs__obj--char {
+          top: calc(var(--j-w) * 0.064);
+          right: calc(var(--j-w) * -0.02);
+          width: calc(var(--j-w) * 0.333);
+        }
+        .jobs__obj--bottle {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .jobs__card,
+        .jobs__media img {
+          transition: none;
+        }
+        .jobs__card:hover,
+        .jobs__card:focus-visible {
+          transform: none;
+        }
+        .jobs__card:hover .jobs__media img,
+        .jobs__card:focus-visible .jobs__media img {
+          transform: none;
         }
       }
     </style>
@@ -1775,7 +2129,9 @@
                     <ul class="history__list">
                       <li class="history__item">
                         <span class="history__year">1973</span>
-                        <span class="history__desc">한미약품공업주식회사 설립</span>
+                        <span class="history__desc"
+                          >한미약품공업주식회사 설립</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">1984</span>
@@ -1783,11 +2139,15 @@
                       </li>
                       <li class="history__item">
                         <span class="history__year">1989</span>
-                        <span class="history__desc">세프트리악손 제조방법 Roche사 기술 수출</span>
+                        <span class="history__desc"
+                          >세프트리악손 제조방법 Roche사 기술 수출</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">1997</span>
-                        <span class="history__desc">마이크로에멀젼 제제기술 Novartis사 기술 수출</span>
+                        <span class="history__desc"
+                          >마이크로에멀젼 제제기술 Novartis사 기술 수출</span
+                        >
                       </li>
                     </ul>
                     <figure class="history__figure">
@@ -1805,19 +2165,28 @@
                     <ul class="history__list">
                       <li class="history__item">
                         <span class="history__year">2004</span>
-                        <span class="history__desc">국내 최초 고혈압치료제 ‘아모디핀’ 미국특허 획득</span>
+                        <span class="history__desc"
+                          >국내 최초 고혈압치료제 ‘아모디핀’ 미국특허 획득</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2006</span>
-                        <span class="history__desc">세계 최초 유소아 해열 시럽제 개량신약 ‘맥시부펜’ 개발 성공</span>
+                        <span class="history__desc"
+                          >세계 최초 유소아 해열 시럽제 개량신약 ‘맥시부펜’ 개발
+                          성공</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2008</span>
-                        <span class="history__desc">국내 최초 주사용항생제 세프트리악손 美 FDA 승인</span>
+                        <span class="history__desc"
+                          >국내 최초 주사용항생제 세프트리악손 美 FDA 승인</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2009</span>
-                        <span class="history__desc">세계최초 암로디핀+로살탄 복합제 ‘아모잘탄’ 발매</span>
+                        <span class="history__desc"
+                          >세계최초 암로디핀+로살탄 복합제 ‘아모잘탄’ 발매</span
+                        >
                       </li>
                     </ul>
                     <figure class="history__figure">
@@ -1832,27 +2201,41 @@
                   </div>
                   <div class="history__row">
                     <h3 class="history__period">2011~2015</h3>
-                    <p class="history__heading">새로운 가능성이 현실이 되었어요.</p>
+                    <p class="history__heading">
+                      새로운 가능성이 현실이 되었어요.
+                    </p>
                     <ul class="history__list">
                       <li class="history__item">
                         <span class="history__year">2011</span>
-                        <span class="history__desc">MSD와 ‘아모잘탄’ 50여개국 수출 계약 체결</span>
+                        <span class="history__desc"
+                          >MSD와 ‘아모잘탄’ 50여개국 수출 계약 체결</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2012</span>
-                        <span class="history__desc">‘LAPS-GCSF’ 美 스펙트럼사와 공동개발 및 상업화 계약</span>
+                        <span class="history__desc"
+                          >‘LAPS-GCSF’ 美 스펙트럼사와 공동개발 및 상업화
+                          계약</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2013</span>
-                        <span class="history__desc">국내 개량신약 최초 미국 FDA 승인 및 미국 출시 ‘에소메졸’</span>
+                        <span class="history__desc"
+                          >국내 개량신약 최초 미국 FDA 승인 및 미국 출시
+                          ‘에소메졸’</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2014</span>
-                        <span class="history__desc">‘트리약손’ 국내 최초 유럽 4개국 시판 허가</span>
+                        <span class="history__desc"
+                          >‘트리약손’ 국내 최초 유럽 4개국 시판 허가</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2015</span>
-                        <span class="history__desc">한국 사상 최대규모 릴레이 기술수출</span>
+                        <span class="history__desc"
+                          >한국 사상 최대규모 릴레이 기술수출</span
+                        >
                       </li>
                     </ul>
                     <figure class="history__figure">
@@ -1870,19 +2253,29 @@
                     <ul class="history__list">
                       <li class="history__item">
                         <span class="history__year">2016</span>
-                        <span class="history__desc">차세대 RAF 저해제, Roche 제넨텍 기술수출</span>
+                        <span class="history__desc"
+                          >차세대 RAF 저해제, Roche 제넨텍 기술수출</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2017</span>
-                        <span class="history__desc">‘에소메졸’ 국내 제약회사 최초 미국약전(USP) 등재</span>
+                        <span class="history__desc"
+                          >‘에소메졸’ 국내 제약회사 최초 미국약전(USP)
+                          등재</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2018</span>
-                        <span class="history__desc">‘Glucagon Analog’, ‘오락솔’ 차세대 AML 치료제 美 희귀의약품 지정</span>
+                        <span class="history__desc"
+                          >‘Glucagon Analog’, ‘오락솔’ 차세대 AML 치료제 美
+                          희귀의약품 지정</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2019</span>
-                        <span class="history__desc">최근 10년간 처방실적 최다 4조 4,176억원</span>
+                        <span class="history__desc"
+                          >최근 10년간 처방실적 최다 4조 4,176억원</span
+                        >
                       </li>
                     </ul>
                     <figure class="history__figure">
@@ -1897,31 +2290,52 @@
                   </div>
                   <div class="history__row">
                     <h3 class="history__period">2021~2026</h3>
-                    <p class="history__heading">하지만 아직, 가야 할 길이 더 남아 있습니다.</p>
+                    <p class="history__heading">
+                      하지만 아직, 가야 할 길이 더 남아 있습니다.
+                    </p>
                     <ul class="history__list">
                       <li class="history__item">
                         <span class="history__year">2021</span>
-                        <span class="history__desc">‘로수젯’, 국내사 개발 처방의약품 매출 1위 달성</span>
+                        <span class="history__desc"
+                          >‘로수젯’, 국내사 개발 처방의약품 매출 1위 달성</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2022</span>
-                        <span class="history__desc">‘롤론티스’ 한국 최초 FDA 허가 받은 바이오신약 등재<br />‘로수젯 RACING 연구’ 세계 최고 권위 의학저널 ‘LANCET’ 등재</span>
+                        <span class="history__desc"
+                          >‘롤론티스’ 한국 최초 FDA 허가 받은 바이오신약 등재<br />‘로수젯
+                          RACING 연구’ 세계 최고 권위 의학저널 ‘LANCET’
+                          등재</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2023</span>
-                        <span class="history__desc">비만 프로젝트 ‘H.O.P’ 프로젝트 가동</span>
+                        <span class="history__desc"
+                          >비만 프로젝트 ‘H.O.P’ 프로젝트 가동</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2024</span>
-                        <span class="history__desc">근손실 한계 뛰어넘은 신개념 비만 신약 ‘HM17321’ 발표</span>
+                        <span class="history__desc"
+                          >근손실 한계 뛰어넘은 신개념 비만 신약 ‘HM17321’
+                          발표</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2025</span>
-                        <span class="history__desc">‘로수젯’ 한국 전문의약품 시장 1위 품목 등록<br />한미약품 8년 연속 원외처방 1위<br />미국암연구학회(AACR)서 국내 최다 11개 연구 성과 발표<br />한미사이언스 약국화장품 ‘EGF크림’ 27만개 완판</span>
+                        <span class="history__desc"
+                          >‘로수젯’ 한국 전문의약품 시장 1위 품목 등록<br />한미약품
+                          8년 연속 원외처방 1위<br />미국암연구학회(AACR)서 국내
+                          최다 11개 연구 성과 발표<br />한미사이언스 약국화장품
+                          ‘EGF크림’ 27만개 완판</span
+                        >
                       </li>
                       <li class="history__item">
                         <span class="history__year">2026</span>
-                        <span class="history__desc">희귀질환치료제 ‘LAPS-GLP2’ 릴리 기술수출<br />한미 ‘완전두유·케어미’ 국제 우수 미각상 수상</span>
+                        <span class="history__desc"
+                          >희귀질환치료제 ‘LAPS-GLP2’ 릴리 기술수출<br />한미
+                          ‘완전두유·케어미’ 국제 우수 미각상 수상</span
+                        >
                       </li>
                     </ul>
                     <figure class="history__figure">
@@ -1975,6 +2389,132 @@
           </svg>
           <span class="history__toggle-label">펼치기</span>
         </button>
+      </section>
+
+      <!-- ===== 직무소개 섹션 (.jobs) : .history 바로 다음 형제 ===== -->
+      <section class="jobs" id="jobs" aria-labelledby="jobs-title">
+        <div class="jobs__inner">
+          <header class="jobs__head">
+            <div class="jobs__heading">
+              <img
+                class="jobs__logo"
+                src="./images/con3_logo.png"
+                alt="Hanmi 한미 로고"
+                width="216"
+                height="193"
+                loading="lazy"
+              />
+              <h2 class="jobs__title" id="jobs-title">
+                한미에서는 어떤 일을 할까요?
+              </h2>
+            </div>
+            <p class="jobs__lead">
+              일의 보람부터 성장의 순간까지, 먼저 경험한 현직자들이 솔직하게
+              들려드립니다.
+            </p>
+          </header>
+
+          <ul class="jobs__list">
+            <li class="jobs__item">
+              <a class="jobs__card" href="#">
+                <div class="jobs__media">
+                  <img
+                    src="./images/con3_int1.png"
+                    alt="의약품 시험 장비가 놓인 실험실에서 주먹을 쥐어 보이며 미소 짓는 이건호 사원"
+                    width="1100"
+                    height="706"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="jobs__desc">
+                  정밀한 시험과 분석으로 의약품의 품질을 확인해<br
+                    class="jobs__br"
+                  />
+                  안전하고 신뢰할 수 있는 의약품을 만들어갑니다.
+                </p>
+                <div class="jobs__foot">
+                  <p class="jobs__meta">
+                    <span class="jobs__dept">한미약품 품질관리</span>
+                    <span class="jobs__name">이건호 사원</span>
+                  </p>
+                  <span class="jobs__arrow" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M4 10h12M11 5l5 5-5 5" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </li>
+            <li class="jobs__item">
+              <a class="jobs__card" href="#">
+                <div class="jobs__media">
+                  <img
+                    src="./images/con3_int2.png"
+                    alt="밝은 사무 공간의 소파에 앉아 두 손을 모으고 미소 짓는 박진하 연구원"
+                    width="1100"
+                    height="706"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="jobs__desc">
+                  신약 후보물질의 가능성을 과학적으로 검증해<br
+                    class="jobs__br"
+                  />
+                  새로운 치료제가 환자에게 향하는 첫걸음을 만듭니다.
+                </p>
+                <div class="jobs__foot">
+                  <p class="jobs__meta">
+                    <span class="jobs__dept">한미약품 전임상연구</span>
+                    <span class="jobs__name">박진하 연구원</span>
+                  </p>
+                  <span class="jobs__arrow" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M4 10h12M11 5l5 5-5 5" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <a class="btn btn--lg jobs__more" href="#"
+            ><span>모든 현직자 알아가기!</span></a
+          >
+
+          <!-- 장식(데스크탑/태블릿 시안에만 존재) -->
+          <img
+            class="jobs__obj jobs__obj--char"
+            src="./images/con3_char.png"
+            alt="사원증을 목에 걸고 서류가방을 든 채 걸어가는 보라색 캐릭터"
+            aria-hidden="true"
+            width="560"
+            height="458"
+            loading="lazy"
+          />
+          <img
+            class="jobs__obj jobs__obj--bottle"
+            src="./images/con3_bottle.png.png"
+            alt="한미 로고가 새겨진 파란 뚜껑의 흰색 약병"
+            aria-hidden="true"
+            width="600"
+            height="692"
+            loading="lazy"
+          />
+        </div>
       </section>
     </main>
 

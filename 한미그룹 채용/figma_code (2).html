@@ -1615,7 +1615,11 @@
         box-shadow: 0 8px 32px rgba(255, 120, 80, 0.1);
         transition:
           transform 0.3s ease,
-          box-shadow 0.3s ease;
+          box-shadow 0.3s ease,
+          background 0.5s;
+      }
+      .jobs__card:hover {
+        background: #fff9f7;
       }
       .jobs__media {
         overflow: hidden;
@@ -1821,6 +1825,305 @@
         }
         .jobs__card:hover .jobs__media img,
         .jobs__card:focus-visible .jobs__media img {
+          transform: none;
+        }
+      }
+
+      /* ===== 성장 및 혁신 소식 섹션 (.innovation) =====
+         - 시안 기준폭: Desktop 1440 / Tablet 1024 / Mobile 390 (.jobs 와 동일한 브레이크포인트)
+         - 사이즈는 토큰(--i-*)으로 분리, 구간별로 값만 교체
+         - --i-w : 장식 이미지 비례 계산용 기준폭 (데스크탑은 1440 에서 고정) */
+      .innovation {
+        --i-w: min(100vw, var(--inner));
+        --i-orange: #ff5d32;
+        /* Desktop (1025px~) */
+        --i-pad-x: clamp(24px, 3.9vw, 56px);
+        --i-top: clamp(80px, 7.4vw, 106px);
+        --i-bottom: clamp(120px, 13.75vw, 198px);
+        --i-title: clamp(32px, 3.9vw, 56px);
+        --i-lead: clamp(14px, 1.4vw, 20px);
+        --i-lead-gap: clamp(16px, 1.95vw, 28px);
+        --i-panel-gap: clamp(48px, 5.55vw, 80px);
+        --i-panel-r: clamp(20px, 2.1vw, 30px);
+        --i-panel-px: clamp(24px, 3.9vw, 56px);
+        --i-panel-pt: clamp(32px, 4vw, 58px);
+        --i-panel-pb: clamp(32px, 4.8vw, 72px);
+        --i-gap: clamp(16px, 2.8vw, 40px);
+        --i-font: clamp(13px, 1.4vw, 20px);
+        --i-bub-px: clamp(14px, 1.8vw, 26px);
+        --i-bub-py: clamp(10px, 1.45vw, 21px);
+        --i-bub-r: clamp(14px, 1.5vw, 22px); /* 꼬리 영역(24px)보다 작게 유지 */
+        --i-hint: clamp(12px, 1vw, 15px);
+        --i-hint-gap: clamp(20px, 2.8vw, 40px);
+        --i-atom: calc(var(--i-w) * 0.166);
+        --i-atom-up: 0.43; /* 원자 이미지가 패널 위로 튀어나오는 비율 */
+        --i-atom-right: 1%;
+        --i-chem: calc(var(--i-w) * 0.238);
+        --i-mol: calc(var(--i-w) * 0.124);
+        --i-mol-left: calc(var(--i-w) * 0.042);
+        position: relative;
+        overflow: hidden; /* 장식이 화면 밖으로 나가도 가로 스크롤 방지 */
+        isolation: isolate;
+        background: #fdf6f2;
+      }
+      /* 배경 그라데이션 장식 (HTML 오염 방지: 가상요소) */
+      .innovation::before,
+      .innovation::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        aspect-ratio: 1 / 1;
+        background: radial-gradient(closest-side, var(--red) 0%, rgba(230, 0, 18, 0) 100%);
+        pointer-events: none;
+      }
+      /* 우측 상단: 30vw, 오른쪽 바깥으로 40%(=12vw) 걸쳐 60%만 노출 */
+      .innovation::before {
+        width: 30vw;
+        top: -10vw;
+        right: -12vw;
+        opacity: 0.1;
+      }
+      /* 좌측 하단: 20vw */
+      .innovation::after {
+        width: 20vw;
+        bottom: -1vw;
+        left: -5vw;
+        opacity: 0.2;
+      }
+      .innovation__inner {
+        position: relative;
+        max-width: var(--inner);
+        margin: 0 auto;
+        padding: var(--i-top) var(--i-pad-x) var(--i-bottom);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .innovation__head {
+        text-align: center;
+      }
+      .innovation__title {
+        font-size: var(--i-title);
+        line-height: 1.3;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .innovation__lead {
+        margin-top: var(--i-lead-gap);
+        font-size: var(--i-lead);
+        line-height: 1.6;
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        color: #222;
+      }
+
+      /* 패널: 장식 이미지가 가장자리를 넘어 걸치도록 overflow 는 visible */
+      .innovation__panel {
+        position: relative;
+        width: 100%;
+        margin-top: var(--i-panel-gap);
+        padding: var(--i-panel-pt) var(--i-panel-px) var(--i-panel-pb);
+        border-radius: var(--i-panel-r);
+        background: #fef7f4;
+        box-shadow: 0 8px 32px rgba(255, 120, 80, 0.1);
+      }
+      .innovation__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--i-gap);
+        position: relative;
+        z-index: 1;
+      }
+      .innovation__item {
+        display: flex;
+        max-width: 100%;
+      }
+      .innovation__item:nth-child(odd) {
+        align-self: flex-start;
+      }
+      .innovation__item:nth-child(even) {
+        align-self: flex-end;
+      }
+
+      /* 말풍선: 배경은 인라인 SVG, 텍스트가 늘어나면 SVG 도 함께 늘어남 */
+      .innovation__bubble {
+        position: relative;
+        display: block;
+        padding: var(--i-bub-py) var(--i-bub-px);
+        font-size: var(--i-font);
+        line-height: 1.5;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        transition: transform 0.25s ease;
+      }
+      .innovation__bubble--brand {
+        color: var(--white);
+      }
+      .innovation__bubble--white {
+        color: var(--i-orange);
+      }
+      .innovation__bubble-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible; /* 꼬리가 박스 밖으로 튀어나옴 */
+        pointer-events: none;
+      }
+      .innovation__bubble-bg rect {
+        rx: var(--i-bub-r);
+        ry: var(--i-bub-r);
+        transition: fill 0.25s ease;
+      }
+      .innovation__bubble-bg path {
+        transition: fill 0.25s ease;
+      }
+      .innovation__bubble--brand .innovation__bubble-bg {
+        fill: var(--i-orange);
+      }
+      .innovation__bubble--white .innovation__bubble-bg {
+        fill: var(--white);
+        filter: drop-shadow(0 2px 8px rgba(255, 120, 80, 0.12));
+      }
+      .innovation__bubble-text {
+        position: relative;
+        z-index: 1;
+        display: block;
+      }
+      .innovation__bubble:hover,
+      .innovation__bubble:focus-visible {
+        transform: translateY(-3px);
+      }
+      .innovation__bubble--brand:hover .innovation__bubble-bg,
+      .innovation__bubble--brand:focus-visible .innovation__bubble-bg {
+        fill: #ff4519;
+      }
+      .innovation__bubble--white:hover .innovation__bubble-bg,
+      .innovation__bubble--white:focus-visible .innovation__bubble-bg {
+        fill: #fff1ec;
+      }
+
+      .innovation__hint {
+        position: relative;
+        z-index: 1;
+        margin-top: var(--i-hint-gap);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5em;
+        font-size: var(--i-hint);
+        line-height: 1.4;
+        letter-spacing: -0.03em;
+        color: #777;
+      }
+      .innovation__hint::before {
+        content: "";
+        flex: none;
+        width: 0.3em;
+        height: 0.3em;
+        border-radius: 50%;
+        background: var(--i-orange);
+      }
+
+      /* 장식 이미지 */
+      .innovation__obj {
+        position: absolute;
+        height: auto;
+        max-width: none;
+        pointer-events: none;
+      }
+      .innovation__obj--chem {
+        z-index: 0;
+        right: 0;
+        top: calc(var(--i-chem) * -0.148 + 4px);
+        width: var(--i-chem);
+      }
+      .innovation__obj--atom {
+        z-index: 2;
+        right: var(--i-atom-right);
+        top: calc(var(--i-atom) * var(--i-atom-up) * -1);
+        width: var(--i-atom);
+      }
+      .innovation__obj--mol {
+        z-index: 1;
+        left: var(--i-mol-left);
+        bottom: 0;
+        width: var(--i-mol);
+      }
+
+      /* ----- Tablet: 1024px 이하 ----- */
+      @media (max-width: 1024px) {
+        .innovation {
+          --i-pad-x: clamp(20px, 4.4vw, 44px);
+          --i-top: clamp(72px, 9.8vw, 100px);
+          --i-bottom: clamp(100px, 13.3vw, 136px);
+          --i-title: clamp(28px, 3.7vw, 38px);
+          --i-lead: clamp(14px, 1.7vw, 17.5px);
+          --i-lead-gap: clamp(14px, 2vw, 21px);
+          --i-panel-gap: clamp(48px, 8vw, 82px);
+          --i-panel-r: clamp(18px, 2.4vw, 25px);
+          --i-panel-px: clamp(20px, 4.7vw, 48px);
+          --i-panel-pt: clamp(32px, 5.6vw, 58px);
+          --i-panel-pb: clamp(32px, 6.2vw, 64px);
+          --i-gap: clamp(16px, 3.5vw, 36px);
+          --i-font: clamp(13px, 1.75vw, 18px);
+          --i-bub-px: clamp(14px, 1.7vw, 18px);
+          --i-bub-py: clamp(9px, 1.1vw, 12px);
+          --i-bub-r: clamp(14px, 1.7vw, 18px);
+          --i-hint: clamp(12px, 1.25vw, 13px);
+          --i-hint-gap: clamp(20px, 2.8vw, 30px);
+          --i-atom: calc(var(--i-w) * 0.188);
+          --i-atom-up: 0.38;
+          --i-atom-right: -2.5%;
+          --i-chem: calc(var(--i-w) * 0.206);
+          --i-mol: calc(var(--i-w) * 0.135);
+          --i-mol-left: calc(var(--i-w) * 0.033);
+        }
+      }
+
+      /* ----- Mobile: 600px 이하 ----- */
+      @media (max-width: 600px) {
+        .innovation {
+          --i-pad-x: 20px;
+          --i-top: 56px;
+          --i-bottom: clamp(70px, 20vw, 90px);
+          --i-title: clamp(20px, 5.9vw, 26px);
+          --i-lead: clamp(13px, 3.85vw, 15px);
+          --i-lead-gap: 12px;
+          --i-panel-gap: 56px;
+          --i-panel-r: 20px;
+          --i-panel-px: 18px;
+          --i-panel-pt: 24px;
+          --i-panel-pb: 28px;
+          --i-gap: 12px;
+          --i-font: clamp(11.5px, 3.1vw, 13px);
+          --i-bub-px: 12px;
+          --i-bub-py: 10px;
+          --i-bub-r: 14px;
+          --i-hint: 12px;
+          --i-hint-gap: 24px;
+          --i-atom: calc(var(--i-w) * 0.184);
+          --i-atom-up: 0.52;
+          --i-atom-right: 3.5%;
+          --i-chem: calc(var(--i-w) * 0.22);
+          --i-mol: calc(var(--i-w) * 0.193);
+          --i-mol-left: calc(var(--i-w) * 0.05);
+        }
+        .innovation__bubble:hover,
+        .innovation__bubble:focus-visible {
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .innovation__bubble,
+        .innovation__bubble-bg rect,
+        .innovation__bubble-bg path {
+          transition: none;
+        }
+        .innovation__bubble:hover,
+        .innovation__bubble:focus-visible {
           transform: none;
         }
       }
@@ -2510,6 +2813,131 @@
             height="692"
             loading="lazy"
           />
+        </div>
+      </section>
+      <!-- ===== 성장 및 혁신 소식 섹션 (.innovation) : .jobs 바로 다음 형제 ===== -->
+      <section class="innovation" id="innovation" aria-labelledby="innovation-title">
+        <div class="innovation__inner">
+          <header class="innovation__head">
+            <h2 class="innovation__title" id="innovation-title">
+              당신의 가능성,<br />한미그룹에서 더 크게 성장합니다
+            </h2>
+            <p class="innovation__lead">
+              연구와 혁신으로 성장하며 글로벌 제약/바이오 기업을 향해 나아갑니다.
+            </p>
+          </header>
+
+          <div class="innovation__panel">
+            <ul class="innovation__list">
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--brand" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="0" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 -9 1Q10 2 24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  한미약품, 상반기 누적 매출 8,602억원...2분기 영업이익 117% 증가
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--white" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="100%" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 9 1Q-10 2 -24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  “사업형 지주사 경쟁력 입증”...한미사이언스, 2분기 영업이익 71%↑<br />
+                  2분기 매출 3,679억원...상반기 누적 매출 7,216억원 돌파
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--brand" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="0" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 -9 1Q10 2 24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  한미약품, 로슈 제넨텍에 비만신약 기술수출...최대 3조 2,000억 규모
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--white" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="100%" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 9 1Q-10 2 -24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  “UCN2 이어 또...” 한미약품, 두 번째 근육 증가 비만신약 공개
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--brand" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="0" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 -9 1Q10 2 24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  명품 반열 오른 한미 ‘로수젯’...압도적 데이터 경쟁력으로 시장 석권<br />
+                  2년 연속 국내사 개발 전문의약품 시장 ‘1위’...올해 상반기 누적 처방액도 선두
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--white" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="100%" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 9 1Q-10 2 -24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  “비만 넘어 항암으로 혁신 확장”...한미, AACR서 차세대 신약 대거 공개
+                </span>
+              </a>
+            </li>
+            <li class="innovation__item">
+              <!-- TODO: 기사 링크(href)를 실제 URL 로 교체 -->
+              <a class="innovation__bubble innovation__bubble--brand" href="#">
+                <svg class="innovation__bubble-bg" aria-hidden="true" focusable="false" width="100%" height="100%">
+                  <rect width="100%" height="100%" rx="20" ry="20" />
+                  <svg x="0" y="100%" overflow="visible">
+                    <path d="M0 -24Q0 -6 -9 1Q10 2 24 0V-24Z" />
+                  </svg>
+                </svg>
+                <span class="innovation__bubble-text">
+                  한미 완전두유·케어미, 영양에 ‘맛’까지 인정...국제 우수 미각상 수상
+                </span>
+              </a>
+            </li>
+            </ul>
+            <p class="innovation__hint">말풍선을 클릭해서 기사를 확인해 보세요.</p>
+
+            <!-- 장식 이미지 (패널 가장자리에 걸침) -->
+            <img class="innovation__obj innovation__obj--chem" src="./images/inno_chemical.png" alt="" aria-hidden="true" width="702" height="208" loading="lazy" />
+            <img class="innovation__obj innovation__obj--atom" src="./images/inno_molecule1.png" alt="" aria-hidden="true" width="359" height="359" loading="lazy" />
+          </div>
+
+          <img class="innovation__obj innovation__obj--mol" src="./images/inno_molecule2.png" alt="" aria-hidden="true" width="359" height="383" loading="lazy" />
         </div>
       </section>
     </main>
