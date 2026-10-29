@@ -1886,6 +1886,7 @@
         color: var(--welfare-orange);
       }
       .welfare__intro-copy {
+        margin: 0;
         font-size: clamp(12px, 1.1vw, 14px);
         line-height: 1.5;
         letter-spacing: -0.03em;
@@ -1928,6 +1929,10 @@
         border-radius: 16px;
         background: linear-gradient(110deg, #fffaf8 0%, #fff 100%);
         box-shadow: 0 3px 8px rgba(114, 55, 34, 0.08);
+      }
+      .welfare__section-intro {
+        grid-column: 1 / -1;
+        padding: 8px 4px 0;
       }
       .welfare__text {
         min-width: 0;
@@ -2069,6 +2074,440 @@
         .welfare__cloud {
           left: 14px;
           width: 118px;
+        }
+      }
+
+      /* ===== 직무 탐색 섹션 (.tasks) ===== */
+      .tasks {
+        --tasks-orange: #ff5d32;
+        color: #111;
+        background: #fff;
+      }
+      .tasks__hero {
+        position: relative;
+        height: min(100svh, 900px);
+        min-height: 620px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffddd5 0%, #fff5f1 67%, #fff 100%);
+      }
+      .tasks__title-art {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: max(100%, 1500px);
+        max-width: none;
+        opacity: 0.2;
+        transform: translateX(-50%);
+      }
+      .tasks__character {
+        position: absolute;
+        top: clamp(250px, 32vw, 270px);
+        left: 50%;
+        width: min(80vw, 900px);
+        max-width: none;
+        height: auto;
+        transform: translateX(-50%);
+      }
+      .tasks__content {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 96px 32px 120px;
+      }
+      .tasks__head {
+        margin-bottom: 66px;
+        text-align: center;
+      }
+      .tasks__title {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.35;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+      }
+      .tasks__lead {
+        margin: 24px 0 0;
+        font-size: clamp(16px, 1.5vw, 20px);
+        line-height: 1.6;
+        letter-spacing: -0.04em;
+      }
+      .tasks__tabs {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 38px;
+      }
+      .tasks__tab {
+        min-height: 60px;
+        padding: 12px 16px;
+        border: 0;
+        border-radius: 16px;
+        color: #777;
+        background: transparent;
+        font: inherit;
+        font-size: 17px;
+        font-weight: 600;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+      .tasks__tab:hover,
+      .tasks__tab[aria-selected="true"] {
+        color: var(--tasks-orange);
+        background: #fff8f5;
+        box-shadow: 0 5px 16px rgba(131, 73, 52, 0.12);
+      }
+      .tasks__tab:focus-visible,
+      .tasks__location-toggle:focus-visible,
+      .tasks__job:focus-visible,
+      .tasks__modal-close:focus-visible {
+        outline: 3px solid rgba(255, 93, 50, 0.45);
+        outline-offset: 3px;
+      }
+      .tasks__locations {
+        border-top: 1px solid #ddd;
+      }
+      .tasks__location {
+        border-bottom: 1px solid #ddd;
+      }
+      .tasks__location-toggle {
+        display: flex;
+        width: 100%;
+        min-height: 90px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 18px 34px;
+        border: 0;
+        color: #777;
+        background: #fff;
+        font: inherit;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+      }
+      .tasks__location.is-open .tasks__location-toggle {
+        color: #d7674d;
+      }
+      .tasks__count {
+        display: inline-flex;
+        min-width: 42px;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 12px;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--tasks-orange);
+        font-size: 17px;
+        line-height: 1;
+      }
+      .tasks__chevron {
+        width: 12px;
+        height: 12px;
+        margin-left: auto;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 180ms ease;
+      }
+      .tasks__location.is-open .tasks__chevron {
+        transform: rotate(225deg);
+      }
+      .tasks__panel {
+        padding: 0 18px 30px;
+      }
+      .tasks__jobs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .tasks__job {
+        display: flex;
+        min-height: 78px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 28px;
+        border: 1px solid #f4e3de;
+        border-radius: 22px;
+        color: #111;
+        background: linear-gradient(110deg, #fffaf8, #fff);
+        box-shadow: 0 4px 12px rgba(114, 55, 34, 0.08);
+        font: inherit;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      }
+      .tasks__job:hover {
+        transform: translateY(-2px);
+        border-color: #ffb39e;
+        box-shadow: 0 8px 18px rgba(114, 55, 34, 0.12);
+      }
+      .tasks__job-arrow {
+        color: #777;
+        font-size: 25px;
+        font-weight: 400;
+      }
+      .tasks__empty {
+        margin: 0;
+        padding: 24px 12px;
+        color: #666;
+        text-align: center;
+      }
+      .tasks__modal {
+        position: fixed;
+        width: min(746px, calc(100vw - 32px));
+        max-width: none;
+        max-height: min(82svh, 720px);
+        margin: clamp(16px, 4vh, 30px) auto 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
+      }
+      .tasks__modal::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(1px);
+      }
+      .tasks__modal-banner {
+        position: relative;
+        height: 150px;
+        background: #d6e5ec;
+      }
+      .tasks__modal-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tasks__modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--tasks-orange);
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .tasks__modal-body {
+        max-height: calc(min(82svh, 720px) - 150px);
+        padding: 44px 56px 52px;
+        overflow-y: auto;
+      }
+      .tasks__modal-title {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.4;
+        font-weight: 800;
+      }
+      .tasks__modal-meta {
+        margin: 8px 0 0;
+        color: #777;
+        font-size: 15px;
+      }
+      .tasks__modal-meta strong {
+        color: var(--tasks-orange);
+      }
+      .tasks__modal-career {
+        margin: 8px 0 0;
+        font-size: 13px;
+      }
+      .tasks__modal-block {
+        margin-top: 48px;
+      }
+      .tasks__modal-block + .tasks__modal-block {
+        margin-top: 36px;
+        padding-top: 34px;
+        border-top: 1px solid #ddd;
+      }
+      .tasks__modal-block h4 {
+        margin: 0 0 14px;
+        font-size: 17px;
+      }
+      .tasks__modal-block ul {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding-left: 18px;
+      }
+      .tasks__modal-block li {
+        padding-left: 0;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .tasks__modal-block li::marker {
+        color: var(--tasks-orange);
+      }
+      body.has-tasks-modal {
+        overflow: hidden;
+      }
+      @media (max-width: 1024px) {
+        .tasks__hero {
+          height: min(100svh, 820px);
+          min-height: 580px;
+        }
+        .tasks__character {
+          width: min(80vw, 900px);
+        }
+        .tasks__content {
+          padding: 80px 28px 100px;
+        }
+        .tasks__head {
+          margin-bottom: 48px;
+        }
+        .tasks__tabs {
+          gap: 4px;
+        }
+        .tasks__tab {
+          padding: 10px 8px;
+          font-size: 15px;
+        }
+        .tasks__location-toggle {
+          min-height: 82px;
+          padding: 16px 22px;
+          font-size: 20px;
+        }
+        .tasks__panel {
+          padding: 0 10px 24px;
+        }
+        .tasks__jobs {
+          gap: 12px;
+        }
+        .tasks__job {
+          padding: 18px 22px;
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 900px) {
+        .tasks__hero {
+          height: 100svh;
+          min-height: 520px;
+          max-height: 780px;
+        }
+        .tasks__title-art {
+          top: 8px;
+          width: max(150%, 900px);
+        }
+        .tasks__character {
+          width: min(max(106vw, 700px), 900px);
+        }
+        .tasks__content {
+          padding: 64px 0 80px;
+        }
+        .tasks__head {
+          margin: 0 auto 34px;
+          padding: 0 20px;
+        }
+        .tasks__title {
+          font-size: 28px;
+          line-height: 1.4;
+        }
+        .tasks__lead {
+          margin-top: 14px;
+          font-size: 14px;
+        }
+        .tasks__tabs {
+          display: flex;
+          gap: 4px;
+          margin: 0 0 26px;
+          padding: 6px 16px 12px;
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          scrollbar-width: thin;
+          scrollbar-color: #ffb39e #f5f5f5;
+        }
+        .tasks__tab {
+          flex: 0 0 auto;
+          min-width: 112px;
+          min-height: 48px;
+          border-radius: 13px;
+          font-size: 14px;
+        }
+        .tasks__locations {
+          margin: 0 16px;
+        }
+        .tasks__location-toggle {
+          min-height: 68px;
+          gap: 10px;
+          padding: 14px 10px;
+          font-size: 16px;
+        }
+        .tasks__count {
+          min-width: 34px;
+          height: 22px;
+          padding: 0 9px;
+          font-size: 14px;
+        }
+        .tasks__chevron {
+          width: 9px;
+          height: 9px;
+        }
+        .tasks__panel {
+          padding: 0 2px 18px;
+        }
+        .tasks__jobs {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 10px;
+        }
+        .tasks__job {
+          min-height: 60px;
+          padding: 16px 18px;
+          border-radius: 16px;
+          font-size: 15px;
+        }
+        .tasks__modal {
+          width: calc(100vw - 28px);
+          max-height: 86svh;
+          border-radius: 16px;
+        }
+        .tasks__modal-banner {
+          height: 112px;
+        }
+        .tasks__modal-close {
+          top: 10px;
+          right: 10px;
+          width: 36px;
+          height: 36px;
+          font-size: 24px;
+        }
+        .tasks__modal-body {
+          max-height: calc(86svh - 112px);
+          padding: 28px 24px 34px;
+        }
+        .tasks__modal-title {
+          font-size: 20px;
+        }
+        .tasks__modal-meta {
+          font-size: 14px;
+        }
+        .tasks__modal-block {
+          margin-top: 34px;
+        }
+        .tasks__modal-block + .tasks__modal-block {
+          margin-top: 26px;
+          padding-top: 26px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tasks__tab,
+        .tasks__chevron,
+        .tasks__job {
+          transition: none;
+        }
+        .tasks__job:hover {
+          transform: none;
         }
       }
 
@@ -2876,6 +3315,16 @@
                   loading="lazy"
                 />
               </li>
+              <li class="welfare__section-intro">
+                <div class="welfare__intro">
+                  <h3 class="welfare__intro-title">
+                    가족의 행복도 빼놓을 수 없죠!
+                  </h3>
+                  <p class="welfare__intro-copy">
+                    축하할 때도, 도움이 필요할 때도 한미가 함께해요.
+                  </p>
+                </div>
+              </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">단체 상해 보험</h4>
@@ -3129,6 +3578,87 @@
           />
         </div>
       </section>
+      <section class="tasks" id="tasks" aria-labelledby="tasks-title">
+        <div class="tasks__hero" aria-hidden="true">
+          <img
+            class="tasks__title-art"
+            src="./images/tasks_bg_title.png"
+            alt=""
+            width="2000"
+            height="474"
+            loading="lazy"
+          />
+          <img
+            class="tasks__character"
+            src="./images/tasks_character.png"
+            alt=""
+            width="2000"
+            height="1580"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="tasks__content">
+          <header class="tasks__head">
+            <h2 class="tasks__title" id="tasks-title">
+              알약이를 따라<br />
+              나에게 맞는 직무를 찾아봐요!
+            </h2>
+            <p class="tasks__lead">
+              연구부터 생산, 영업, 경영지원까지 당신의 가능성이 빛날 자리를 안내해 드릴게요.
+            </p>
+          </header>
+
+          <div class="tasks__tabs" role="tablist" aria-label="직무 분야">
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-rnd" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="rnd">R&amp;D</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-production" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="production">생산/품질</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-sales" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="sales">영업</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-management" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="management">경영관리</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-clinical" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="clinical">임상</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-global" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="global">글로벌</button>
+            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-healthcare" aria-controls="tasks-locations" aria-selected="true" tabindex="0" data-category="healthcare">헬스케어</button>
+          </div>
+
+          <div
+            class="tasks__locations"
+            id="tasks-locations"
+            role="tabpanel"
+            aria-labelledby="tasks-tab-healthcare"
+            aria-live="polite"
+          ></div>
+        </div>
+
+        <dialog class="tasks__modal" aria-labelledby="tasks-modal-title">
+          <div class="tasks__modal-banner">
+            <img
+              src="./images/tasks_rnd_bg.jpg"
+              alt=""
+              width="1600"
+              height="320"
+            />
+            <button
+              class="tasks__modal-close"
+              type="button"
+              aria-label="직무 상세 닫기"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="tasks__modal-body">
+            <h3 class="tasks__modal-title" id="tasks-modal-title"></h3>
+            <p class="tasks__modal-meta"></p>
+            <p class="tasks__modal-career"></p>
+            <section class="tasks__modal-block" aria-labelledby="tasks-modal-duties-title">
+              <h4 id="tasks-modal-duties-title">직무 내용</h4>
+              <ul class="tasks__modal-duties"></ul>
+            </section>
+            <section class="tasks__modal-block" aria-labelledby="tasks-modal-qualifications-title">
+              <h4 id="tasks-modal-qualifications-title">자격요건</h4>
+              <ul class="tasks__modal-qualifications"></ul>
+            </section>
+          </div>
+        </dialog>
+      </section>
     </main>
 
     <footer class="footer">
@@ -3240,6 +3770,499 @@
           window.addEventListener("resize", measure);
           window.addEventListener("load", measure);
         }
+      })();
+
+      /* 직무 탐색: 분야 탭, 근무지 아코디언, 상세 모달 */
+      (function () {
+        var section = document.querySelector(".tasks");
+        if (!section) return;
+
+        var categories = {
+          rnd: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "신약 연구",
+                    location: "본사 (서울시 송파구)",
+                    category: "R&D",
+                    duties: ["신규 의약품 후보물질 탐색 및 연구", "연구 데이터 분석과 실험 결과 정리", "유관 부서와 연구 과제 협업"],
+                    qualifications: ["생명과학·약학 등 관련 전공자", "연구 분야에 대한 관심과 기초 지식 보유자"],
+                  },
+                  {
+                    title: "바이오 연구",
+                    location: "본사 (서울시 송파구)",
+                    category: "R&D",
+                    duties: ["바이오 의약품 연구 및 개발", "실험 계획 수립과 결과 검토", "연구 문서 및 데이터 관리"],
+                    qualifications: ["바이오·생명과학 관련 전공자", "실험 및 분석 업무에 관심이 있는 분"],
+                  },
+                  {
+                    title: "분석 연구",
+                    location: "본사 (서울시 송파구)",
+                    category: "R&D",
+                    duties: ["의약품 분석법 개발 및 검증", "분석 장비 운용과 결과 보고", "연구 품질 향상을 위한 개선 활동"],
+                    qualifications: ["화학·약학 등 관련 전공자", "분석 실험에 대한 이해가 있는 분"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "연구 지원",
+                    location: "서울/수도권/영남",
+                    category: "R&D",
+                    duties: ["연구 과제 운영 및 자료 관리", "실험실 운영과 연구 일정 지원"],
+                    qualifications: ["관련 업무 경험 또는 전공자 우대"],
+                  },
+                ],
+              },
+            ],
+          },
+          production: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "제조",
+                    location: "본사 (서울시 송파구)",
+                    category: "생산/품질",
+                    duties: ["내용고형제(칭량, 과립, 타정, 코팅, 인쇄·선별) 제조공정 수행", "제조설비 운전 및 공정 중 점검", "제조기록서 작성 및 GMP 문서관리", "공정 개선활동 및 생산성 향상 업무"],
+                    qualifications: ["고등학교 졸업 이상 학력 소지자 (전공무관)", "교대 근무 가능자"],
+                  },
+                  {
+                    title: "품질관리",
+                    location: "본사 (서울시 송파구)",
+                    category: "생산/품질",
+                    duties: ["원료 및 제품의 품질 시험", "시험 결과 기록과 관련 문서 관리", "분석 장비 점검 및 유지관리"],
+                    qualifications: ["화학·생명과학 등 관련 전공자 우대", "꼼꼼하고 책임감 있게 업무를 수행하는 분"],
+                  },
+                  {
+                    title: "생산기술지원",
+                    location: "본사 (서울시 송파구)",
+                    category: "생산/품질",
+                    duties: ["생산 공정과 설비 개선 지원", "생산성 및 품질 지표 분석", "현장 개선 과제 운영"],
+                    qualifications: ["기계·화학공학 등 관련 전공자 우대"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "제조",
+                    location: "팔탄제조센터 (경기도 화성)",
+                    category: "생산/품질",
+                    duties: ["내용고형제(칭량, 과립, 타정, 코팅, 인쇄·선별) 제조공정 수행", "제조설비 운전 및 공정 중 점검", "제조기록서 작성 및 GMP 문서관리", "공정 개선활동 및 생산성 향상 업무"],
+                    qualifications: ["고등학교 졸업 이상 학력 소지자 (전공무관)", "교대 근무 가능자"],
+                  },
+                ],
+              },
+            ],
+          },
+          sales: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "전문의약품 영업",
+                    location: "본사 (서울시 송파구)",
+                    category: "영업",
+                    duties: ["의료기관 대상 제품 정보 및 학술 정보 전달", "거래처 관계 관리와 영업 계획 수립", "시장 동향 및 고객 의견 분석"],
+                    qualifications: ["원활한 커뮤니케이션 역량을 갖춘 분", "운전 가능자 우대"],
+                  },
+                  {
+                    title: "영업기획",
+                    location: "본사 (서울시 송파구)",
+                    category: "영업",
+                    duties: ["영업 전략 및 목표 수립 지원", "실적 데이터 분석과 보고", "영업 현장 지원 프로그램 운영"],
+                    qualifications: ["데이터 분석 및 문서 작성 역량 보유자"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "지역 영업",
+                    location: "서울/수도권/영남",
+                    category: "영업",
+                    duties: ["담당 지역 거래처 관리", "제품 정보 전달 및 고객 문의 대응"],
+                    qualifications: ["지역 근무 가능자", "고객 중심의 소통 역량을 갖춘 분"],
+                  },
+                ],
+              },
+            ],
+          },
+          management: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "인사",
+                    location: "본사 (서울시 송파구)",
+                    category: "경영관리",
+                    duties: ["인사 제도 및 인력 운영 지원", "채용·교육 프로그램 기획과 운영", "인사 데이터 및 관련 문서 관리"],
+                    qualifications: ["인사 업무에 대한 관심과 이해가 있는 분", "협업과 소통에 능숙한 분"],
+                  },
+                  {
+                    title: "재무회계",
+                    location: "본사 (서울시 송파구)",
+                    category: "경영관리",
+                    duties: ["회계 결산 및 재무 자료 작성", "비용 관리와 회계 관련 업무 지원", "내부 기준 및 관련 법규 준수"],
+                    qualifications: ["회계·경영 관련 전공자 우대"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "총무",
+                    location: "서울/수도권/영남",
+                    category: "경영관리",
+                    duties: ["사업장 운영 및 자산 관리", "구성원 업무 환경 지원"],
+                    qualifications: ["총무·행정 업무 경험자 우대"],
+                  },
+                ],
+              },
+            ],
+          },
+          clinical: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "임상시험 운영",
+                    location: "본사 (서울시 송파구)",
+                    category: "임상",
+                    duties: ["임상시험 계획 및 운영 관리", "시험기관·협력사 커뮤니케이션", "임상시험 관련 문서와 일정 관리"],
+                    qualifications: ["약학·간호학·생명과학 등 관련 전공자", "임상시험 관련 기준에 대한 이해 보유자 우대"],
+                  },
+                  {
+                    title: "임상 데이터 관리",
+                    location: "본사 (서울시 송파구)",
+                    category: "임상",
+                    duties: ["임상 데이터 검토 및 품질 관리", "데이터 이슈 확인과 해결 지원"],
+                    qualifications: ["데이터 관리 및 분석에 관심이 있는 분"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "임상 모니터링",
+                    location: "서울/수도권/영남",
+                    category: "임상",
+                    duties: ["임상시험 기관 방문 및 진행 현황 점검", "시험 관련 자료와 필수 문서 확인"],
+                    qualifications: ["관련 전공자 또는 임상시험 업무 경험자 우대"],
+                  },
+                ],
+              },
+            ],
+          },
+          global: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "해외사업 개발",
+                    location: "본사 (서울시 송파구)",
+                    category: "글로벌",
+                    duties: ["해외 시장 및 사업 기회 조사", "글로벌 파트너 발굴과 협업", "해외 사업 전략 및 실행 지원"],
+                    qualifications: ["외국어 커뮤니케이션 역량 보유자", "글로벌 사업에 대한 관심이 있는 분"],
+                  },
+                  {
+                    title: "해외 제품 등록",
+                    location: "본사 (서울시 송파구)",
+                    category: "글로벌",
+                    duties: ["해외 의약품 인허가 자료 준비", "국가별 등록 일정 및 자료 관리"],
+                    qualifications: ["약학·생명과학 등 관련 전공자 우대"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "글로벌 마케팅",
+                    location: "서울/수도권/영남",
+                    category: "글로벌",
+                    duties: ["글로벌 마케팅 자료 제작 지원", "해외 시장 및 경쟁 제품 동향 조사"],
+                    qualifications: ["외국어 및 문서 작성 역량 보유자"],
+                  },
+                ],
+              },
+            ],
+          },
+          healthcare: {
+            locations: [
+              {
+                name: "본사 (서울시 송파구)",
+                count: 9,
+                jobs: [
+                  {
+                    title: "헬스케어 서비스 기획",
+                    location: "본사 (서울시 송파구)",
+                    category: "헬스케어",
+                    duties: ["건강관리 서비스 기획과 운영", "사용자 요구 및 서비스 데이터 분석", "서비스 개선 과제 발굴"],
+                    qualifications: ["헬스케어 서비스에 관심이 있는 분", "기획 및 커뮤니케이션 역량 보유자"],
+                  },
+                  {
+                    title: "디지털 헬스케어",
+                    location: "본사 (서울시 송파구)",
+                    category: "헬스케어",
+                    duties: ["디지털 기반 건강관리 프로그램 운영", "서비스 사용 현황 분석과 개선 지원"],
+                    qualifications: ["디지털 서비스 또는 건강관리 분야 경험자 우대"],
+                  },
+                  {
+                    title: "건강 상담",
+                    location: "본사 (서울시 송파구)",
+                    category: "헬스케어",
+                    duties: ["고객 건강 관련 문의와 상담 지원", "상담 내용 정리 및 서비스 연계"],
+                    qualifications: ["보건·간호 관련 자격 또는 전공자 우대"],
+                  },
+                ],
+              },
+              {
+                name: "서울/수도권/영남",
+                count: 1,
+                jobs: [
+                  {
+                    title: "헬스케어 운영",
+                    location: "서울/수도권/영남",
+                    category: "헬스케어",
+                    duties: ["지역 건강관리 서비스 운영 지원", "이용자 문의 대응 및 현장 운영"],
+                    qualifications: ["지역 근무 가능자", "고객 응대 경험자 우대"],
+                  },
+                ],
+              },
+            ],
+          },
+        };
+
+        var tabs = Array.prototype.slice.call(
+          section.querySelectorAll(".tasks__tab"),
+        );
+        var locations = section.querySelector(".tasks__locations");
+        var dialog = section.querySelector(".tasks__modal");
+        var closeButton = section.querySelector(".tasks__modal-close");
+        var lastTrigger = null;
+        if (!tabs.length || !locations || !dialog || !closeButton) return;
+
+        function createJobButton(job, locationIndex, jobIndex) {
+          var button = document.createElement("button");
+          button.className = "tasks__job";
+          button.type = "button";
+          button.setAttribute("data-location-index", String(locationIndex));
+          button.setAttribute("data-job-index", String(jobIndex));
+
+          var title = document.createElement("span");
+          title.textContent = job.title;
+          var arrow = document.createElement("span");
+          arrow.className = "tasks__job-arrow";
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = "→";
+          button.appendChild(title);
+          button.appendChild(arrow);
+          return button;
+        }
+
+        function renderCategory(categoryKey) {
+          var category = categories[categoryKey];
+          if (!category) return;
+
+          locations.replaceChildren();
+          locations.setAttribute(
+            "aria-labelledby",
+            "tasks-tab-" + categoryKey,
+          );
+          category.locations.forEach(function (location, locationIndex) {
+            var item = document.createElement("section");
+            item.className = "tasks__location";
+            var toggle = document.createElement("button");
+            var panelId = "tasks-panel-" + categoryKey + "-" + locationIndex;
+            toggle.className = "tasks__location-toggle";
+            toggle.type = "button";
+            toggle.setAttribute("aria-expanded", String(locationIndex === 0));
+            toggle.setAttribute("aria-controls", panelId);
+
+            var label = document.createElement("span");
+            label.textContent = location.name;
+            var count = document.createElement("span");
+            count.className = "tasks__count";
+            count.textContent = String(location.count);
+            count.setAttribute("aria-label", location.count + "개 직무");
+            var chevron = document.createElement("span");
+            chevron.className = "tasks__chevron";
+            chevron.setAttribute("aria-hidden", "true");
+            toggle.appendChild(label);
+            toggle.appendChild(count);
+            toggle.appendChild(chevron);
+
+            var panel = document.createElement("div");
+            panel.className = "tasks__panel";
+            panel.id = panelId;
+            panel.hidden = locationIndex !== 0;
+            var jobs = document.createElement("div");
+            jobs.className = "tasks__jobs";
+            if (location.jobs.length) {
+              location.jobs.forEach(function (job, jobIndex) {
+                jobs.appendChild(
+                  createJobButton(job, locationIndex, jobIndex),
+                );
+              });
+            } else {
+              var empty = document.createElement("p");
+              empty.className = "tasks__empty";
+              empty.textContent = "현재 안내할 직무가 없습니다.";
+              jobs.appendChild(empty);
+            }
+            panel.appendChild(jobs);
+            item.appendChild(toggle);
+            item.appendChild(panel);
+            if (locationIndex === 0) item.classList.add("is-open");
+            locations.appendChild(item);
+          });
+        }
+
+        function setActiveTab(tab) {
+          tabs.forEach(function (item) {
+            var active = item === tab;
+            item.setAttribute("aria-selected", String(active));
+            item.tabIndex = active ? 0 : -1;
+          });
+          renderCategory(tab.getAttribute("data-category"));
+        }
+
+        function appendListItems(list, entries) {
+          list.replaceChildren();
+          entries.forEach(function (entry) {
+            var item = document.createElement("li");
+            item.textContent = entry;
+            list.appendChild(item);
+          });
+        }
+
+        function openJob(job) {
+          section.querySelector(".tasks__modal-title").textContent = job.title;
+          var meta = section.querySelector(".tasks__modal-meta");
+          meta.replaceChildren();
+          var category = document.createElement("strong");
+          category.textContent = job.category;
+          meta.appendChild(category);
+          meta.appendChild(document.createTextNode("  |  " + job.location));
+          section.querySelector(".tasks__modal-career").textContent =
+            "*신입/경력";
+          appendListItems(
+            section.querySelector(".tasks__modal-duties"),
+            job.duties,
+          );
+          appendListItems(
+            section.querySelector(".tasks__modal-qualifications"),
+            job.qualifications,
+          );
+          lastTrigger = document.activeElement;
+          dialog.showModal();
+          document.body.classList.add("has-tasks-modal");
+        }
+
+        tabs.forEach(function (tab, tabIndex) {
+          tab.addEventListener("click", function () {
+            setActiveTab(tab);
+          });
+          tab.addEventListener("keydown", function (event) {
+            var nextIndex = tabIndex;
+            if (event.key === "ArrowRight") {
+              nextIndex = (tabIndex + 1) % tabs.length;
+            } else if (event.key === "ArrowLeft") {
+              nextIndex = (tabIndex - 1 + tabs.length) % tabs.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = tabs.length - 1;
+            } else {
+              return;
+            }
+            event.preventDefault();
+            tabs[nextIndex].focus();
+            setActiveTab(tabs[nextIndex]);
+          });
+        });
+
+        locations.addEventListener("click", function (event) {
+          var toggle = event.target.closest(".tasks__location-toggle");
+          if (toggle) {
+            var currentItem = toggle.parentElement;
+            var shouldOpen = toggle.getAttribute("aria-expanded") !== "true";
+            Array.prototype.forEach.call(
+              locations.querySelectorAll(".tasks__location"),
+              function (item) {
+                var button = item.querySelector(".tasks__location-toggle");
+                var panel = item.querySelector(".tasks__panel");
+                var active = item === currentItem && shouldOpen;
+                item.classList.toggle("is-open", active);
+                button.setAttribute("aria-expanded", String(active));
+                panel.hidden = !active;
+              },
+            );
+            return;
+          }
+
+          var jobButton = event.target.closest(".tasks__job");
+          if (!jobButton) return;
+          var categoryKey = locations
+            .getAttribute("aria-labelledby")
+            .replace("tasks-tab-", "");
+          var location = categories[categoryKey].locations[
+            Number(jobButton.getAttribute("data-location-index"))
+          ];
+          var job = location.jobs[
+            Number(jobButton.getAttribute("data-job-index"))
+          ];
+          if (job) openJob(job);
+        });
+
+        closeButton.addEventListener("click", function () {
+          dialog.close();
+        });
+        dialog.addEventListener("click", function (event) {
+          if (event.target === dialog) {
+            dialog.close();
+          }
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && dialog.open) {
+            dialog.close();
+          }
+        });
+        dialog.addEventListener("close", function () {
+          document.body.classList.remove("has-tasks-modal");
+          if (lastTrigger && document.contains(lastTrigger)) {
+            lastTrigger.focus();
+          }
+        });
+
+        renderCategory("healthcare");
       })();
     </script>
   </body>
