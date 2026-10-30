@@ -1,0 +1,86 @@
+[
+  {
+    "region": "서울",
+    "date": "9월 17일 (목)",
+    "university": "중앙대학교",
+    "location": "310관 2층 201호",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "서울",
+    "date": "10월 1일 (목)",
+    "university": "건국대학교",
+    "location": "경영관 302호",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "서울",
+    "date": "10월 14일 (수)",
+    "university": "경희대학교",
+    "location": "청운관 B117호",
+    "time": "14:30~16:00"
+  },
+  {
+    "region": "경기",
+    "date": "9월 14일 (월)",
+    "university": "가천대학교",
+    "location": "비전타워 B구역 B104호",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "경기",
+    "date": "9월 21일 (월)",
+    "university": "경기대학교",
+    "location": "복지관 2층 잡카페",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "경기",
+    "date": "9월 22일 (화)",
+    "university": "인하대학교",
+    "location": "학생회관 346호",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "강원",
+    "date": "9월 23일 (수)",
+    "university": "한림대학교",
+    "location": "캠퍼스라이프센터 2층 커리어라운지",
+    "time": "13:00~14:30"
+  },
+  {
+    "region": "강원",
+    "date": "9월 29일 (화)",
+    "university": "강원대학교(강릉)",
+    "location": "후생관 1층(C4) 잡카페",
+    "time": "15:00~16:30"
+  },
+  {
+    "region": "강원",
+    "date": "10월 1일 (목)",
+    "university": "강원대학교(춘천)",
+    "location": "의생명과학대학 B동 501호",
+    "time": "14:00~15:30"
+  },
+  {
+    "region": "경상",
+    "date": "10월 6일 (화)",
+    "university": "동아대학교",
+    "location": "S08 인재개발과 3층 Inspire Hall",
+    "time": "10:00~11:30"
+  },
+  {
+    "region": "경상",
+    "date": "10월 6일 (화)",
+    "university": "부산대학교",
+    "location": "문창회관 2층 다목적강의실1",
+    "time": "15:00~16:30"
+  },
+  {
+    "region": "경상",
+    "date": "10월 13일 (화)",
+    "university": "계명대학교",
+    "location": "",
+    "time": ""
+  }
+]
