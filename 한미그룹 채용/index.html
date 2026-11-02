@@ -4,3706 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>2026년 하반기 한미그룹 공개채용</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../data/hanmi-eye-tracking/hanmi-eye-tracking/player.css"
-    />
-    <style>
-      /* CSS 변수구역 */
-      /* :root{변수코드
-            1. 변수설정방법
-            --변수명: 값;
-            변수명은 케밥케이스로 주로 씀
-            (케밥케이스란? 마이너스 기호로 연결된 변수법)
-            2. 변수호출방법
-            var(변수명)
-            쓰고 싶은 곳에 값으로 변수를 사용함.
-            } */
-      :root {
-        --black: #000;
-        --white: #fff;
-        --red: #e60012;
-        --red-grad: linear-gradient(90deg, #e60012 0%, #ff5d32 100%);
-        --font:
-          "Pretendard", "Inter", "Noto Sans KR", "Apple SD Gothic Neo",
-          "Malgun Gothic", sans-serif;
-        --ease: 0.2s ease;
-        --wide: 1920px;
-        --inner: 1440px;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        font-family: var(--font);
-        color: var(--black);
-        background: var(--white);
-        -webkit-font-smoothing: antialiased;
-        word-break: keep-all;
-      }
-      h1,
-      h2,
-      p,
-      ul {
-        margin: 0;
-        padding: 0;
-      }
-      ul {
-        list-style: none;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-        transition:
-          color var(--ease),
-          background-color var(--ease),
-          border-color var(--ease),
-          opacity var(--ease);
-      }
-      img {
-        display: block;
-        max-width: 100%;
-      }
-      :focus-visible {
-        outline: 3px solid var(--red);
-        outline-offset: 3px;
-      }
-
-      /* ===== Header ===== */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100px;
-        z-index: 10;
-        transform: translateY(0);
-        transition: transform 0.35s ease;
-      }
-      .header--hidden {
-        transform: translateY(-100%);
-      }
-      .is-menu-open .header--hidden {
-        transform: translateY(0);
-      }
-      .header__inner {
-        max-width: var(--inner);
-        height: 100%;
-        margin: 0 auto;
-        padding: 0 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .logo {
-        display: block;
-        width: 182px;
-        height: 31px;
-      }
-      .logo img {
-        width: 182px;
-        height: 31px;
-      }
-      .gnb {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      .gnb__list {
-        display: flex;
-        gap: 40px;
-        height: 100%;
-      }
-      .gnb__item {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
-      .gnb__link {
-        font-size: 19.1px;
-        line-height: 20px;
-        font-weight: 600;
-        letter-spacing: -0.4px;
-        white-space: nowrap;
-      }
-      .gnb__link:hover,
-      .gnb__link:focus-visible {
-        color: var(--red);
-      }
-      .gnb__cta {
-        margin-left: 40px;
-      }
-      /* 모바일 전용 요소: 데스크탑/태블릿에서는 숨김 */
-      .gnb__toggle,
-      .gnb__item--cta {
-        display: none;
-      }
-
-      /* ===== Buttons ===== */
-      .btn {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 500px;
-        font-weight: 600;
-        color: var(--white);
-        border: 2px solid transparent;
-        overflow: hidden;
-        isolation: isolate;
-        cursor: pointer;
-        transition:
-          color var(--ease),
-          background-color var(--ease),
-          border-color var(--ease);
-      }
-      .btn::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        transition: opacity var(--ease);
-      }
-      .btn--sm {
-        gap: 10px;
-        height: 48px;
-        padding: 0 18px 0 18px;
-        font-size: 17.4px;
-        line-height: 18px;
-        letter-spacing: -0.36px;
-        background: var(--red);
-        border-color: var(--red);
-      }
-      .btn--sm:hover,
-      .btn--sm:focus-visible {
-        background: var(--white);
-        color: var(--red);
-      }
-      .btn--sm svg {
-        width: 7px;
-        height: 12px;
-        flex: none;
-      }
-      .btn--lg {
-        width: 303px;
-        height: 72px;
-        font-size: 22.7px;
-        line-height: 34px;
-        letter-spacing: -0.48px;
-        background: var(--white);
-        border-color: transparent;
-      }
-      .btn--lg::before {
-        background: var(--red-grad);
-      }
-      .btn--lg:hover,
-      .btn--lg:focus-visible {
-        color: var(--red);
-        border-color: var(--red);
-      }
-      .btn--lg:hover::before,
-      .btn--lg:focus-visible::before {
-        opacity: 0;
-      }
-
-      /* ===== Main visual ===== */
-      .mv {
-        position: relative;
-        height: 900px;
-        min-height: 720px;
-        overflow: hidden;
-        background: #fff1ec url(./images/mv_bg.png) center/cover no-repeat;
-      }
-      .mv__inner {
-        position: relative;
-        max-width: var(--inner);
-        height: 100%;
-        margin: 0 auto;
-        padding: 0 100px;
-        display: flex;
-        align-items: center;
-      }
-      .mv__text {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 80px;
-        width: 560px;
-        position: relative;
-        z-index: 2;
-      }
-      .mv__copy {
-        display: flex;
-        flex-direction: column;
-        gap: 31.9px;
-      }
-      .mv__season {
-        font-size: 31.1px;
-        line-height: 45px;
-        font-weight: 700;
-        letter-spacing: -0.64px;
-      }
-      .mv__title {
-        display: flex;
-        flex-direction: column;
-      }
-      .mv__brand {
-        font-size: 72.3px;
-        line-height: 76px;
-        font-weight: 800;
-        letter-spacing: -1.76px;
-      }
-      .mv__job {
-        font-size: 45.8px;
-        line-height: 72px;
-        font-weight: 800;
-        letter-spacing: -1.12px;
-      }
-      .mv__period {
-        font-size: 19.2px;
-        line-height: 28px;
-        font-weight: 500;
-        letter-spacing: -0.4px;
-      }
-
-      /* art stage: 겹침 구성이라 이 영역 안에서만 absolute 사용 */
-      .mv__art {
-        position: absolute;
-        top: 100px;
-        right: 0;
-        width: 740px;
-        height: 660px;
-        pointer-events: none;
-        z-index: 1;
-      }
-      .mv__art img,
-      .mv__art .star {
-        position: absolute;
-      }
-      .ring {
-        position: absolute;
-        border-radius: 500px;
-      }
-      .ring--glow {
-        left: 0;
-        top: 18px;
-        width: 663px;
-        height: 663px;
-        border: 5px solid var(--white);
-        filter: blur(5px);
-        background: radial-gradient(
-          70.71% 70.71% at 50% 50%,
-          rgba(255, 255, 255, 0.2) 0%,
-          rgba(255, 255, 255, 0) 100%
-        );
-      }
-      .ring--line {
-        left: 55px;
-        top: 73px;
-        width: 553px;
-        height: 553px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-      }
-      .mv__art .micro {
-        left: 66px;
-        top: 52px;
-        width: 289.5px;
-        height: 221.8px;
-      }
-      .mv__art .char1 {
-        left: 115px;
-        top: 195px;
-        width: 253.4px;
-        height: 395.1px;
-      }
-      .mv__art .char2 {
-        left: 337px;
-        top: 193px;
-        width: 181.3px;
-        height: 381px;
-      }
-      .mv__art .char3 {
-        left: 39px;
-        top: 369px;
-        width: 216.5px;
-        height: 262.2px;
-      }
-      .mv__art .char4 {
-        left: 396px;
-        top: 390px;
-        width: 292.2px;
-        height: 206.8px;
-      }
-      .star {
-        display: block;
-      }
-      .star svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-      .star--white {
-        left: 222px;
-        top: 137px;
-        width: 17.6px;
-        height: 17.6px;
-      }
-      .star--red {
-        left: 461px;
-        top: 149px;
-        width: 24px;
-        height: 25px;
-      }
-      .star--yellow-l {
-        left: 633px;
-        top: 332px;
-        width: 34px;
-        height: 35px;
-      }
-      .star--yellow-s {
-        left: 615px;
-        top: 375px;
-        width: 21px;
-        height: 21px;
-      }
-      .star--purple {
-        left: 40px;
-        top: 370px;
-        width: 23px;
-        height: 24px;
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        .star {
-          animation: twinkle 3.2s ease-in-out infinite;
-        }
-        .star--red {
-          animation-delay: 0.6s;
-        }
-        .star--yellow-l {
-          animation-delay: 1.2s;
-        }
-        .star--yellow-s {
-          animation-delay: 1.8s;
-        }
-        .star--purple {
-          animation-delay: 2.4s;
-        }
-      }
-      @keyframes twinkle {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.55;
-          transform: scale(0.85);
-        }
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        .updown {
-          animation: char-updown 2.4s ease-in-out infinite;
-        }
-        .leftright {
-          animation: char-leftright 2.8s ease-in-out infinite;
-        }
-        .bigsmall {
-          animation: char-bigsmall 2.4s ease-in-out infinite;
-        }
-      }
-      @keyframes char-updown {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10%);
-        }
-      }
-      @keyframes char-leftright {
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-        50% {
-          transform: translateX(10%);
-        }
-      }
-      @keyframes char-bigsmall {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      /* scroll button */
-      .scroll {
-        position: absolute;
-        left: 50%;
-        bottom: 64px;
-        transform: translateX(-50%);
-        z-index: 3;
-        width: 80px;
-        height: 80px;
-        padding: 0;
-        border: 0;
-        border-radius: 500px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        isolation: isolate;
-        background: linear-gradient(
-          132.3deg,
-          rgba(255, 255, 255, 0.8) 12.7%,
-          rgba(255, 255, 255, 0) 86.3%
-        );
-        box-shadow:
-          inset 4px 4px 10px rgba(255, 255, 255, 0.4),
-          inset -4px -4px 10px rgba(0, 0, 0, 0.1);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        transition:
-          background-color var(--ease),
-          box-shadow var(--ease);
-      }
-      .scroll::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: rgba(255, 255, 255, 0.1);
-        z-index: -1;
-        transition: background-color var(--ease);
-      }
-      .scroll svg {
-        width: 40px;
-        height: 40px;
-        stroke: var(--white);
-        transition: stroke var(--ease);
-      }
-      .scroll:hover::before,
-      .scroll:focus-visible::before {
-        background: var(--white);
-      }
-      .scroll:hover svg,
-      .scroll:focus-visible svg {
-        stroke: var(--red);
-      }
-
-      /* ===== Footer ===== */
-      .footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 82px;
-        background: #fff;
-      }
-      .footer__inner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-      }
-      .footer__logo,
-      .footer__logo img {
-        display: block;
-        width: 150px;
-        height: auto;
-      }
-      html.has-scroll-reveal .scroll-reveal-item {
-        opacity: 0;
-        translate: 0 28px;
-        transition:
-          opacity 0.8s ease,
-          translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-      }
-      html.has-scroll-reveal .scroll-reveal-item.scroll-reveal--visible {
-        opacity: 1;
-        translate: none;
-      }
-
-      /* ===== 반응형 (1440 미만에서 축소) ===== */
-      @media (max-width: 1280px) {
-        .mv__art {
-          transform: scale(0.82);
-          transform-origin: right center;
-          right: -20px;
-        }
-        .gnb__list {
-          gap: 28px;
-        }
-      }
-      /* ===== Tablet: 1024px 이하 ===== */
-      @media (max-width: 1024px) {
-        /* header: 1024px 기준 값에서 화면이 좁아질수록 함께 줄어듦 */
-        .header {
-          height: 96px;
-        }
-        .header__inner {
-          padding: 0 clamp(20px, 3.9vw, 40px);
-        }
-        .logo {
-          width: clamp(110px, 14.8vw, 152px);
-          height: auto;
-          aspect-ratio: 182 / 31;
-        }
-        .logo img {
-          width: 100%;
-          height: 100%;
-        }
-        .gnb__list {
-          gap: clamp(16px, 2.93vw, 30px);
-        }
-        .gnb__link {
-          font-size: clamp(13px, 1.6vw, 16.5px);
-        }
-        .gnb__cta {
-          margin-left: clamp(14px, 2.34vw, 24px);
-          height: 44px;
-          padding: 0 clamp(14px, 1.95vw, 20px);
-          font-size: clamp(13px, 1.56vw, 16px);
-          line-height: 18px;
-        }
-        .footer__inner {
-          padding: 32px 40px;
-        }
-
-        /* main visual: 텍스트 위 / 일러스트 아래(중앙) 세로 배치 */
-        .mv {
-          /* height: 720px; */
-          min-height: 0;
-          padding-top: 96px;
-        }
-        .mv__inner {
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          padding: 0 40px;
-        }
-        .mv__text {
-          width: 100%;
-          gap: 40px;
-        }
-        .mv__copy {
-          gap: 22px;
-        }
-        .mv__season {
-          font-size: 27px;
-          line-height: 40px;
-          letter-spacing: -0.55px;
-        }
-        .mv__brand {
-          font-size: 56px;
-          line-height: 60px;
-          letter-spacing: -1.36px;
-        }
-        .mv__job {
-          font-size: 34px;
-          line-height: 52px;
-          letter-spacing: -0.83px;
-        }
-        .btn--lg {
-          height: 64px;
-          font-size: 20px;
-          line-height: 30px;
-          letter-spacing: -0.42px;
-        }
-
-        /* art: 740x660 스테이지를 비율 유지하며 축소 (좁아지면 화면 폭에 맞춰 함께 축소) */
-        .mv__art {
-          --art-scale: 0.72;
-          position: relative;
-          top: auto;
-          right: auto;
-          flex: none;
-          align-self: center;
-          transform: scale(var(--art-scale));
-          transform-origin: top center;
-          margin-bottom: calc(-660px * (1 - var(--art-scale)));
-        }
-        .scroll {
-          bottom: 64px;
-          width: 64px;
-          height: 64px;
-        }
-        .scroll svg {
-          width: 32px;
-          height: 32px;
-        }
-      }
-      @supports (width: calc(1px * tan(atan2(1px, 1px)))) {
-        @media (max-width: 1024px) {
-          .mv__art {
-            --art-scale: min(0.72, tan(atan2(100vw, 740px)));
-          }
-        }
-      }
-
-      /* ===== 헤더 메뉴 전환: 600px 이하 (가로 메뉴가 들어갈 폭이 없어지는 지점) ===== */
-      @media (max-width: 600px) {
-        .header {
-          height: 64px;
-        }
-        .header__inner {
-          padding: 0 20px;
-        }
-        .logo,
-        .logo img {
-          width: 128px;
-          height: 22px;
-        }
-        .gnb__cta {
-          margin-left: 0;
-          height: 28px;
-          padding: 0 10px;
-          font-size: 11px;
-          line-height: 14px;
-          letter-spacing: -0.22px;
-        }
-        .gnb__cta svg {
-          display: none;
-        }
-
-        /* 햄버거 / 닫기 버튼 (터치 영역 40x40, 아이콘 20x20) */
-        .gnb__toggle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          margin: 0 -10px 0 2px;
-          padding: 0;
-          border: 0;
-          background: none;
-          color: var(--black);
-          cursor: pointer;
-        }
-        .gnb__toggle svg {
-          width: 20px;
-          height: 20px;
-        }
-        .gnb__toggle .icon-close,
-        .is-menu-open .gnb__toggle .icon-open {
-          display: none;
-        }
-        .is-menu-open .gnb__toggle .icon-close {
-          display: block;
-        }
-
-        /* 전체 메뉴: 오른쪽에서 슬라이드 (헤더 stacking context 안에서 로고/버튼 뒤에 깔림) */
-        .is-menu-open {
-          overflow: hidden;
-        }
-        .is-menu-open .header {
-          position: fixed;
-        }
-        .is-menu-open .gnb__cta {
-          visibility: hidden;
-        }
-        .gnb__list {
-          position: fixed;
-          inset: 0;
-          z-index: -1;
-          flex-direction: column;
-          gap: 0;
-          height: auto;
-          padding: 105px 20px 0;
-          overflow-y: auto;
-          background: var(--white) url(./images/menu_char.png) no-repeat right
-            14px bottom 33px / 143px auto;
-          transform: translateX(100%);
-          visibility: hidden;
-          transition:
-            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-            visibility 0s linear 0.35s;
-        }
-        .is-menu-open .gnb__list {
-          transform: translateX(0);
-          visibility: visible;
-          transition-delay: 0s;
-        }
-        .gnb__item {
-          height: 62px;
-          border-bottom: 1px solid #eee;
-        }
-        .gnb__link {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          font-size: 20px;
-          line-height: 24px;
-          font-weight: 700;
-          letter-spacing: -0.5px;
-        }
-        .gnb__item--cta {
-          display: block;
-          height: 50px;
-          margin-top: 42px;
-          border-bottom: 0;
-        }
-        .gnb__item--cta .btn {
-          width: 100%;
-          height: 100%;
-        }
-
-        .mv {
-          height: auto;
-          min-height: 720px;
-          padding-bottom: 10px;
-        }
-        .scroll {
-          bottom: 16px;
-          width: 40px;
-          height: 40px;
-        }
-        .scroll svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .header {
-          transition: none;
-        }
-        .gnb__list {
-          transition: none;
-        }
-      }
-
-      /* ===== Mobile: 390px 이하 ===== */
-      @media (max-width: 390px) {
-        .footer__inner {
-          padding: 32px 20px;
-        }
-        .mv {
-          height: auto;
-          min-height: 770px;
-          padding: 100px 0 10px;
-        }
-        .mv__inner {
-          padding: 0 20px;
-          gap: 12px;
-        }
-        .mv__text {
-          gap: 52px;
-        }
-        .mv__copy {
-          gap: 24px;
-        }
-        .mv__season {
-          font-size: 20px;
-          line-height: 28px;
-          letter-spacing: -0.41px;
-        }
-        .mv__brand {
-          font-size: 54px;
-          line-height: 58px;
-          letter-spacing: -1.31px;
-        }
-        .mv__job {
-          font-size: 35px;
-          line-height: 48px;
-          letter-spacing: -0.86px;
-        }
-        .mv__period {
-          font-size: 12px;
-          line-height: 18px;
-          letter-spacing: -0.25px;
-        }
-        .btn--lg {
-          width: 200px;
-          height: 48px;
-          font-size: 14.5px;
-          line-height: 22px;
-          letter-spacing: -0.3px;
-        }
-      }
-
-      /* ===== 미래 비주얼 섹션 ===== */
-      .mirae {
-        position: relative;
-        min-height: 900px;
-        height: 100svh;
-        overflow: hidden;
-        isolation: isolate;
-        background: linear-gradient(180deg, #fff 0%, #fff8f6 31%, #ffe8e2 100%);
-      }
-      .mirae__title {
-        position: absolute;
-        z-index: 2;
-        top: clamp(150px, 21.5%, 205px);
-        left: 24px;
-        right: 24px;
-        margin: 0;
-        text-align: center;
-        font-size: clamp(38px, 5.25vw, 72px);
-        line-height: 1.2;
-        font-weight: 800;
-        letter-spacing: -0.055em;
-        white-space: nowrap;
-        color: #f20b1b;
-        background: linear-gradient(90deg, #ed0018 0%, #ff5d32 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .mirae__title-black {
-        color: #000;
-        background: none;
-        -webkit-text-fill-color: #000;
-      }
-      .mirae__art {
-        position: absolute;
-        z-index: 1;
-        left: 50%;
-        bottom: -8.5%;
-        width: min(1500px, 116vw);
-        height: auto;
-        max-width: none;
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-      .mirae__cloud {
-        position: absolute;
-        z-index: 0;
-        height: auto;
-        max-width: none;
-        pointer-events: none;
-      }
-      .mirae__cloud--left-blur {
-        width: clamp(180px, 29vw, 378px);
-        left: 6%;
-        top: 39%;
-        filter: blur(7px);
-        opacity: 0.72;
-      }
-      .mirae__cloud--left {
-        width: clamp(210px, 32vw, 422px);
-        left: -8%;
-        top: 54%;
-      }
-      .mirae__cloud--right {
-        width: clamp(350px, 53vw, 700px);
-        right: -12%;
-        top: 27%;
-      }
-      .mirae__cloud--right-blur {
-        width: clamp(100px, 16vw, 200px);
-        right: 16%;
-        top: 67%;
-        filter: blur(5px);
-        opacity: 0.72;
-      }
-      .mirae__star {
-        position: absolute;
-        z-index: 2;
-        height: auto;
-        max-width: none;
-        pointer-events: none;
-      }
-      .mirae__star--top {
-        width: clamp(25px, 3.2vw, 42px);
-        left: 62.5%;
-        top: 70%;
-      }
-      .mirae__star--bottom {
-        width: clamp(30px, 4vw, 52px);
-        left: 31%;
-        top: 78%;
-      }
-
-      @media (max-width: 1024px) {
-        .mirae {
-          min-height: 760px;
-          height: 100svh;
-        }
-        .mirae__title {
-          top: 20.5%;
-          font-size: clamp(34px, 4.8vw, 60px);
-        }
-        .mirae__title-gradient {
-          background: none;
-          -webkit-text-fill-color: #f20b1b;
-          color: #f20b1b;
-        }
-        .mirae__title-black {
-          color: #000;
-          -webkit-text-fill-color: #000;
-        }
-        .mirae__art {
-          /* width: min(1500px, 145vw); */
-          /* bottom: -8%; */
-        }
-        .mirae__cloud--left-blur {
-          left: 16%;
-          top: 42%;
-        }
-        .mirae__cloud--left {
-          left: -14%;
-          top: 66%;
-          width: clamp(180px, 27vw, 340px);
-        }
-        .mirae__cloud--right {
-          right: -17%;
-          top: 46%;
-          width: clamp(300px, 48vw, 560px);
-        }
-        .mirae__cloud--right-blur {
-          right: 13%;
-          top: 75%;
-        }
-        .mirae__star--top {
-          top: 56%;
-          left: 63%;
-        }
-        .mirae__star--bottom {
-          top: 68%;
-          left: 31%;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .mirae {
-          min-height: 780px;
-          height: 100svh;
-          max-height: 900px;
-        }
-        .mirae__title {
-          top: 15%;
-          left: 12px;
-          right: 12px;
-          font-size: clamp(27px, 6.6vw, 54px);
-          letter-spacing: -0.06em;
-          white-space: normal;
-        }
-        .mirae__title-gradient {
-          background: linear-gradient(90deg, #ed0018 0%, #ff5d32 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .mirae__title-black {
-          background: linear-gradient(90deg, #ed0018 0%, #ff5d32 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .mirae__art {
-          width: 180vw;
-          min-width: 980px;
-          bottom: -7%;
-        }
-        .mirae__cloud--left-blur {
-          width: 43vw;
-          left: 8%;
-          top: 32%;
-        }
-        .mirae__cloud--left {
-          width: 48vw;
-          left: -25%;
-          top: 52%;
-        }
-        .mirae__cloud--right {
-          width: 74vw;
-          right: -34%;
-          top: 30%;
-        }
-        .mirae__cloud--right-blur {
-          width: 22vw;
-          right: 7%;
-          top: 68%;
-        }
-        .mirae__star--top {
-          width: 30px;
-          left: 64%;
-          top: 59%;
-        }
-        /* .mirae__star--bottom {
-          width: 36px;
-          left: 30%;
-          top: 80%; */
-      }
-
-      @media (max-width: 390px) {
-        .mirae {
-          min-height: 760px;
-        }
-        .mirae__title {
-          top: 15.5%;
-          font-size: 27px;
-        }
-        .mirae__art {
-          width: 195vw;
-          bottom: -6%;
-        }
-      }
-
-      /* ===== 연혁 섹션 (.history) =====
-         - 단일 DOM: 한 행(.history__row) 안에 period / heading / list / figure 네 요소만 둠
-         - 데스크탑·태블릿: 2열 grid (홀수 행: 텍스트 좌 · 미디어 우 / 짝수 행(--reverse): 반대)
-         - 모바일(600px 이하): 1열 grid (period → heading → list → figure)
-         - 사이즈는 토큰(--h-*)으로 분리, 구간별로 값만 바꿔 연속성 유지 */
-      .history {
-        --h-orange: #ff5d32;
-        --h-orange-mid: #ff9d85;
-        --h-orange-low: #ffd3c8;
-        /* Desktop (1025px~): 1880px 덤프 기준 값을 vw clamp 로 환산 */
-        --h-curve: 56px;
-        --h-top: clamp(80px, 5.3vw, 100px);
-        --h-pad: clamp(40px, 5.3vw, 100px);
-        --h-title: clamp(40px, 3vw, 56px);
-        --h-count: clamp(200px, 14.2vw, 267px);
-        --h-period: clamp(28px, 2.1vw, 40px);
-        --h-heading: clamp(22px, 1.5vw, 28px);
-        --h-year: clamp(20px, 1.3vw, 24px);
-        --h-desc: clamp(15px, 0.87vw, 16.5px);
-        --h-year-w: clamp(48px, 3.2vw, 60px);
-        --h-item-gap: clamp(22px, 1.5vw, 28px);
-        --h-col-gap: clamp(110px, 9.6vw, 180px);
-        --h-row-gap: clamp(110px, 9.6vw, 180px);
-        --h-block-gap: clamp(28px, 2.1vw, 40px);
-        --h-line: clamp(18px, 1.3vw, 24px);
-        --h-closing-small: clamp(15px, 0.96vw, 18px);
-        --h-closing-big: clamp(26px, 1.8vw, 34px);
-        /* 접힘 높이 제어용 토큰: 뷰포트 높이(100vh → 100dvh 우선) / 하단 여백 / 토글 버튼 높이 */
-        --h-vh: 100vh;
-        --h-bottom: clamp(64px, 6.5vw, 120px);
-        --h-toggle: 72px; /* padding 12*2 + 라벨 20 + gap 2 + 아이콘 24 = 70px + 여유 2px */
-        --h-min-collapsed: 160px;
-        position: relative;
-        z-index: 1;
-        margin-top: calc(var(--h-curve) * -1);
-        padding-bottom: var(--h-bottom);
-        border-radius: 50% 50% 0 0 / var(--h-curve) var(--h-curve) 0 0;
-        background: var(--white);
-        overflow: hidden;
-      }
-
-      /* dvh 지원 브라우저(모바일 주소창 대응)는 100dvh 우선 적용, 미지원은 100vh 폴백 */
-      @supports (height: 100dvh) {
-        .history {
-          --h-vh: 100dvh;
-        }
-      }
-
-      /* 접힘 영역: JS 가 높이 변수를 주입하기 전(또는 JS 미동작)에는 전체 노출 */
-      .history__clip {
-        position: relative;
-        overflow: hidden;
-        transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      /* 접힘: JS 계산값(콘텐츠 2/3)과 '한 화면 − 하단여백 − 토글' 중 작은 값
-         → 섹션 전체(clip + 토글 + 여백)가 100dvh 를 넘지 않음 */
-      .history.is-collapsible .history__clip {
-        height: min(
-          var(--history-collapsed),
-          max(
-            var(--h-min-collapsed),
-            calc(var(--h-vh) - var(--h-bottom) - var(--h-toggle))
-          )
-        );
-      }
-      /* 펼침: 높이 제한 해제(실측 높이), 트랜지션 종료 후 overflow 도 해제 */
-      .history.is-collapsible.is-expanded .history__clip {
-        height: var(--history-full);
-        animation: history-unclip 0s linear 0.6s forwards;
-      }
-      @keyframes history-unclip {
-        to {
-          overflow: visible;
-        }
-      }
-      /* 페이드아웃 오버레이: 투명 → #fff */
-      .history__clip::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 2;
-        height: min(clamp(140px, 14vw, 260px), 40%);
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0) 0%,
-          #fff 100%
-        );
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-      }
-      .history.is-collapsible:not(.is-expanded) .history__clip::after {
-        opacity: 1;
-      }
-      .history__content {
-        position: relative;
-      }
-
-      /* 장식 오브젝트: 데스크탑 전용 (위치는 콘텐츠 높이 대비 %, 크기는 vw) */
-      .history__deco {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-      }
-      .history__obj {
-        position: absolute;
-        height: auto;
-        max-width: none;
-      }
-      .history__obj--star {
-        left: 83.8%;
-        top: 5.4%;
-        width: 8.5vw;
-      }
-      .history__obj--beaker {
-        left: 5.2%;
-        top: 18%;
-        width: 8vw;
-      }
-      .history__obj--mol-blur1 {
-        right: -4%;
-        top: 27.5%;
-        width: 15vw;
-      }
-      .history__obj--microscope {
-        right: 4.9%;
-        top: 31.8%;
-        width: 7.2vw;
-      }
-      .history__obj--mol-blur2 {
-        left: -3%;
-        top: 47.5%;
-        width: 12vw;
-      }
-      .history__obj--mol {
-        right: 0;
-        top: 69.5%;
-        width: 9.6vw;
-      }
-      .history__obj--cloud {
-        left: -1%;
-        top: 85%;
-        width: 14vw;
-      }
-      .history__obj--char {
-        left: 3.5%;
-        top: 77%;
-        width: 12vw;
-      }
-
-      .history__inner {
-        position: relative;
-        z-index: 1;
-        max-width: var(--inner);
-        margin: 0 auto;
-        padding: var(--h-top) var(--h-pad) clamp(48px, 5.6vw, 100px);
-      }
-      .history__title {
-        font-size: var(--h-title);
-        line-height: 1.36;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        text-align: center;
-      }
-
-      /* 53th / 100th */
-      .history__count {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        font-size: var(--h-count);
-        line-height: 0.9;
-        font-weight: 800;
-        letter-spacing: -0.05em;
-        color: var(--h-orange);
-      }
-      .history__count-unit {
-        font-size: 0.5em;
-        letter-spacing: -0.02em;
-      }
-      .history__count--start {
-        margin-top: clamp(24px, 2.6vw, 52px);
-      }
-      .history__count--end {
-        margin-top: var(--h-row-gap);
-      }
-
-      /* 중앙 세로선: 53 하단에서 시작해 100 상단에서 끝남 */
-      .history__timeline {
-        position: relative;
-      }
-      .history__timeline::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: calc(var(--h-count) * 0.7);
-        bottom: calc(var(--h-count) * 0.62);
-        width: var(--h-line);
-        transform: translateX(-50%);
-        background: var(--h-orange);
-      }
-      .history__flow {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: var(--h-row-gap);
-        padding-top: clamp(40px, 4.2vw, 80px);
-      }
-
-      /* 행: 2열 grid. 홀수 = 텍스트 좌 / 미디어 우 */
-      .history__row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr;
-        grid-template-areas:
-          "heading period"
-          "list figure";
-        column-gap: var(--h-col-gap);
-        row-gap: var(--h-block-gap);
-      }
-      /* 짝수 = 미디어 좌 / 텍스트 우 (heading 없음, list 가 두 행을 차지) */
-      .history__row--reverse {
-        grid-template-areas:
-          "period list"
-          "figure list";
-      }
-      .history__period {
-        grid-area: period;
-        margin: 0;
-        align-self: center;
-        font-size: var(--h-period);
-        line-height: 1.4;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        color: var(--h-orange);
-      }
-      .history__heading {
-        grid-area: heading;
-        align-self: center;
-        font-size: var(--h-heading);
-        line-height: 1.4;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-      }
-      .history__list {
-        grid-area: list;
-        align-self: start;
-        display: flex;
-        flex-direction: column;
-        gap: var(--h-item-gap);
-      }
-      .history__figure {
-        grid-area: figure;
-        margin: 0;
-        min-width: 0;
-      }
-      .history__figure img {
-        height: auto;
-      }
-
-      /* 정렬: 왼쪽 열 = 우측 정렬(중앙선 쪽), 오른쪽 열 = 좌측 정렬 */
-      .history__heading,
-      .history__list {
-        justify-self: end;
-        text-align: right;
-      }
-      .history__period,
-      .history__figure {
-        justify-self: start;
-        text-align: left;
-      }
-      .history__row--reverse .history__list {
-        justify-self: start;
-        text-align: left;
-      }
-      .history__row--reverse .history__period,
-      .history__row--reverse .history__figure {
-        justify-self: end;
-        text-align: right;
-      }
-
-      /* 연도 + 설명: DOM 은 항상 [연도, 설명], 홀수 행만 시각적으로 뒤집음 */
-      .history__item {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: baseline;
-        gap: 24px;
-      }
-      .history__row--reverse .history__item {
-        flex-direction: row;
-      }
-      .history__year {
-        flex: none;
-        width: var(--h-year-w);
-        font-size: var(--h-year);
-        line-height: 1.5;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        text-align: inherit;
-      }
-      .history__desc {
-        font-size: var(--h-desc);
-        line-height: 1.5;
-        letter-spacing: -0.03em;
-        color: #222;
-      }
-      /* 3점 인디케이터(리스트 뒤에 이어지는 내용 암시): 마크업 없이 가상요소 */
-      .history__list::after {
-        content: "";
-        align-self: flex-end;
-        width: 6px;
-        height: 6px;
-        margin: 0 calc(var(--h-year-w) / 2 - 3px) 32px 0;
-        border-radius: 50%;
-        background: var(--h-orange);
-        box-shadow:
-          0 16px 0 var(--h-orange-mid),
-          0 32px 0 var(--h-orange-low);
-      }
-      .history__row--reverse .history__list::after {
-        align-self: flex-start;
-        margin: 0 0 32px calc(var(--h-year-w) / 2 - 3px);
-      }
-
-      /* 클로징 */
-      .history__closing {
-        position: relative;
-        isolation: isolate;
-        margin-top: clamp(56px, 5vw, 96px);
-        text-align: center;
-      }
-      .history__closing::before {
-        content: "";
-        position: absolute;
-        inset: -60px -10%;
-        z-index: -1;
-        background: radial-gradient(
-          closest-side,
-          rgba(255, 93, 50, 0.09),
-          rgba(255, 93, 50, 0)
-        );
-      }
-      .history__closing-text {
-        font-size: var(--h-closing-small);
-        line-height: 1.6;
-        letter-spacing: -0.03em;
-        color: #222;
-      }
-      .history__closing-title {
-        margin-top: clamp(20px, 2vw, 30px);
-        font-size: var(--h-closing-big);
-        line-height: 1.75;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-
-      /* 펼치기 / 접기 버튼 */
-      .history__toggle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px;
-        margin: 0 auto;
-        padding: 12px 24px;
-        border: 0;
-        background: none;
-        font-family: inherit;
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: -0.03em;
-        color: #333;
-        cursor: pointer;
-        transition: color var(--ease);
-      }
-      .history__toggle[hidden] {
-        display: none;
-      }
-      .history__toggle:hover,
-      .history__toggle:focus-visible {
-        color: var(--h-orange);
-      }
-      .history__toggle svg {
-        width: 24px;
-        height: 24px;
-        transition: transform 0.4s ease;
-      }
-      /* 기본 = 아래 화살표(펼치기), 펼침 상태 = 위 화살표(접기) */
-      .history__toggle[aria-expanded="true"] svg {
-        transform: rotate(180deg);
-      }
-
-      /* ----- Tablet: 1024px 이하 (2열 유지, 값만 축소) ----- */
-      @media (max-width: 1024px) {
-        .history {
-          --h-curve: 40px;
-          --h-top: clamp(80px, 14.5vw, 129px);
-          --h-pad: clamp(20px, 3.4vw, 40px);
-          --h-title: clamp(28px, 4.5vw, 46px);
-          --h-count: clamp(130px, 23.6vw, 241px);
-          --h-period: clamp(20px, 2.7vw, 27px);
-          --h-heading: clamp(18px, 2.5vw, 26px);
-          --h-year: clamp(16px, 2.05vw, 21px);
-          --h-desc: clamp(12.5px, 1.5vw, 15.5px);
-          --h-year-w: clamp(40px, 5vw, 52px);
-          --h-item-gap: clamp(22px, 2.9vw, 28px);
-          --h-col-gap: clamp(60px, 16.5vw, 170px);
-          --h-row-gap: clamp(100px, 18.5vw, 170px);
-          --h-block-gap: clamp(24px, 3.4vw, 34px);
-          --h-line: clamp(14px, 2.4vw, 24px);
-          --h-closing-small: clamp(13px, 1.9vw, 18px);
-          --h-closing-big: clamp(20px, 3.6vw, 34px);
-          --h-bottom: clamp(64px, 6.5vw, 120px); /* 접힘 100dvh 계산과 동기화 */
-          --h-toggle: 72px;
-        }
-        /* 장식 오브젝트는 태블릿/모바일 덤프에 없음 → 컨테이너 1개만 숨김 */
-        .history__deco {
-          display: none;
-        }
-      }
-
-      /* ----- Mobile: 600px 이하 (1열, 중앙선 제거) ----- */
-      @media (max-width: 600px) {
-        .history {
-          --h-curve: 28px;
-          --h-top: 72px;
-          --h-pad: 20px;
-          --h-title: 23px;
-          --h-count: clamp(96px, 27.7vw, 140px);
-          --h-period: 20px;
-          --h-heading: 15px;
-          --h-year: 18px;
-          --h-desc: 13px;
-          --h-year-w: 40px;
-          --h-item-gap: 26px;
-          --h-row-gap: 80px;
-          --h-block-gap: 20px;
-          --h-closing-small: 13px;
-          --h-closing-big: 20px;
-          --h-bottom: 64px; /* 접힘 100dvh 계산과 동기화 */
-          --h-toggle: 72px;
-          --h-min-collapsed: 140px;
-        }
-        .history__title {
-          line-height: 1.5;
-        }
-        .history__timeline::before {
-          content: none;
-        }
-        .history__flow {
-          padding-top: 40px;
-        }
-        .history__count--end {
-          margin-top: 64px;
-        }
-        .history__closing {
-          margin-top: 40px;
-        }
-        .history__closing-text {
-          line-height: 1.6;
-        }
-        .history__closing-title {
-          margin-top: 26px;
-          line-height: 1.7;
-        }
-
-        .history__row,
-        .history__row--reverse {
-          grid-template-columns: 1fr;
-          grid-template-rows: none;
-          row-gap: 20px;
-          grid-template-areas:
-            "period"
-            "heading"
-            "list"
-            "figure";
-        }
-        .history__row--reverse {
-          grid-template-areas:
-            "period"
-            "list"
-            "figure";
-        }
-        /* 정렬은 '리스트가 놓인 쪽'을 따라 행 전체가 통일: 홀수 = 우측, 짝수 = 좌측 */
-        .history__row .history__period,
-        .history__row .history__heading,
-        .history__row .history__list {
-          justify-self: end;
-          text-align: right;
-        }
-        .history__row--reverse .history__period,
-        .history__row--reverse .history__heading,
-        .history__row--reverse .history__list {
-          justify-self: start;
-          text-align: left;
-        }
-        .history__row .history__figure,
-        .history__row--reverse .history__figure {
-          justify-self: stretch;
-        }
-        .history__figure img {
-          width: 100%;
-        }
-        .history__figure {
-          margin-top: 18px;
-        }
-        .history__toggle {
-          font-size: 13px;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .history__clip,
-        .history__clip::after,
-        .history__toggle svg {
-          transition: none;
-        }
-        .history.is-expanded .history__clip {
-          animation: none;
-          overflow: visible;
-        }
-      }
-
-      /* ===== 직무소개 섹션 (.jobs) =====
-         - 시안 기준폭: Desktop 1440 / Tablet 1024 / Mobile 390
-         - 사이즈는 토큰(--j-*)으로 분리, 구간별로 값만 교체 (history 섹션과 동일한 방식)
-         - --j-w : 일러스트(캐릭터/약병) 비례 계산용 기준폭 (데스크탑은 1440 에서 고정) */
-      .jobs {
-        /* Desktop (1025px~): 1440 시안 값을 vw clamp 로 환산 */
-        --j-w: min(100vw, var(--inner));
-        --j-pad-x: clamp(24px, 3.9vw, 56px);
-        --j-top: clamp(110px, 13.2vw, 190px);
-        --j-bottom: clamp(64px, 6.9vw, 100px);
-        --j-title: clamp(32px, 3.9vw, 56px);
-        --j-lead: clamp(15px, 1.67vw, 24px);
-        --j-lead-gap: clamp(16px, 1.95vw, 28px);
-        --j-list-gap: clamp(40px, 5.55vw, 80px);
-        --j-col-gap: clamp(20px, 4.1vw, 59px);
-        --j-card-pad: clamp(20px, 2.8vw, 40px);
-        --j-card-pad-b: clamp(24px, 3.3vw, 48px);
-        --j-card-r: clamp(20px, 2.1vw, 30px);
-        --j-img-r: clamp(14px, 1.7vw, 24px);
-        --j-desc: clamp(15px, 1.53vw, 22px);
-        --j-desc-gap: clamp(18px, 1.95vw, 28px);
-        --j-meta: clamp(13px, 1.25vw, 18px);
-        --j-meta-gap: clamp(18px, 1.95vw, 28px);
-        --j-arrow: clamp(32px, 2.8vw, 40px);
-        --j-btn-gap: clamp(48px, 6.1vw, 88px);
-        position: relative;
-        overflow: hidden; /* 약병/캐릭터가 화면 밖으로 나가는 부분 클립 */
-        background:
-          radial-gradient(
-            ellipse 12% 8% at 100% 56%,
-            rgba(255, 170, 120, 0.3),
-            rgba(255, 170, 120, 0)
-          ),
-          radial-gradient(
-            ellipse 45% 30% at 95% 100%,
-            rgba(255, 205, 185, 0.4),
-            rgba(255, 205, 185, 0)
-          ),
-          #fdf5f2;
-      }
-      .jobs__inner {
-        position: relative;
-        max-width: var(--inner);
-        margin: 0 auto;
-        padding: var(--j-top) var(--j-pad-x) var(--j-bottom);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* 헤더: 로고 뱃지는 타이틀 폰트 크기(em) 기준으로 겹쳐 배치 */
-      .jobs__head {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-      }
-      .jobs__heading {
-        position: relative;
-        display: inline-block;
-        font-size: var(--j-title);
-      }
-      .jobs__logo {
-        position: absolute;
-        left: -0.77em;
-        top: -0.95em;
-        width: 1.93em;
-        height: auto;
-        pointer-events: none;
-      }
-      .jobs__title {
-        font-size: 1em;
-        line-height: 1.3;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-      .jobs__lead {
-        margin-top: var(--j-lead-gap);
-        font-size: var(--j-lead);
-        line-height: 1.6;
-        letter-spacing: -0.04em;
-        color: #222;
-      }
-
-      /* 카드 리스트: 데스크탑/태블릿 2열, 모바일 1열 */
-      .jobs__list {
-        width: 100%;
-        margin-top: var(--j-list-gap);
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--j-col-gap);
-        position: relative;
-        z-index: 4;
-        backdrop-filter: blur(6px);
-      }
-      .jobs__card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        padding: var(--j-card-pad) var(--j-card-pad) var(--j-card-pad-b);
-        border-radius: var(--j-card-r);
-        background: #fff9f773;
-        backdrop-filter: blur(4px);
-        box-shadow: 0 8px 32px rgba(255, 120, 80, 0.1);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease,
-          background 0.5s;
-      }
-      .jobs__card:hover {
-        background: #fff9f7;
-      }
-      .jobs__media {
-        overflow: hidden;
-        border-radius: var(--j-img-r);
-        aspect-ratio: 1100 / 706;
-        background: #eee;
-      }
-      .jobs__media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .jobs__desc {
-        margin-top: var(--j-desc-gap);
-        font-size: var(--j-desc);
-        line-height: 1.5;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-      }
-      .jobs__foot {
-        margin-top: var(--j-meta-gap);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-top: auto; /* 카드 높이가 달라도 하단 정렬 */
-        padding-top: var(--j-meta-gap);
-      }
-      .jobs__meta {
-        font-size: var(--j-meta);
-        line-height: 1.4;
-        letter-spacing: -0.03em;
-        color: #333;
-      }
-      .jobs__name::before {
-        content: "";
-        display: inline-block;
-        width: 1px;
-        height: 0.75em;
-        margin: 0 0.75em;
-        background: #666;
-        vertical-align: -0.05em;
-      }
-      .jobs__arrow {
-        flex: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: var(--j-arrow);
-        height: var(--j-arrow);
-        border-radius: 50%;
-        color: var(--white);
-        background: linear-gradient(
-          135deg,
-          #e5714b 0%,
-          #ee9a7c 60%,
-          #f9dcd2 100%
-        );
-        transition: background-color var(--ease);
-      }
-      .jobs__arrow svg {
-        width: 50%;
-        height: 50%;
-      }
-      .jobs__card:hover,
-      .jobs__card:focus-visible {
-        transform: translateY(-4px);
-        box-shadow: 0 14px 40px rgba(255, 93, 50, 0.18);
-      }
-      .jobs__card:hover .jobs__media img,
-      .jobs__card:focus-visible .jobs__media img {
-        transform: scale(1.04);
-      }
-      .jobs__card:hover .jobs__arrow,
-      .jobs__card:focus-visible .jobs__arrow {
-        background: var(--red-grad);
-      }
-      .jobs__card:focus-visible {
-        border-radius: var(--j-card-r);
-      }
-
-      .jobs__more {
-        position: relative;
-        z-index: 1;
-        margin-top: var(--j-btn-gap);
-      }
-
-      /* 장식 오브젝트: inner 기준 absolute (크기·위치는 --j-w 비례) */
-      .jobs__obj {
-        position: absolute;
-        height: auto;
-        max-width: none;
-        pointer-events: none;
-      }
-      .jobs__obj--char {
-        z-index: 2;
-        top: calc(var(--j-w) * 0.094);
-        right: calc(var(--j-w) * 0.007);
-        width: calc(var(--j-w) * 0.197);
-      }
-      .jobs__obj--bottle {
-        z-index: 3; /* 시안처럼 카드 위로 겹침 */
-        left: calc(var(--j-w) * -0.064);
-        bottom: calc(var(--j-w) * 0.075);
-        width: calc(var(--j-w) * 0.216);
-      }
-
-      /* ----- Tablet: 1024px 이하 (2열 유지, 값만 축소) ----- */
-      @media (max-width: 1024px) {
-        .jobs {
-          --j-w: 100vw;
-          --j-pad-x: clamp(20px, 3.5vw, 36px);
-          --j-top: clamp(104px, 14.2vw, 145px);
-          --j-bottom: clamp(88px, 12.7vw, 130px);
-          --j-title: clamp(28px, 3.9vw, 40px);
-          --j-lead: clamp(14px, 1.9vw, 19.5px);
-          --j-lead-gap: clamp(14px, 2vw, 21px);
-          --j-list-gap: clamp(28px, 4.5vw, 46px);
-          --j-col-gap: clamp(12px, 1.9vw, 19px);
-          --j-card-pad: clamp(16px, 2.5vw, 26px);
-          --j-card-pad-b: clamp(20px, 3.1vw, 32px);
-          --j-card-r: clamp(18px, 2.4vw, 25px);
-          --j-img-r: clamp(12px, 1.9vw, 19px);
-          --j-desc: clamp(13px, 1.75vw, 18px);
-          --j-desc-gap: clamp(16px, 2.4vw, 25px);
-          --j-meta: clamp(12px, 1.35vw, 14px);
-          --j-meta-gap: clamp(16px, 2.5vw, 26px);
-          --j-arrow: clamp(28px, 3vw, 32px);
-          --j-btn-gap: clamp(32px, 3.9vw, 40px);
-        }
-        .jobs__logo {
-          left: -1.9em;
-          top: -0.9em;
-        }
-        .jobs__obj--char {
-          top: calc(var(--j-w) * 0.029);
-          right: calc(var(--j-w) * 0.005);
-          width: calc(var(--j-w) * 0.198);
-        }
-        .jobs__obj--bottle {
-          /* left: calc(var(--j-w) * 0.036);
-          bottom: calc(var(--j-w) * 0.05);
-          width: calc(var(--j-w) * 0.209); */
-        }
-      }
-
-      /* ----- Mobile: 600px 이하 (1열, 약병 제거) ----- */
-      @media (max-width: 600px) {
-        .jobs {
-          --j-w: 100vw;
-          --j-pad-x: 20px;
-          --j-top: clamp(96px, 30vw, 130px);
-          --j-bottom: 60px;
-          --j-title: clamp(20px, 6.15vw, 26px);
-          --j-lead: clamp(13px, 3.6vw, 15px);
-          --j-lead-gap: 12px;
-          --j-list-gap: 20px;
-          --j-col-gap: 18px;
-          --j-card-pad: 24px;
-          --j-card-pad-b: 28px;
-          --j-card-r: 24px;
-          --j-img-r: 14px;
-          --j-desc: clamp(12.5px, 3.4vw, 14px);
-          --j-desc-gap: 18px;
-          --j-meta: 12px;
-          --j-meta-gap: 18px;
-          --j-arrow: 26px;
-          --j-btn-gap: 24px;
-        }
-        .jobs__logo {
-          left: -1.95em;
-          top: -1.55em;
-          width: 3.1em;
-        }
-        .jobs__lead {
-          line-height: 1.65;
-        }
-        .jobs__list {
-          grid-template-columns: 1fr;
-        }
-        .jobs__br {
-          display: none; /* 모바일은 자연 줄바꿈 */
-        }
-        .jobs__obj--char {
-          top: calc(var(--j-w) * 0.064);
-          right: calc(var(--j-w) * -0.02);
-          width: calc(var(--j-w) * 0.333);
-        }
-        .jobs__obj--bottle {
-          display: none;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .jobs__card,
-        .jobs__media img {
-          transition: none;
-        }
-        .jobs__card:hover,
-        .jobs__card:focus-visible {
-          transform: none;
-        }
-        .jobs__card:hover .jobs__media img,
-        .jobs__card:focus-visible .jobs__media img {
-          transform: none;
-        }
-      }
-
-      /* ===== 회사 복지 섹션 (.welfare) ===== */
-      .welfare {
-        --welfare-orange: #ff5d32;
-        position: relative;
-        overflow: hidden;
-        background: #fff;
-      }
-      .welfare__inner {
-        position: relative;
-        max-width: var(--inner);
-        margin: 0 auto;
-        padding: clamp(88px, 10vw, 144px) clamp(24px, 5.5vw, 80px)
-          clamp(88px, 10vw, 144px);
-      }
-      .welfare__head {
-        position: relative;
-        z-index: 1;
-        margin-bottom: clamp(42px, 5vw, 72px);
-        text-align: center;
-      }
-      .welfare__title {
-        font-size: clamp(32px, 3.9vw, 56px);
-        line-height: 1.3;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-      .welfare__lead {
-        margin-top: clamp(12px, 1.6vw, 22px);
-        font-size: clamp(14px, 1.4vw, 20px);
-        line-height: 1.6;
-        letter-spacing: -0.04em;
-        color: #222;
-      }
-      .welfare__character {
-        position: absolute;
-        top: clamp(30px, 5vw, 72px);
-        right: clamp(24px, 4vw, 58px);
-        z-index: 1;
-        width: clamp(112px, 17vw, 220px);
-        height: auto;
-        pointer-events: none;
-      }
-      .welfare__intro {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        margin-bottom: 18px;
-      }
-      .welfare__intro-title {
-        margin: 0;
-        font-size: clamp(16px, 1.8vw, 22px);
-        line-height: 1.5;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        color: var(--welfare-orange);
-      }
-      .welfare__intro-copy {
-        margin: 0;
-        font-size: clamp(12px, 1.1vw, 14px);
-        line-height: 1.5;
-        letter-spacing: -0.03em;
-        color: #555;
-      }
-      .welfare__scroll {
-        height: 420px;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        padding: 0 8px 4px 0;
-        scrollbar-width: thin;
-        scrollbar-color: var(--welfare-orange) #f1efee;
-      }
-      .welfare__scroll::-webkit-scrollbar {
-        width: 5px;
-      }
-      .welfare__scroll::-webkit-scrollbar-track {
-        border-radius: 999px;
-        background: #f1efee;
-      }
-      .welfare__scroll::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        background: var(--welfare-orange);
-      }
-      .welfare__list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: minmax(74px, auto);
-        gap: 10px 12px;
-        padding: 0 2px 2px 0;
-      }
-      .welfare__card {
-        min-width: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 20px;
-        border: 1px solid #ffe4dc;
-        border-radius: 16px;
-        background: linear-gradient(110deg, #fffaf8 0%, #fff 100%);
-        box-shadow: 0 3px 8px rgba(114, 55, 34, 0.08);
-      }
-      .welfare__section-intro {
-        grid-column: 1 / -1;
-        padding: 8px 4px 0;
-      }
-      .welfare__text {
-        min-width: 0;
-      }
-      .welfare__name {
-        margin: 0;
-        font-size: clamp(15px, 1.35vw, 18px);
-        line-height: 1.4;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-      .welfare__description {
-        margin-top: 5px;
-        font-size: clamp(11px, 0.95vw, 13px);
-        line-height: 1.5;
-        letter-spacing: -0.035em;
-        color: #666;
-      }
-      .welfare__icon {
-        flex: 0 0 52px;
-        width: 52px;
-        height: 52px;
-        object-fit: contain;
-      }
-      .welfare__cloud {
-        position: absolute;
-        bottom: 0;
-        left: max(16px, calc((100% - var(--inner)) / 2));
-        width: clamp(112px, 16vw, 210px);
-        height: auto;
-        pointer-events: none;
-      }
-
-      /* ----- Tablet: 1024px 이하 (1열 카드) ----- */
-      @media (max-width: 1024px) {
-        .welfare__inner {
-          padding: clamp(88px, 12vw, 124px) clamp(28px, 4vw, 40px)
-            clamp(88px, 12vw, 124px);
-        }
-        .welfare__head {
-          margin-bottom: 46px;
-        }
-        .welfare__character {
-          top: 24px;
-          right: clamp(28px, 4vw, 40px);
-          width: clamp(132px, 20vw, 180px);
-        }
-        .welfare__scroll {
-          height: 490px;
-        }
-        .welfare__list {
-          grid-template-columns: minmax(0, 1fr);
-          grid-auto-rows: minmax(84px, auto);
-          gap: 12px;
-        }
-        .welfare__card {
-          padding: 16px 20px;
-        }
-        .welfare__name {
-          font-size: clamp(16px, 2vw, 18px);
-        }
-        .welfare__description {
-          font-size: clamp(12px, 1.5vw, 14px);
-        }
-        .welfare__icon {
-          flex-basis: 60px;
-          width: 60px;
-          height: 60px;
-        }
-        .welfare__cloud {
-          left: 16px;
-          width: clamp(120px, 18vw, 170px);
-        }
-      }
-
-      /* ----- Mobile: 600px 이하 ----- */
-      @media (max-width: 600px) {
-        .welfare__inner {
-          padding: 82px 20px 104px;
-        }
-        .welfare__head {
-          margin: 0 auto 20px;
-          max-width: 330px;
-        }
-        .welfare__title {
-          max-width: 260px;
-          margin: 0 auto;
-          font-size: clamp(24px, 6.2vw, 28px);
-          line-height: 1.45;
-        }
-        .welfare__lead {
-          margin-top: 10px;
-          font-size: 14px;
-          line-height: 1.6;
-        }
-        .welfare__character {
-          top: 34px;
-          right: 20px;
-          width: clamp(76px, 23vw, 104px);
-        }
-        .welfare__intro {
-          display: block;
-          margin-bottom: 18px;
-        }
-        .welfare__section-intro {
-          padding-top: 0;
-        }
-        .welfare__section-intro .welfare__intro {
-          margin-bottom: 4px;
-        }
-        .welfare__intro-title {
-          font-size: 16px;
-        }
-        .welfare__intro-copy {
-          margin-top: 2px;
-          font-size: 12px;
-        }
-        .welfare__scroll {
-          height: 490px;
-          padding-right: 8px;
-        }
-        .welfare__list {
-          grid-auto-rows: minmax(114px, auto);
-          gap: 12px;
-        }
-        .welfare__card {
-          gap: 12px;
-          padding: 18px 16px 18px 20px;
-          border-radius: 18px;
-        }
-        .welfare__name {
-          font-size: 17px;
-        }
-        .welfare__description {
-          max-width: 230px;
-          margin-top: 7px;
-          font-size: 13px;
-          line-height: 1.55;
-        }
-        .welfare__icon {
-          flex-basis: 56px;
-          width: 56px;
-          height: 56px;
-        }
-        .welfare__cloud {
-          left: 14px;
-          width: 118px;
-        }
-      }
-
-      /* ===== 직무 탐색 섹션 (.tasks) ===== */
-      .tasks {
-        --tasks-orange: #ff5d32;
-        color: #111;
-        background: #fff;
-      }
-      .tasks__hero {
-        position: relative;
-        height: min(100svh, 900px);
-        min-height: 620px;
-        overflow: hidden;
-        background: linear-gradient(180deg, #ffddd5 0%, #fff5f1 67%, #fff 100%);
-      }
-      .tasks__title-art {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: max(100%, 1500px);
-        max-width: none;
-        opacity: 0.2;
-        transform: translateX(-50%);
-      }
-      .tasks__character {
-        position: absolute;
-        top: clamp(250px, 32vw, 270px);
-        left: 50%;
-        width: min(80vw, 900px);
-        max-width: none;
-        height: auto;
-        transform: translateX(-50%);
-      }
-      .tasks__content {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 96px 32px 120px;
-      }
-      .tasks__head {
-        margin-bottom: 66px;
-        text-align: center;
-      }
-      .tasks__title {
-        margin: 0;
-        font-size: clamp(32px, 4vw, 48px);
-        line-height: 1.35;
-        font-weight: 800;
-        letter-spacing: -0.05em;
-      }
-      .tasks__lead {
-        margin: 24px 0 0;
-        font-size: clamp(16px, 1.5vw, 20px);
-        line-height: 1.6;
-        letter-spacing: -0.04em;
-      }
-      .tasks__tabs {
-        display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 38px;
-      }
-      .tasks__tab {
-        min-height: 60px;
-        padding: 12px 16px;
-        border: 0;
-        border-radius: 16px;
-        color: #777;
-        background: transparent;
-        font: inherit;
-        font-size: 17px;
-        font-weight: 600;
-        white-space: nowrap;
-        cursor: pointer;
-        transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
-      }
-      .tasks__tab:hover,
-      .tasks__tab[aria-selected="true"] {
-        color: var(--tasks-orange);
-        background: #fff8f5;
-        box-shadow: 0 5px 16px rgba(131, 73, 52, 0.12);
-      }
-      .tasks__tab:focus-visible,
-      .tasks__location-toggle:focus-visible,
-      .tasks__job:focus-visible,
-      .tasks__modal-close:focus-visible {
-        outline: 3px solid rgba(255, 93, 50, 0.45);
-        outline-offset: 3px;
-      }
-      .tasks__locations {
-        border-top: 1px solid #ddd;
-      }
-      .tasks__location {
-        border-bottom: 1px solid #ddd;
-      }
-      .tasks__location-toggle {
-        display: flex;
-        width: 100%;
-        min-height: 90px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 18px 34px;
-        border: 0;
-        color: #777;
-        background: #fff;
-        font: inherit;
-        font-size: 22px;
-        font-weight: 700;
-        text-align: left;
-        cursor: pointer;
-      }
-      .tasks__location.is-open .tasks__location-toggle {
-        color: #d7674d;
-      }
-      .tasks__count {
-        display: inline-flex;
-        min-width: 42px;
-        height: 26px;
-        align-items: center;
-        justify-content: center;
-        padding: 0 12px;
-        border-radius: 999px;
-        color: #fff;
-        background: var(--tasks-orange);
-        font-size: 17px;
-        line-height: 1;
-      }
-      .tasks__chevron {
-        width: 12px;
-        height: 12px;
-        margin-left: auto;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: rotate(45deg);
-        transition: transform 180ms ease;
-      }
-      .tasks__location.is-open .tasks__chevron {
-        transform: rotate(225deg);
-      }
-      .tasks__panel {
-        padding: 0 18px 30px;
-      }
-      .tasks__jobs {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-      .tasks__job {
-        display: flex;
-        min-height: 78px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 20px 28px;
-        border: 1px solid #f4e3de;
-        border-radius: 22px;
-        color: #111;
-        background: linear-gradient(110deg, #fffaf8, #fff);
-        box-shadow: 0 4px 12px rgba(114, 55, 34, 0.08);
-        font: inherit;
-        font-size: 18px;
-        font-weight: 700;
-        text-align: left;
-        cursor: pointer;
-        transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-      }
-      .tasks__job:hover {
-        transform: translateY(-2px);
-        border-color: #ffb39e;
-        box-shadow: 0 8px 18px rgba(114, 55, 34, 0.12);
-      }
-      .tasks__job-arrow {
-        color: #777;
-        font-size: 25px;
-        font-weight: 400;
-      }
-      .tasks__empty {
-        margin: 0;
-        padding: 24px 12px;
-        color: #666;
-        text-align: center;
-      }
-      .tasks__modal {
-        position: fixed;
-        width: min(746px, calc(100vw - 32px));
-        max-width: none;
-        max-height: min(82svh, 720px);
-        margin: clamp(16px, 4vh, 30px) auto 0;
-        padding: 0;
-        overflow: hidden;
-        border: 0;
-        border-radius: 18px;
-        background: #fff;
-        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
-      }
-      .tasks__modal::backdrop {
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(1px);
-      }
-      .tasks__modal-banner {
-        position: relative;
-        height: 150px;
-        background: #d6e5ec;
-      }
-      .tasks__modal-banner img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .tasks__modal-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        display: grid;
-        width: 42px;
-        height: 42px;
-        place-items: center;
-        border: 0;
-        border-radius: 50%;
-        color: #fff;
-        background: var(--tasks-orange);
-        font-size: 28px;
-        line-height: 1;
-        cursor: pointer;
-      }
-      .tasks__modal-body {
-        max-height: calc(min(82svh, 720px) - 150px);
-        padding: 44px 56px 52px;
-        overflow-y: auto;
-      }
-      .tasks__modal-title {
-        margin: 0;
-        font-size: 22px;
-        line-height: 1.4;
-        font-weight: 800;
-      }
-      .tasks__modal-meta {
-        margin: 8px 0 0;
-        color: #777;
-        font-size: 15px;
-      }
-      .tasks__modal-meta strong {
-        color: var(--tasks-orange);
-      }
-      .tasks__modal-career {
-        margin: 8px 0 0;
-        font-size: 13px;
-      }
-      .tasks__modal-block {
-        margin-top: 48px;
-      }
-      .tasks__modal-block + .tasks__modal-block {
-        margin-top: 36px;
-        padding-top: 34px;
-        border-top: 1px solid #ddd;
-      }
-      .tasks__modal-block h4 {
-        margin: 0 0 14px;
-        font-size: 17px;
-      }
-      .tasks__modal-block ul {
-        display: grid;
-        gap: 10px;
-        margin: 0;
-        padding-left: 18px;
-      }
-      .tasks__modal-block li {
-        padding-left: 0;
-        font-size: 14px;
-        line-height: 1.65;
-      }
-      .tasks__modal-block li::marker {
-        color: var(--tasks-orange);
-      }
-      body.has-tasks-modal {
-        overflow: hidden;
-      }
-
-      /* ===== 지원자격 및 전형절차 섹션 ===== */
-      .requirement {
-        --requirement-orange: #ff5d32;
-        background: #fff;
-      }
-      .requirement__inner {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 92px 32px 112px;
-      }
-      .requirement__head {
-        position: relative;
-        margin-bottom: 56px;
-        text-align: center;
-      }
-      .requirement__title {
-        margin: 0;
-        font-size: clamp(30px, 3.4vw, 42px);
-        line-height: 1.35;
-        font-weight: 800;
-        letter-spacing: -0.05em;
-      }
-      .requirement__bulb {
-        position: absolute;
-        top: 34px;
-        right: 4%;
-        width: clamp(64px, 9vw, 104px);
-        height: auto;
-      }
-      .requirement__tabs {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
-        padding-bottom: 22px;
-        border-bottom: 1px solid #ddd;
-      }
-      .requirement__tab {
-        display: flex;
-        min-height: 60px;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        padding: 12px 20px;
-        border: 0;
-        border-radius: 14px;
-        color: #777;
-        background: transparent;
-        font: inherit;
-        font-size: 17px;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-          color 0.5s ease,
-          background-color 0.5s ease,
-          box-shadow 0.5s ease;
-      }
-      .requirement__tab[aria-selected="true"] {
-        color: var(--requirement-orange);
-        background: #fff8f5;
-        box-shadow: 0 5px 16px rgba(131, 73, 52, 0.12);
-      }
-      .requirement__tab-icon {
-        width: 34px;
-        height: 34px;
-        object-fit: contain;
-      }
-      .requirement__tab-symbol {
-        font-size: 28px;
-        line-height: 1;
-      }
-      .requirement__tab:focus-visible {
-        outline: 3px solid rgba(255, 93, 50, 0.45);
-        outline-offset: 3px;
-      }
-      .requirement__eligibility[hidden],
-      .requirement__process[hidden] {
-        display: none;
-      }
-      .requirement__criteria {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        border-bottom: 1px solid #ddd;
-      }
-      .requirement__criterion {
-        display: flex;
-        min-height: 188px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 28px 20px;
-        text-align: center;
-      }
-      .requirement__criterion + .requirement__criterion {
-        position: relative;
-      }
-      .requirement__criterion + .requirement__criterion::before {
-        position: absolute;
-        top: 25%;
-        bottom: 25%;
-        left: 0;
-        width: 1px;
-        background: #ddd;
-        content: "";
-      }
-      .requirement__criterion-icon {
-        width: 64px;
-        height: 64px;
-        object-fit: contain;
-      }
-      .requirement__criterion-title {
-        margin: 0;
-        font-size: 19px;
-        line-height: 1.5;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-      }
-      .requirement__notes {
-        display: grid;
-        gap: 12px;
-        justify-content: center;
-        padding: 34px 20px;
-        border-bottom: 1px solid #ddd;
-      }
-      .requirement__notes li {
-        position: relative;
-        padding-left: 14px;
-        font-size: 14px;
-        line-height: 1.6;
-        color: #444;
-      }
-      .requirement__notes li::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: var(--requirement-orange);
-        content: "•";
-      }
-      .requirement__notice {
-        margin: 0;
-        padding: 32px 16px;
-        border-bottom: 1px solid #ddd;
-        font-size: 17px;
-        line-height: 1.6;
-        font-weight: 700;
-        text-align: center;
-      }
-      .requirement__notice strong {
-        color: var(--requirement-orange);
-      }
-      .requirement__process {
-        container-type: inline-size;
-      }
-      .requirement__process-group {
-        padding: 4cqw 3.2cqw;
-        border-bottom: 1px solid #ddd;
-      }
-      .requirement__process-title {
-        margin: 0 0 30px;
-        font-size: 24px;
-        line-height: 1.4;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-      .requirement__steps {
-        display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr) 18px) minmax(0, 1fr);
-        column-gap: 4px;
-        align-items: start;
-      }
-      .requirement__steps--six {
-        grid-template-columns: repeat(5, minmax(0, 1fr) 18px) minmax(0, 1fr);
-      }
-      .requirement__step {
-        display: flex;
-        min-width: 0;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        text-align: center;
-      }
-      .requirement__step-icon {
-        display: grid;
-        width: 60px;
-        height: 60px;
-        place-items: center;
-        font-size: 48px;
-        line-height: 1;
-      }
-      .requirement__step-name {
-        margin-top: 10px;
-        font-size: 16px;
-        line-height: 1.35;
-        font-weight: 700;
-      }
-      .requirement__step-date {
-        color: #888;
-        font-size: 13px;
-        line-height: 1.4;
-        white-space: pre-line;
-      }
-      .requirement__step-arrow {
-        padding-top: 20px;
-        font-size: 20px;
-        line-height: 1;
-        text-align: center;
-      }
-      .requirement__process-notes {
-        display: grid;
-        gap: 14px;
-        margin: 0;
-        padding: 48px 17% 54px;
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        list-style: none;
-      }
-      .requirement__process-notes li {
-        position: relative;
-        padding-left: 20px;
-        font-size: 17px;
-        line-height: 1.6;
-      }
-      .requirement__process-notes li::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: var(--requirement-orange);
-        content: "•";
-      }
-
-      /* ===== 박람회 및 캠퍼스 방문 일정 ===== */
-      .exposition {
-        --exposition-orange: #ff765e;
-        background: #fff;
-      }
-      .exposition__inner {
-        position: relative;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 48px 32px 100px;
-      }
-      .exposition__head {
-        position: relative;
-        min-height: 220px;
-        padding: 8px 0 0 250px;
-        text-align: left;
-      }
-      .exposition__character {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 220px;
-        height: auto;
-      }
-      .exposition__title {
-        margin: 0;
-        font-size: clamp(32px, 3.8vw, 46px);
-        line-height: 1.3;
-        font-weight: 800;
-        letter-spacing: -0.05em;
-      }
-      .exposition__lead {
-        margin: 16px 0 0;
-        font-size: 17px;
-        line-height: 1.6;
-      }
-      .exposition__hint {
-        margin: 45px 0 48px;
-        font-size: 14px;
-        text-align: center;
-      }
-      .exposition__hint::before {
-        margin-right: 8px;
-        color: var(--exposition-orange);
-        content: "•";
-      }
-      .exposition__tabs,
-      .exposition__regions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-      .exposition__tabs {
-        padding-bottom: 20px;
-        border-bottom: 1px solid #ddd;
-      }
-      .exposition__tab,
-      .exposition__region {
-        min-height: 58px;
-        padding: 10px 16px;
-        border: 0;
-        border-radius: 14px;
-        color: #777;
-        background: transparent;
-        font: inherit;
-        font-size: 17px;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-          color 0.5s ease,
-          background-color 0.5s ease,
-          box-shadow 0.5s ease;
-      }
-      .exposition__tab[aria-selected="true"],
-      .exposition__region[aria-pressed="true"] {
-        color: var(--exposition-orange);
-        background: #fff8f5;
-        box-shadow: 0 5px 16px rgba(131, 73, 52, 0.12);
-      }
-      .exposition__regions {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 8px;
-        margin: 24px 0 20px;
-        padding: 8px;
-        border-radius: 14px;
-        background: #fffaf8;
-      }
-      .exposition__regions[hidden] {
-        display: none;
-      }
-      .exposition__region {
-        min-height: 48px;
-        padding: 8px 10px;
-        font-size: 15px;
-      }
-      .exposition__calendar {
-        border-top: 1px solid #ddd;
-      }
-      .exposition__empty {
-        margin: 0;
-        padding: 48px 16px;
-        color: #777;
-        font-size: 15px;
-        text-align: center;
-      }
-      .exposition__week {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        border-bottom: 1px solid #ddd;
-      }
-      .exposition__day {
-        min-width: 0;
-        text-align: center;
-      }
-      .exposition__day + .exposition__day .exposition__date {
-        border-left: 1px solid #e5e5e5;
-      }
-      .exposition__date {
-        min-height: 48px;
-        display: grid;
-        place-items: center;
-        padding: 8px 4px;
-        border-bottom: 1px solid #ddd;
-        font-size: 15px;
-        font-weight: 700;
-      }
-      .exposition__events {
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 16px 8px;
-      }
-      .exposition__event {
-        position: relative;
-        max-width: 100%;
-        padding: 5px 4px;
-        border: 0;
-        color: var(--exposition-orange);
-        background: transparent;
-        font: inherit;
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 1.4;
-      }
-      button.exposition__event {
-        cursor: pointer;
-        transition: color 0.5s ease;
-      }
-      .exposition__event + .exposition__event::before {
-        position: absolute;
-        top: -8px;
-        left: calc(50% - 18px);
-        width: 36px;
-        border-top: 1px solid #ffd8cf;
-        content: "";
-      }
-      .exposition__event:focus-visible,
-      .exposition__tab:focus-visible,
-      .exposition__region:focus-visible {
-        outline: 3px solid rgba(255, 118, 94, 0.45);
-        outline-offset: 3px;
-      }
-      .exposition__event-detail {
-        max-width: 220px;
-        padding: 8px 10px;
-        border-radius: 8px;
-        color: #555;
-        background: #fff8f5;
-        font-size: 12px;
-        line-height: 1.6;
-        text-align: left;
-        opacity: 0;
-        transform: translateY(-4px);
-        transition:
-          opacity 0.5s ease,
-          transform 0.5s ease;
-      }
-      .exposition__event-detail--visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .exposition__event-detail p {
-        margin: 0;
-      }
-      .exposition__event-detail strong {
-        margin-right: 5px;
-        color: var(--exposition-orange);
-      }
-      .con8 {
-        position: relative;
-        overflow: hidden;
-        padding: 28px 40px 112px;
-        background: #fff;
-      }
-      .con8__character {
-        position: absolute;
-        top: 24px;
-        right: max(5%, calc((100% - 1320px) / 2));
-        z-index: 1;
-        width: 140px;
-        height: auto;
-      }
-      .con8__inner {
-        position: relative;
-        max-width: 1160px;
-        margin: 0 auto;
-      }
-      .con8__links {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        align-items: start;
-        gap: clamp(24px, 5vw, 72px);
-      }
-      .con8__item {
-        min-width: 0;
-      }
-      .con8__item:nth-child(1) {
-        margin-top: 60px;
-      }
-      .con8__item:nth-child(3) {
-        margin-top: 100px;
-      }
-      .con8__link {
-        display: block;
-      }
-      .con8__image {
-        position: relative;
-        overflow: hidden;
-        aspect-ratio: 0.774;
-        border-radius: 10px;
-        background: #262626;
-      }
-      .con8__image > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .con8__overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 18px;
-        padding: 20px;
-        color: #fff;
-        text-align: center;
-        background: rgba(15, 22, 38, 0.5);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .con8__prompt {
-        font-size: 15px;
-        line-height: 1.45;
-      }
-      .con8__name {
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 1.35;
-      }
-      .con8__arrow {
-        display: inline-grid;
-        width: 32px;
-        height: 32px;
-        place-items: center;
-        border-radius: 50%;
-        color: #fff;
-        background: #f47e59;
-        font-size: 22px;
-        line-height: 1;
-      }
-      .con8__link:hover .con8__image > img,
-      .con8__link:focus-visible .con8__image > img {
-        transform: scale(1.04);
-      }
-      .con8__link:hover .con8__overlay,
-      .con8__link:focus-visible .con8__overlay {
-        opacity: 1;
-      }
-      .con8__caption {
-        position: relative;
-        margin-top: 22px;
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 1.5;
-        text-align: center;
-      }
-      .con8__sign {
-        position: absolute;
-        display: block;
-        pointer-events: none;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-      }
-      .con8__sign--arrow {
-        top: -25px;
-        left: 7%;
-        width: 20px;
-        height: 36px;
-        background-image: url("./images/관련 채널/con8_Image-3.png");
-      }
-      .con8__sign--underline {
-        bottom: -5px;
-        left: 18%;
-        width: 70px;
-        height: 4px;
-        background-image: url("./images/관련 채널/con8_Image.png");
-      }
-      .con8__sign--star {
-        top: -20px;
-        right: 3%;
-        width: 24px;
-        height: 24px;
-        background-image: url("./images/관련 채널/con8_Image-1.png");
-      }
-      .con8__sign--circle {
-        top: -3px;
-        left: 48%;
-        width: 34px;
-        height: 24px;
-        transform: translateX(-50%);
-        background-image: url("./images/관련 채널/con8_Image-2.png");
-      }
-      .con8__sign--arrow-up {
-        top: -24px;
-        right: 12%;
-        width: 18px;
-        height: 32px;
-        background-image: url("./images/관련 채널/con8_Image-3.png");
-      }
-      .con8__sign--wave {
-        bottom: -5px;
-        left: 54%;
-        width: 54px;
-        height: 6px;
-        background-image: url("./images/관련 채널/con8_Image-4.png");
-      }
-      .con9 {
-        position: relative;
-        isolation: isolate;
-        display: flex;
-        min-height: 460px;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        padding: 64px 24px;
-        background: #e4faf7 url("./css/2026년 한미그룹 하반기 공개채용_files/con9_bg.png")
-          center / cover no-repeat;
-        text-align: center;
-      }
-      .con9__cloud {
-        position: absolute;
-        z-index: -1;
-        height: auto;
-        pointer-events: none;
-        mix-blend-mode: luminosity;
-      }
-      .con9__cloud--left {
-        bottom: -8px;
-        left: 0;
-        width: min(36vw, 460px);
-      }
-      .con9__cloud--right {
-        right: -24px;
-        bottom: 0;
-        width: min(34vw, 430px);
-      }
-      .con9__inner {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        max-width: 1100px;
-      }
-      .con9__title {
-        font-size: 42px;
-        font-weight: 700;
-        line-height: 1.35;
-      }
-      .con9__countdown {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        justify-content: center;
-        gap: 8px clamp(8px, 1.4vw, 20px);
-        margin-top: 10px;
-      }
-      .con9__unit {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 4px;
-        white-space: nowrap;
-      }
-      .con9__number {
-        color: #f04436;
-        font-size: 58px;
-        font-variant-numeric: tabular-nums;
-        font-weight: 700;
-        line-height: 1;
-      }
-      .con9__label,
-      .con9__remaining {
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1.35;
-        white-space: nowrap;
-      }
-      .con9__remaining {
-        margin-left: -4px;
-      }
-      .con9__status {
-        margin-top: 8px;
-        color: #555;
-        font-size: 14px;
-      }
-      .con9__visual {
-        position: relative;
-        display: grid;
-        width: clamp(180px, 25vw, 300px);
-        aspect-ratio: 1;
-        margin: 38px auto 0;
-        place-items: center;
-      }
-      .con9__earth {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: transform 0.4s ease;
-      }
-      .con9__visual:hover .con9__earth,
-      .con9__visual:focus-visible .con9__earth {
-        transform: scale(1.04);
-      }
-      .con9__apply {
-        position: relative;
-        z-index: 1;
-        display: inline-flex;
-        min-width: 132px;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 12px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.85);
-        border-radius: 999px;
-        color: #f04436;
-        background: rgba(255, 255, 255, 0.62);
-        box-shadow: 0 6px 16px rgba(90, 85, 75, 0.12);
-        font-size: 16px;
-        font-weight: 700;
-        backdrop-filter: blur(6px);
-      }
-      .con9__apply-arrow {
-        display: inline-grid;
-        width: 24px;
-        height: 24px;
-        place-items: center;
-        border-radius: 50%;
-        color: #fff;
-        background: #f47e59;
-        font-size: 17px;
-        line-height: 1;
-      }
-      .con9__guide {
-        margin-top: 6px;
-        font-size: 13px;
-      }
-      @media (max-width: 900px) {
-        .exposition__inner {
-          padding: 42px 24px 84px;
-        }
-        .exposition__head {
-          min-height: 0;
-          padding: 0;
-          text-align: center;
-        }
-        .exposition__character {
-          display: none;
-        }
-        .exposition__title {
-          font-size: 36px;
-        }
-        .exposition__lead {
-          font-size: 15px;
-        }
-        .exposition__hint {
-          margin: 48px 0 28px;
-        }
-        .exposition__events {
-          min-height: 132px;
-        }
-      }
-      @media (max-width: 600px) {
-        .exposition__inner {
-          padding: 48px 16px 64px;
-        }
-        .exposition__head {
-          min-height: 0;
-          padding: 0;
-          text-align: center;
-        }
-        .exposition__character {
-          display: none;
-        }
-        .exposition__title {
-          font-size: 23px;
-        }
-        .exposition__lead {
-          margin-top: 10px;
-          font-size: 12px;
-          line-height: 1.6;
-        }
-        .exposition__hint {
-          margin: 30px 0 22px;
-          font-size: 11px;
-        }
-        .exposition__tabs {
-          gap: 6px;
-          padding-bottom: 12px;
-        }
-        .exposition__tab {
-          min-height: 42px;
-          padding: 8px 6px;
-          font-size: 13px;
-        }
-        .exposition__regions {
-          gap: 3px;
-          margin: 14px 0;
-          padding: 5px;
-        }
-        .exposition__region {
-          min-height: 36px;
-          padding: 6px 2px;
-          font-size: 11px;
-        }
-        .exposition__week {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        .exposition__day {
-          border-bottom: 1px solid #eee;
-        }
-        .exposition__day:nth-child(odd) {
-          border-right: 1px solid #eee;
-        }
-        .exposition__date {
-          min-height: 35px;
-          font-size: 10px;
-        }
-        .exposition__events {
-          min-height: 80px;
-          gap: 6px;
-          padding: 10px 4px;
-        }
-        .exposition__event {
-          font-size: 10px;
-        }
-        .exposition__event-detail {
-          font-size: 10px;
-        }
-      }
-      @media (max-width: 1024px) {
-        .requirement__process-group {
-          padding: 28px 20px;
-        }
-        .requirement__process-title {
-          margin-bottom: 24px;
-          font-size: 21px;
-        }
-        .requirement__steps {
-          grid-template-columns: repeat(6, minmax(0, 1fr) 14px) minmax(0, 1fr);
-          column-gap: 2px;
-        }
-        .requirement__steps--six {
-          grid-template-columns: repeat(5, minmax(0, 1fr) 14px) minmax(0, 1fr);
-        }
-        .requirement__step-icon {
-          width: 52px;
-          height: 52px;
-          font-size: 42px;
-        }
-        .requirement__step-name {
-          font-size: 14px;
-        }
-        .requirement__step-date {
-          font-size: 12px;
-        }
-        .requirement__step-arrow {
-          padding-top: 17px;
-          font-size: 18px;
-        }
-        .requirement__process-notes li {
-          font-size: 15px;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .tasks__hero {
-          height: min(100svh, 820px);
-          min-height: 580px;
-        }
-        .tasks__character {
-          width: min(80vw, 900px);
-        }
-        .tasks__content {
-          padding: 80px 28px 100px;
-        }
-        .tasks__head {
-          margin-bottom: 48px;
-        }
-        .tasks__tabs {
-          gap: 4px;
-        }
-        .tasks__tab {
-          padding: 10px 8px;
-          font-size: 15px;
-        }
-        .tasks__location-toggle {
-          min-height: 82px;
-          padding: 16px 22px;
-          font-size: 20px;
-        }
-        .tasks__panel {
-          padding: 0 10px 24px;
-        }
-        .tasks__jobs {
-          gap: 12px;
-        }
-        .tasks__job {
-          padding: 18px 22px;
-          font-size: 16px;
-        }
-      }
-      @media (max-width: 900px) {
-        .tasks__hero {
-          height: 100svh;
-          min-height: 520px;
-          max-height: 780px;
-        }
-        .tasks__title-art {
-          top: 8px;
-          width: max(150%, 900px);
-        }
-        .tasks__character {
-          width: min(max(106vw, 700px), 900px);
-        }
-        .tasks__content {
-          padding: 64px 0 80px;
-        }
-        .tasks__head {
-          margin: 0 auto 34px;
-          padding: 0 20px;
-        }
-        .tasks__title {
-          font-size: 28px;
-          line-height: 1.4;
-        }
-        .tasks__lead {
-          margin-top: 14px;
-          font-size: 14px;
-        }
-        .tasks__tabs {
-          display: flex;
-          gap: 4px;
-          margin: 0 0 26px;
-          padding: 6px 16px 12px;
-          overflow-x: auto;
-          overscroll-behavior-x: contain;
-          scrollbar-width: thin;
-          scrollbar-color: #ffb39e #f5f5f5;
-        }
-        .tasks__tab {
-          flex: 0 0 auto;
-          min-width: 112px;
-          min-height: 48px;
-          border-radius: 13px;
-          font-size: 14px;
-        }
-        .tasks__locations {
-          margin: 0 16px;
-        }
-        .tasks__location-toggle {
-          min-height: 68px;
-          gap: 10px;
-          padding: 14px 10px;
-          font-size: 16px;
-        }
-        .tasks__count {
-          min-width: 34px;
-          height: 22px;
-          padding: 0 9px;
-          font-size: 14px;
-        }
-        .tasks__chevron {
-          width: 9px;
-          height: 9px;
-        }
-        .tasks__panel {
-          padding: 0 2px 18px;
-        }
-        .tasks__jobs {
-          grid-template-columns: minmax(0, 1fr);
-          gap: 10px;
-        }
-        .tasks__job {
-          min-height: 60px;
-          padding: 16px 18px;
-          border-radius: 16px;
-          font-size: 15px;
-        }
-        .tasks__modal {
-          width: calc(100vw - 28px);
-          max-height: 86svh;
-          border-radius: 16px;
-        }
-        .tasks__modal-banner {
-          height: 112px;
-        }
-        .tasks__modal-close {
-          top: 10px;
-          right: 10px;
-          width: 36px;
-          height: 36px;
-          font-size: 24px;
-        }
-        .tasks__modal-body {
-          max-height: calc(86svh - 112px);
-          padding: 28px 24px 34px;
-        }
-        .tasks__modal-title {
-          font-size: 20px;
-        }
-        .tasks__modal-meta {
-          font-size: 14px;
-        }
-        .tasks__modal-block {
-          margin-top: 34px;
-        }
-        .tasks__modal-block + .tasks__modal-block {
-          margin-top: 26px;
-          padding-top: 26px;
-        }
-      }
-      @media (max-width: 700px) {
-        .requirement__inner {
-          padding: 64px 16px 76px;
-        }
-        .requirement__head {
-          margin-bottom: 34px;
-        }
-        .requirement__title {
-          font-size: clamp(24px, 6.2vw, 30px);
-        }
-        .requirement__bulb {
-          top: 54px;
-          right: 2%;
-          width: clamp(44px, 14vw, 68px);
-        }
-        .requirement__tabs {
-          gap: 8px;
-          padding-bottom: 14px;
-        }
-        .requirement__tab {
-          min-height: 52px;
-          gap: 6px;
-          padding: 8px 4px;
-          border-radius: 12px;
-          font-size: 13px;
-          white-space: nowrap;
-        }
-        .requirement__tab-icon {
-          width: 22px;
-          height: 22px;
-        }
-        .requirement__tab-symbol {
-          font-size: 20px;
-        }
-        .requirement__criterion {
-          min-height: 150px;
-          gap: 10px;
-          padding: 22px 10px;
-        }
-        .requirement__criterion-icon {
-          width: 54px;
-          height: 54px;
-        }
-        .requirement__criterion-title {
-          font-size: 15px;
-        }
-        .requirement__notes {
-          gap: 10px;
-          justify-content: start;
-          padding: 24px 12px;
-        }
-        .requirement__notes li {
-          font-size: 12px;
-        }
-        .requirement__notice {
-          padding: 24px 12px;
-          font-size: 14px;
-        }
-        .requirement__process-group {
-          padding: 20px 8px;
-        }
-        .requirement__process-title {
-          margin-bottom: 16px;
-          font-size: 16px;
-        }
-        .requirement__steps {
-          grid-template-columns: repeat(6, minmax(0, 1fr) 12px) minmax(0, 1fr);
-          column-gap: 1px;
-        }
-        .requirement__steps--six {
-          grid-template-columns: repeat(5, minmax(0, 1fr) 12px) minmax(0, 1fr);
-        }
-        .requirement__step {
-          gap: 4px;
-        }
-        .requirement__step-icon {
-          width: 36px;
-          height: 36px;
-          font-size: 30px;
-        }
-        .requirement__step-name {
-          margin-top: 4px;
-          font-size: 10px;
-        }
-        .requirement__step-date {
-          font-size: 9px;
-        }
-        .requirement__step-arrow {
-          padding-top: 11px;
-          font-size: 15px;
-        }
-        .requirement__process-notes li {
-          font-size: 12px;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .tasks__tab,
-        .tasks__chevron,
-        .tasks__job {
-          transition: none;
-        }
-        .tasks__job:hover {
-          transform: none;
-        }
-      }
-      @media (max-width: 1024px) {
-        .footer {
-          min-height: 56px;
-        }
-        .footer__inner {
-          padding: 12px;
-        }
-        .con8 {
-          padding: 20px 12px 88px;
-        }
-        .con8__links {
-          gap: 12px;
-        }
-        .con8__item:nth-child(1) {
-          margin-top: 42px;
-        }
-        .con8__item:nth-child(3) {
-          margin-top: 72px;
-        }
-        .con8__caption {
-          font-size: 12px;
-        }
-        .con8__prompt {
-          font-size: 12px;
-        }
-        .con8__name {
-          font-size: 15px;
-        }
-        .con9 {
-          min-height: 440px;
-        }
-        .con9__title {
-          font-size: 32px;
-        }
-        .con9__number {
-          font-size: 48px;
-        }
-        .con9__label,
-        .con9__remaining {
-          font-size: 24px;
-        }
-        .con9__visual {
-          width: 220px;
-        }
-      }
-      @media (max-width: 900px) {
-        .con8__character {
-          display: none;
-        }
-      }
-      @media (max-width: 700px) {
-        .con9 {
-          min-height: 440px;
-        }
-        .con9__title {
-          font-size: 24px;
-        }
-        .con9__number {
-          font-size: 34px;
-        }
-        .con9__label,
-        .con9__remaining {
-          font-size: 18px;
-        }
-        .con9__visual {
-          width: 160px;
-        }
-      }
-      @media (max-width: 600px) {
-        .con8__caption {
-          font-size: 8px;
-          white-space: nowrap;
-        }
-      }
-      @media (max-width: 480px) {
-        .con8 {
-          padding: 32px 12px 40px;
-        }
-        .con8__links {
-          grid-template-columns: minmax(0, 1fr);
-          gap: 12px;
-        }
-        .con8__item:nth-child(1),
-        .con8__item:nth-child(3) {
-          margin-top: 0;
-        }
-        .con8__image {
-          aspect-ratio: 1.55;
-          border-radius: 8px;
-        }
-        .con8__overlay {
-          gap: 4px;
-          padding: 10px;
-          opacity: 1;
-          background: linear-gradient(
-            180deg,
-            rgba(8, 14, 24, 0.1) 15%,
-            rgba(8, 14, 24, 0.72) 100%
-          );
-        }
-        .con8__prompt {
-          font-size: 11px;
-        }
-        .con8__name {
-          font-size: 13px;
-        }
-        .con8__arrow {
-          width: 20px;
-          height: 20px;
-          font-size: 16px;
-        }
-        .con8__caption,
-        .con8__character {
-          display: none;
-        }
-        .con9 {
-          min-height: 360px;
-          padding: 42px 12px;
-        }
-        .con9__cloud--left {
-          width: min(74vw, 300px);
-        }
-        .con9__cloud--right {
-          right: -25px;
-          width: min(68vw, 270px);
-        }
-        .con9__title {
-          font-size: 16px;
-        }
-        .con9__countdown {
-          flex-wrap: nowrap;
-          gap: 4px;
-          margin-top: 8px;
-        }
-        .con9__unit {
-          gap: 2px;
-        }
-        .con9__number {
-          font-size: 18px;
-        }
-        .con9__label,
-        .con9__remaining {
-          font-size: 12px;
-        }
-        .con9__remaining {
-          margin-left: 0;
-        }
-        .con9__status {
-          font-size: 11px;
-        }
-        .con9__visual {
-          width: 120px;
-          margin-top: 20px;
-        }
-        .con9__apply {
-          min-width: 112px;
-          gap: 8px;
-          padding: 8px 12px;
-          font-size: 14px;
-        }
-        .con9__apply-arrow {
-          width: 20px;
-          height: 20px;
-          font-size: 15px;
-        }
-        .con9__guide {
-          margin-top: 4px;
-          font-size: 11px;
-        }
-        .footer {
-          min-height: 42px;
-        }
-        .footer__inner {
-          padding: 10px;
-        }
-        .footer__logo,
-        .footer__logo img {
-          width: 100px;
-        }
-      }
-
-    </style>
-    <script>
-      if (
-        "IntersectionObserver" in window &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        document.documentElement.classList.add("has-scroll-reveal");
-      }
-    </script>
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/scroll.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <script
+      src="./hanmi-eye-tracking/hanmi-eye-tracking/metadata.js"
+      defer
+    ></script>
+    <script
+      src="./hanmi-eye-tracking/hanmi-eye-tracking/player.js"
+      defer
+    ></script>
+    <!-- defer는 스크립트를 지연 로딩하기 위해 사용됩니다. 스크립트를 비동기적으로 
+ 로드하기 위해 사용됩니다 html태그 로딩을 기다림! 기다려! 설정이 돼 브라우저로딩-->
   </head>
   <body>
+    <label class="scroll-motion-toggle" for="disable-smooth-scroll">
+      <input id="disable-smooth-scroll" type="checkbox" />
+      <span>부드러운 스크롤 끄기</span>
+    </label>
     <header class="header">
       <div class="header__inner">
         <a class="logo" href="/" aria-label="한미그룹 홈"
@@ -3747,6 +66,7 @@
               viewBox="0 0 7 12"
               fill="none"
               stroke="currentColor"
+              defer
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -4420,182 +740,408 @@
             <ul class="welfare__list">
               <li class="welfare__section-intro">
                 <div class="welfare__intro">
-                  <h3 class="welfare__intro-title"><span aria-hidden="true">💗</span> 오늘의 나도, 내일의 나도 든든하게!</h3>
-                  <p class="welfare__intro-copy">건강, 성장, 문화생활까지 알차게 챙겨드려요.</p>
+                  <h3 class="welfare__intro-title">
+                    <span aria-hidden="true">💗</span> 오늘의 나도, 내일의 나도
+                    든든하게!
+                  </h3>
+                  <p class="welfare__intro-copy">
+                    건강, 성장, 문화생활까지 알차게 챙겨드려요.
+                  </p>
                 </div>
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">건강 검진</h4>
-                  <p class="welfare__description">건강한 하루가 오래 이어지도록, 정기적인 건강관리를 지원해요.</p>
+                  <p class="welfare__description">
+                    건강한 하루가 오래 이어지도록, 정기적인 건강관리를 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico1.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico1.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">기념일 축하 지원</h4>
-                  <p class="welfare__description">소중한 기념일이 더 특별해지도록 한미가 함께 축하해요.</p>
+                  <p class="welfare__description">
+                    소중한 기념일이 더 특별해지도록 한미가 함께 축하해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico2.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico2.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">본인주도 선택복지</h4>
-                  <p class="welfare__description">나에게 필요한 복지를 내 취향과 생활에 맞게 선택할 수 있어요.</p>
+                  <p class="welfare__description">
+                    나에게 필요한 복지를 내 취향과 생활에 맞게 선택할 수 있어요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico3.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico3.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">장기 근속 포상</h4>
-                  <p class="welfare__description">한미와 함께 걸어온 소중한 시간에 감사의 마음을 전해요.</p>
+                  <p class="welfare__description">
+                    한미와 함께 걸어온 소중한 시간에 감사의 마음을 전해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico4.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico4.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">유연근무제</h4>
-                  <p class="welfare__description">업무와 일상의 균형을 찾을 수 있도록 유연한 근무를 지원해요.</p>
+                  <p class="welfare__description">
+                    업무와 일상의 균형을 찾을 수 있도록 유연한 근무를 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico5.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico5.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">단체 상해 보험</h4>
-                  <p class="welfare__description">예상하지 못한 순간에도 든든할 수 있도록 임직원을 보호해요.</p>
+                  <p class="welfare__description">
+                    예상하지 못한 순간에도 든든할 수 있도록 임직원을 보호해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico6.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico6.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">직무 교육 지원</h4>
-                  <p class="welfare__description">배우고 성장하는 즐거움이 계속되도록 역량 개발을 지원해요.</p>
+                  <p class="welfare__description">
+                    배우고 성장하는 즐거움이 계속되도록 역량 개발을 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico7.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico7.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">임직원 제휴 할인</h4>
-                  <p class="welfare__description">다양한 제휴 혜택으로 일상 속 즐거움과 실속을 더해드려요.</p>
+                  <p class="welfare__description">
+                    다양한 제휴 혜택으로 일상 속 즐거움과 실속을 더해드려요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico8.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico8.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">문화 생활 지원</h4>
-                  <p class="welfare__description">바쁜 일상에 기분 좋은 쉼표를 더할 수 있도록 문화생활을 응원해요.</p>
+                  <p class="welfare__description">
+                    바쁜 일상에 기분 좋은 쉼표를 더할 수 있도록 문화생활을
+                    응원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico9.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico9.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">구내식당</h4>
-                  <p class="welfare__description">든든하고 맛있는 한 끼로 활기찬 하루를 채워드려요.</p>
+                  <p class="welfare__description">
+                    든든하고 맛있는 한 끼로 활기찬 하루를 채워드려요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./images/복지이미지/wf_ico10.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./images/복지이미지/wf_ico10.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">임직원 스트레스 관리</h4>
-                  <p class="welfare__description">몸과 마음이 지치지 않도록 건강한 마음 관리를 함께해요.</p>
+                  <p class="welfare__description">
+                    몸과 마음이 지치지 않도록 건강한 마음 관리를 함께해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico11.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico11.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">제휴 약국</h4>
-                  <p class="welfare__description">필요한 건강관리를 더욱 편리하게 이용할 수 있도록 지원해요.</p>
+                  <p class="welfare__description">
+                    필요한 건강관리를 더욱 편리하게 이용할 수 있도록 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico12.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico12.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__section-intro">
                 <div class="welfare__intro">
-                  <h3 class="welfare__intro-title">가족의 행복도 빼놓을 수 없죠!</h3>
-                  <p class="welfare__intro-copy">축하할 때도, 도움이 필요할 때도 한미가 함께해요.</p>
+                  <h3 class="welfare__intro-title">
+                    가족의 행복도 빼놓을 수 없죠!
+                  </h3>
+                  <p class="welfare__intro-copy">
+                    축하할 때도, 도움이 필요할 때도 한미가 함께해요.
+                  </p>
                 </div>
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">경조사 지원</h4>
-                  <p class="welfare__description">가족의 기쁜 순간과 힘든 순간에 한미가 함께 마음을 나눠요.</p>
+                  <p class="welfare__description">
+                    가족의 기쁜 순간과 힘든 순간에 한미가 함께 마음을 나눠요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico13.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico13.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">출산 축하 지원</h4>
-                  <p class="welfare__description">소중한 새 가족의 탄생을 진심으로 축하하고 응원해요.</p>
+                  <p class="welfare__description">
+                    소중한 새 가족의 탄생을 진심으로 축하하고 응원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico14.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico14.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">다자녀 지원</h4>
-                  <p class="welfare__description">아이들과 함께하는 행복한 일상이 더욱 든든하도록 지원해요.</p>
+                  <p class="welfare__description">
+                    아이들과 함께하는 행복한 일상이 더욱 든든하도록 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico15.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico15.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">사내 대출</h4>
-                  <p class="welfare__description">생활에 필요한 자금 부담을 덜 수 있도록 든든한 금융 지원을 제공해요.</p>
+                  <p class="welfare__description">
+                    생활에 필요한 자금 부담을 덜 수 있도록 든든한 금융 지원을
+                    제공해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico16.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico16.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">호텔/콘도 할인</h4>
-                  <p class="welfare__description">가족과 편안한 휴식을 즐길 수 있도록 여가 혜택을 지원해요.</p>
+                  <p class="welfare__description">
+                    가족과 편안한 휴식을 즐길 수 있도록 여가 혜택을 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico17.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico17.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">고급 중식당 할인</h4>
-                  <p class="welfare__description">가족과의 특별한 식사 시간이 더욱 즐거워지도록 할인 혜택을 드려요.</p>
+                  <p class="welfare__description">
+                    가족과의 특별한 식사 시간이 더욱 즐거워지도록 할인 혜택을
+                    드려요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico18.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico18.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">초등학생 입학 선물</h4>
-                  <p class="welfare__description">설레는 첫 학교생활을 한미가 특별한 선물과 함께 응원해요.</p>
+                  <p class="welfare__description">
+                    설레는 첫 학교생활을 한미가 특별한 선물과 함께 응원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico19.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico19.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">학자금 지원</h4>
-                  <p class="welfare__description">자녀의 배움과 성장을 든든하게 이어갈 수 있도록 함께해요.</p>
+                  <p class="welfare__description">
+                    자녀의 배움과 성장을 든든하게 이어갈 수 있도록 함께해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico20.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico20.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__section-intro">
                 <div class="welfare__intro">
-                  <h3 class="welfare__intro-title">회사생활이 조금 더 편해지는 방법!</h3>
-                  <p class="welfare__intro-copy">출퇴근과 사내생활을 위한 다양한 지원을 만나보세요.</p>
+                  <h3 class="welfare__intro-title">
+                    회사생활이 조금 더 편해지는 방법!
+                  </h3>
+                  <p class="welfare__intro-copy">
+                    출퇴근과 사내생활을 위한 다양한 지원을 만나보세요.
+                  </p>
                 </div>
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">여성복지 운영</h4>
-                  <p class="welfare__description">여성 구성원이 더욱 건강하고 편안하게 일할 수 있도록 세심한 복지 제도를 운영해요.</p>
+                  <p class="welfare__description">
+                    여성 구성원이 더욱 건강하고 편안하게 일할 수 있도록 세심한
+                    복지 제도를 운영해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico21.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico21.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">사우회 운영</h4>
-                  <p class="welfare__description">임직원이 서로 마음을 나누고 즐겁게 교류할 수 있도록 다양한 활동을 지원해요.</p>
+                  <p class="welfare__description">
+                    임직원이 서로 마음을 나누고 즐겁게 교류할 수 있도록 다양한
+                    활동을 지원해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico22.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico22.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
               <li class="welfare__card">
                 <div class="welfare__text">
                   <h4 class="welfare__name">사업장 통근 버스 운영</h4>
-                  <p class="welfare__description">출퇴근길의 부담을 덜고 편안하게 이동할 수 있도록 통근버스를 운영해요.</p>
+                  <p class="welfare__description">
+                    출퇴근길의 부담을 덜고 편안하게 이동할 수 있도록 통근버스를
+                    운영해요.
+                  </p>
                 </div>
-                <img class="welfare__icon" src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico23.png" alt="" width="70" height="70" loading="lazy" />
+                <img
+                  class="welfare__icon"
+                  src="./css/2026년 한미그룹 하반기 공개채용_files/wf_ico23.png"
+                  alt=""
+                  width="70"
+                  height="70"
+                  loading="lazy"
+                />
               </li>
             </ul>
           </div>
@@ -4611,7 +1157,7 @@
         </div>
       </section>
       <section class="tasks" id="tasks" aria-labelledby="tasks-title">
-        <div class="tasks__hero" aria-hidden="true">
+        <div class="tasks__hero">
           <img
             class="tasks__title-art"
             src="./images/tasks_bg_title.png"
@@ -4620,14 +1166,14 @@
             height="474"
             loading="lazy"
           />
-          <img
+          <iframe
             class="tasks__character"
-            src="./images/tasks_character.png"
-            alt=""
-            width="2000"
-            height="1580"
+            src="./hanmi-reading-eye-tracking/embed.html"
+            title="돋보기 캐릭터 애니메이션"
+            width="1920"
+            height="1080"
             loading="lazy"
-          />
+          ></iframe>
         </div>
 
         <div class="tasks__content">
@@ -4637,18 +1183,96 @@
               나에게 맞는 직무를 찾아봐요!
             </h2>
             <p class="tasks__lead">
-              연구부터 생산, 영업, 경영지원까지 당신의 가능성이 빛날 자리를 안내해 드릴게요.
+              연구부터 생산, 영업, 경영지원까지 당신의 가능성이 빛날 자리를
+              안내해 드릴게요.
             </p>
           </header>
 
           <div class="tasks__tabs" role="tablist" aria-label="직무 분야">
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-rnd" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="rnd">R&amp;D</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-production" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="production">생산/품질</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-sales" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="sales">영업</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-management" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="management">경영관리</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-clinical" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="clinical">임상</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-global" aria-controls="tasks-locations" aria-selected="false" tabindex="-1" data-category="global">글로벌</button>
-            <button class="tasks__tab" type="button" role="tab" id="tasks-tab-healthcare" aria-controls="tasks-locations" aria-selected="true" tabindex="0" data-category="healthcare">헬스케어</button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-rnd"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="rnd"
+            >
+              R&amp;D
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-production"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="production"
+            >
+              생산/품질
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-sales"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="sales"
+            >
+              영업
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-management"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="management"
+            >
+              경영관리
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-clinical"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="clinical"
+            >
+              임상
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-global"
+              aria-controls="tasks-locations"
+              aria-selected="false"
+              tabindex="-1"
+              data-category="global"
+            >
+              글로벌
+            </button>
+            <button
+              class="tasks__tab"
+              type="button"
+              role="tab"
+              id="tasks-tab-healthcare"
+              aria-controls="tasks-locations"
+              aria-selected="true"
+              tabindex="0"
+              data-category="healthcare"
+            >
+              헬스케어
+            </button>
           </div>
 
           <div
@@ -4680,45 +1304,100 @@
             <h3 class="tasks__modal-title" id="tasks-modal-title"></h3>
             <p class="tasks__modal-meta"></p>
             <p class="tasks__modal-career"></p>
-            <section class="tasks__modal-block" aria-labelledby="tasks-modal-duties-title">
+            <section
+              class="tasks__modal-block"
+              aria-labelledby="tasks-modal-duties-title"
+            >
               <h4 id="tasks-modal-duties-title">직무 내용</h4>
               <ul class="tasks__modal-duties"></ul>
             </section>
-            <section class="tasks__modal-block" aria-labelledby="tasks-modal-qualifications-title">
+            <section
+              class="tasks__modal-block"
+              aria-labelledby="tasks-modal-qualifications-title"
+            >
               <h4 id="tasks-modal-qualifications-title">자격요건</h4>
               <ul class="tasks__modal-qualifications"></ul>
             </section>
           </div>
         </dialog>
       </section>
-      <section class="requirement" id="requirement" aria-labelledby="requirement-title">
+      <section
+        class="requirement"
+        id="requirement"
+        aria-labelledby="requirement-title"
+      >
         <div class="requirement__inner">
           <header class="requirement__head">
             <h2 class="requirement__title" id="requirement-title">
               한미그룹과 함께하는 문은<br />활짝 열려 있습니다
             </h2>
-            <img class="requirement__bulb" src="./images/require_bulb.png" alt="" width="104" height="104" loading="lazy" />
+            <img
+              class="requirement__bulb"
+              src="./images/require_bulb.png"
+              alt=""
+              width="104"
+              height="104"
+              loading="lazy"
+            />
           </header>
 
           <div class="requirement__tabs" role="tablist" aria-label="지원 안내">
-            <button class="requirement__tab" type="button" role="tab" id="requirement-tab-eligibility" aria-controls="requirement-panel-eligibility" aria-selected="true">
+            <button
+              class="requirement__tab"
+              type="button"
+              role="tab"
+              id="requirement-tab-eligibility"
+              aria-controls="requirement-panel-eligibility"
+              aria-selected="true"
+            >
               지원자격
             </button>
-            <button class="requirement__tab" type="button" role="tab" id="requirement-tab-process" aria-controls="requirement-panel-process" aria-selected="false" tabindex="-1">
+            <button
+              class="requirement__tab"
+              type="button"
+              role="tab"
+              id="requirement-tab-process"
+              aria-controls="requirement-panel-process"
+              aria-selected="false"
+              tabindex="-1"
+            >
               <span class="requirement__tab-symbol" aria-hidden="true">👆</span>
               전형절차 및 접수방법
             </button>
           </div>
 
-          <div class="requirement__eligibility" id="requirement-panel-eligibility" role="tabpanel" aria-labelledby="requirement-tab-eligibility">
+          <div
+            class="requirement__eligibility"
+            id="requirement-panel-eligibility"
+            role="tabpanel"
+            aria-labelledby="requirement-tab-eligibility"
+          >
             <div class="requirement__criteria">
               <article class="requirement__criterion">
-                <img class="requirement__criterion-icon" src="./images/require_ico_calendar_3d.png" alt="" width="64" height="64" loading="lazy" />
-                <h3 class="requirement__criterion-title">27년 1월 입사가 가능한 자</h3>
+                <img
+                  class="requirement__criterion-icon"
+                  src="./images/require_ico_calendar_3d.png"
+                  alt=""
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+                <h3 class="requirement__criterion-title">
+                  27년 1월 입사가 가능한 자
+                </h3>
               </article>
               <article class="requirement__criterion">
-                <img class="requirement__criterion-icon" src="./images/require_ico_gradcap_3d.png" alt="" width="64" height="64" loading="lazy" />
-                <h3 class="requirement__criterion-title">기졸업자 또는 27년 2월 졸업 예정자</h3>
+                <img
+                  class="requirement__criterion-icon"
+                  src="./images/require_ico_gradcap_3d.png"
+                  alt=""
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+                <h3 class="requirement__criterion-title">
+                  기졸업자 또는 27년 2월 졸업 예정자
+                </h3>
               </article>
             </div>
             <ul class="requirement__notes">
@@ -4727,79 +1406,298 @@
               <li>취업보호대상자는 관련 법령에 의거하여 우대</li>
             </ul>
             <p class="requirement__notice">
-              모집 직무별로 지원자격이 상이하오니 반드시 <strong>채용 공고</strong>를 확인해 주시기 바랍니다.
+              모집 직무별로 지원자격이 상이하오니 반드시
+              <strong>채용 공고</strong>를 확인해 주시기 바랍니다.
             </p>
           </div>
 
-          <div class="requirement__process" id="requirement-panel-process" role="tabpanel" aria-labelledby="requirement-tab-process" hidden>
-            <section class="requirement__process-group" aria-labelledby="requirement-sales-title">
-              <h3 class="requirement__process-title" id="requirement-sales-title">영업직군</h3>
+          <div
+            class="requirement__process"
+            id="requirement-panel-process"
+            role="tabpanel"
+            aria-labelledby="requirement-tab-process"
+            hidden
+          >
+            <section
+              class="requirement__process-group"
+              aria-labelledby="requirement-sales-title"
+            >
+              <h3
+                class="requirement__process-title"
+                id="requirement-sales-title"
+              >
+                영업직군
+              </h3>
               <div class="requirement__steps">
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🗓️</span><span class="requirement__step-name">지원접수</span><span class="requirement__step-date">9.28~10.18</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">📄</span><span class="requirement__step-name">서류전형</span><span class="requirement__step-date">10.19~10.20</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🔍</span><span class="requirement__step-name">AI역량검사</span><span class="requirement__step-date">10.21~10.25</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🪪</span><span class="requirement__step-name">1차면접</span><span class="requirement__step-date">11월 중</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">📍</span><span class="requirement__step-name">현장체험</span><span class="requirement__step-date">12월 초</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">💬</span><span class="requirement__step-name">2차면접</span><span class="requirement__step-date">12월 중</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">📚</span><span class="requirement__step-name">교육전형</span><span class="requirement__step-date">27.1.4~</span></div>
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🗓️</span
+                  ><span class="requirement__step-name">지원접수</span
+                  ><span class="requirement__step-date">9.28~10.18</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >📄</span
+                  ><span class="requirement__step-name">서류전형</span
+                  ><span class="requirement__step-date">10.19~10.20</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🔍</span
+                  ><span class="requirement__step-name">AI역량검사</span
+                  ><span class="requirement__step-date">10.21~10.25</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🪪</span
+                  ><span class="requirement__step-name">1차면접</span
+                  ><span class="requirement__step-date">11월 중</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >📍</span
+                  ><span class="requirement__step-name">현장체험</span
+                  ><span class="requirement__step-date">12월 초</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >💬</span
+                  ><span class="requirement__step-name">2차면접</span
+                  ><span class="requirement__step-date">12월 중</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >📚</span
+                  ><span class="requirement__step-name">교육전형</span
+                  ><span class="requirement__step-date">27.1.4~</span>
+                </div>
               </div>
             </section>
-            <section class="requirement__process-group" aria-labelledby="requirement-other-title">
-              <h3 class="requirement__process-title" id="requirement-other-title">영업 외 전직군</h3>
+            <section
+              class="requirement__process-group"
+              aria-labelledby="requirement-other-title"
+            >
+              <h3
+                class="requirement__process-title"
+                id="requirement-other-title"
+              >
+                영업 외 전직군
+              </h3>
               <div class="requirement__steps requirement__steps--six">
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🗓️</span><span class="requirement__step-name">지원접수</span><span class="requirement__step-date">9.28~10.18</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">📄</span><span class="requirement__step-name">서류전형</span><span class="requirement__step-date">10.19~10.20</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🔍</span><span class="requirement__step-name">AI역량검사</span><span class="requirement__step-date">10.21~10.25</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🪪</span><span class="requirement__step-name">1차면접</span><span class="requirement__step-date">11월 중</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">💬</span><span class="requirement__step-name">2차면접</span><span class="requirement__step-date">12월 중</span></div>
-                <span class="requirement__step-arrow" aria-hidden="true">›</span>
-                <div class="requirement__step"><span class="requirement__step-icon" aria-hidden="true">🏢</span><span class="requirement__step-name">입사</span><span class="requirement__step-date">27.1.4<br />(경력직 협의 가능)</span></div>
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🗓️</span
+                  ><span class="requirement__step-name">지원접수</span
+                  ><span class="requirement__step-date">9.28~10.18</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >📄</span
+                  ><span class="requirement__step-name">서류전형</span
+                  ><span class="requirement__step-date">10.19~10.20</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🔍</span
+                  ><span class="requirement__step-name">AI역량검사</span
+                  ><span class="requirement__step-date">10.21~10.25</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🪪</span
+                  ><span class="requirement__step-name">1차면접</span
+                  ><span class="requirement__step-date">11월 중</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >💬</span
+                  ><span class="requirement__step-name">2차면접</span
+                  ><span class="requirement__step-date">12월 중</span>
+                </div>
+                <span class="requirement__step-arrow" aria-hidden="true"
+                  >›</span
+                >
+                <div class="requirement__step">
+                  <span class="requirement__step-icon" aria-hidden="true"
+                    >🏢</span
+                  ><span class="requirement__step-name">입사</span
+                  ><span class="requirement__step-date"
+                    >27.1.4<br />(경력직 협의 가능)</span
+                  >
+                </div>
               </div>
             </section>
             <ul class="requirement__process-notes">
-              <li>상기 일정은 상황에 따라 변경될 수 있으며 각 전형별 상세 일정은 대상자에 한해 개별 안내 예정입니다</li>
-              <li>입사지원서에 허위 기재가 있거나 제출서류가 허위로 판명되는 경우, 또는 입사 이후 자격 미확보 및 상실하는 경우는 입사가 취소될 수 있습니다.</li>
-              <li>지원서 제출 후에는 수정이 절대 불가하오니, 주의하시기 바랍니다.</li>
-              <li>전형단계별 결과는 E-Mail 및 SMS를 통하여 안내하오니 E-Mail 주소 및 휴대전화 번호를 정확히 기재해주시기 바랍니다.</li>
-              <li>입사 후 3개월간 수습기간이 적용되며, 수습 기간 중 성적이 불량하거나 직무 수행 능력이 부족하다고 판단되는 경우 입사가 취소될 수 있습니다.</li>
+              <li>
+                상기 일정은 상황에 따라 변경될 수 있으며 각 전형별 상세 일정은
+                대상자에 한해 개별 안내 예정입니다
+              </li>
+              <li>
+                입사지원서에 허위 기재가 있거나 제출서류가 허위로 판명되는 경우,
+                또는 입사 이후 자격 미확보 및 상실하는 경우는 입사가 취소될 수
+                있습니다.
+              </li>
+              <li>
+                지원서 제출 후에는 수정이 절대 불가하오니, 주의하시기 바랍니다.
+              </li>
+              <li>
+                전형단계별 결과는 E-Mail 및 SMS를 통하여 안내하오니 E-Mail 주소
+                및 휴대전화 번호를 정확히 기재해주시기 바랍니다.
+              </li>
+              <li>
+                입사 후 3개월간 수습기간이 적용되며, 수습 기간 중 성적이
+                불량하거나 직무 수행 능력이 부족하다고 판단되는 경우 입사가
+                취소될 수 있습니다.
+              </li>
             </ul>
           </div>
         </div>
       </section>
-      <section class="exposition" id="exposition" aria-labelledby="exposition-title">
+      <section
+        class="exposition"
+        id="exposition"
+        aria-labelledby="exposition-title"
+      >
         <div class="exposition__inner">
           <header class="exposition__head">
-            <img class="exposition__character" src="./images/expo_con7_char.png" alt="" width="700" height="700" loading="lazy" />
-            <h2 class="exposition__title" id="exposition-title">Hanmi 박람회/캠퍼스로 출발!</h2>
+            <img
+              class="exposition__character"
+              src="./images/expo_con7_char.png"
+              alt=""
+              width="700"
+              height="700"
+              loading="lazy"
+            />
+            <h2 class="exposition__title" id="exposition-title">
+              Hanmi 박람회/캠퍼스로 출발!
+            </h2>
             <p class="exposition__lead">
               한미그룹이 여러분을 만나러 박람회와 캠퍼스로 찾아갑니다.<br />
               우리가 어디서 만날지 궁금하다면 아래 지역에서 찾아보세요!
             </p>
           </header>
-          <p class="exposition__hint">학교명/장소를 클릭하거나 터치하면 세부장소를 확인하실 수 있습니다.</p>
-          <div class="exposition__tabs" role="tablist" aria-label="방문 일정 종류">
-            <button class="exposition__tab" type="button" role="tab" id="exposition-tab-fair" aria-controls="exposition-calendar" aria-selected="true">박람회</button>
-            <button class="exposition__tab" type="button" role="tab" id="exposition-tab-campus" aria-controls="exposition-calendar" aria-selected="false" tabindex="-1">캠퍼스</button>
+          <p class="exposition__hint">
+            학교명/장소를 클릭하거나 터치하면 세부장소를 확인하실 수 있습니다.
+          </p>
+          <div
+            class="exposition__tabs"
+            role="tablist"
+            aria-label="방문 일정 종류"
+          >
+            <button
+              class="exposition__tab"
+              type="button"
+              role="tab"
+              id="exposition-tab-fair"
+              aria-controls="exposition-calendar"
+              aria-selected="true"
+            >
+              박람회
+            </button>
+            <button
+              class="exposition__tab"
+              type="button"
+              role="tab"
+              id="exposition-tab-campus"
+              aria-controls="exposition-calendar"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              캠퍼스
+            </button>
           </div>
-          <div class="exposition__regions" role="group" aria-label="캠퍼스 방문 지역" hidden>
-            <button class="exposition__region" type="button" aria-pressed="true" data-region="seoul">서울</button>
-            <button class="exposition__region" type="button" aria-pressed="false" data-region="gyeonggi">경기</button>
-            <button class="exposition__region" type="button" aria-pressed="false" data-region="gangwon">강원</button>
-            <button class="exposition__region" type="button" aria-pressed="false" data-region="gyeongsang">경상</button>
-            <button class="exposition__region" type="button" aria-pressed="false" data-region="chungcheong">충청</button>
-            <button class="exposition__region" type="button" aria-pressed="false" data-region="jeolla">전라</button>
+          <div
+            class="exposition__regions"
+            role="group"
+            aria-label="캠퍼스 방문 지역"
+            hidden
+          >
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="true"
+              data-region="seoul"
+            >
+              서울
+            </button>
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="false"
+              data-region="gyeonggi"
+            >
+              경기
+            </button>
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="false"
+              data-region="gangwon"
+            >
+              강원
+            </button>
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="false"
+              data-region="gyeongsang"
+            >
+              경상
+            </button>
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="false"
+              data-region="chungcheong"
+            >
+              충청
+            </button>
+            <button
+              class="exposition__region"
+              type="button"
+              aria-pressed="false"
+              data-region="jeolla"
+            >
+              전라
+            </button>
           </div>
-          <div class="exposition__calendar" id="exposition-calendar" role="tabpanel" aria-labelledby="exposition-tab-fair" aria-live="polite"></div>
+          <div
+            class="exposition__calendar"
+            id="exposition-calendar"
+            role="tabpanel"
+            aria-labelledby="exposition-tab-fair"
+            aria-live="polite"
+          ></div>
         </div>
       </section>
       <section class="con8" id="con8" aria-label="한미그룹 지원 링크">
@@ -4830,16 +1728,27 @@
                     loading="lazy"
                   />
                   <div class="con8__overlay">
-                    <span class="con8__prompt">한미그룹의 문화와 복지가 궁금하다면?</span>
+                    <span class="con8__prompt"
+                      >한미그룹의 문화와 복지가 궁금하다면?</span
+                    >
                     <span class="con8__name">한미그룹 YouTube</span>
                     <span class="con8__arrow" aria-hidden="true">›</span>
                   </div>
                 </div>
                 <p class="con8__caption">
                   한미그룹의 문화와 복지가 궁금하다면?
-                  <span class="con8__sign con8__sign--arrow" aria-hidden="true"></span>
-                  <span class="con8__sign con8__sign--underline" aria-hidden="true"></span>
-                  <span class="con8__sign con8__sign--star" aria-hidden="true"></span>
+                  <span
+                    class="con8__sign con8__sign--arrow"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="con8__sign con8__sign--underline"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="con8__sign con8__sign--star"
+                    aria-hidden="true"
+                  ></span>
                 </p>
               </a>
             </li>
@@ -4860,15 +1769,23 @@
                     loading="lazy"
                   />
                   <div class="con8__overlay">
-                    <span class="con8__prompt">한미그룹의 직무가 궁금하다면?</span>
+                    <span class="con8__prompt"
+                      >한미그룹의 직무가 궁금하다면?</span
+                    >
                     <span class="con8__name">한미그룹 직무 소개 페이지</span>
                     <span class="con8__arrow" aria-hidden="true">›</span>
                   </div>
                 </div>
                 <p class="con8__caption">
                   한미그룹의 직무가 궁금하다면?
-                  <span class="con8__sign con8__sign--circle" aria-hidden="true"></span>
-                  <span class="con8__sign con8__sign--arrow-up" aria-hidden="true"></span>
+                  <span
+                    class="con8__sign con8__sign--circle"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="con8__sign con8__sign--arrow-up"
+                    aria-hidden="true"
+                  ></span>
                 </p>
               </a>
             </li>
@@ -4889,14 +1806,19 @@
                     loading="lazy"
                   />
                   <div class="con8__overlay">
-                    <span class="con8__prompt">한미그룹의 채용소식을 빠르게 받고 싶다면?</span>
+                    <span class="con8__prompt"
+                      >한미그룹의 채용소식을 빠르게 받고 싶다면?</span
+                    >
                     <span class="con8__name">한미그룹 채용 홈페이지</span>
                     <span class="con8__arrow" aria-hidden="true">›</span>
                   </div>
                 </div>
                 <p class="con8__caption">
                   한미그룹의 채용소식을 빠르게 받고 싶다면?
-                  <span class="con8__sign con8__sign--wave" aria-hidden="true"></span>
+                  <span
+                    class="con8__sign con8__sign--wave"
+                    aria-hidden="true"
+                  ></span>
                 </p>
               </a>
             </li>
@@ -4921,27 +1843,35 @@
           loading="lazy"
         />
         <div class="con9__inner">
-          <h2 class="con9__title" id="con9-title">당신에게 딱 맞는 자리를 찾으러 출발!</h2>
+          <h2 class="con9__title" id="con9-title">
+            당신에게 딱 맞는 자리를 찾으러 출발!
+          </h2>
           <div
             class="con9__countdown"
             id="con9-countdown"
             data-deadline="2026-10-18T23:59:59+09:00"
             aria-label="지원 마감까지 남은 시간"
           >
-            <span class="con9__unit"><strong class="con9__number" data-countdown="days">00</strong><span class="con9__label">일</span></span>
-            <span class="con9__unit"><strong class="con9__number" data-countdown="hours">00</strong><span class="con9__label">시간</span></span>
-            <span class="con9__unit"><strong class="con9__number" data-countdown="minutes">00</strong><span class="con9__label">분</span></span>
-            <span class="con9__unit"><strong class="con9__number" data-countdown="seconds">00</strong><span class="con9__label">초</span></span>
+            <span class="con9__unit"
+              ><strong class="con9__number" data-countdown="days">00</strong
+              ><span class="con9__label">일</span></span
+            >
+            <span class="con9__unit"
+              ><strong class="con9__number" data-countdown="hours">00</strong
+              ><span class="con9__label">시간</span></span
+            >
+            <span class="con9__unit"
+              ><strong class="con9__number" data-countdown="minutes">00</strong
+              ><span class="con9__label">분</span></span
+            >
+            <span class="con9__unit"
+              ><strong class="con9__number" data-countdown="seconds">00</strong
+              ><span class="con9__label">초</span></span
+            >
             <span class="con9__remaining">남았어요</span>
           </div>
           <p class="con9__status" id="con9-status" aria-live="polite"></p>
-          <a
-            class="con9__visual"
-            href="https://hanmi.recruiter.co.kr/career/apply"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="한미그룹 채용 지원 페이지 열기"
-          >
+          <div class="con9__visual">
             <img
               class="con9__earth"
               src="./css/2026년 한미그룹 하반기 공개채용_files/con9_earth.png"
@@ -4950,12 +1880,20 @@
               height="444"
               loading="lazy"
             />
-            <span class="con9__apply">
+            <a
+              class="con9__apply"
+              href="https://hanmi.recruiter.co.kr/career/apply"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="한미그룹 채용 지원 페이지 열기"
+            >
               지원하기
               <span class="con9__apply-arrow" aria-hidden="true">›</span>
-            </span>
-          </a>
-          <p class="con9__guide">지구 아이콘을 클릭해 지원 페이지로 이동하세요.</p>
+            </a>
+          </div>
+          <p class="con9__guide">
+            지구 아이콘을 클릭해 지원 페이지로 이동하세요.
+          </p>
         </div>
       </section>
     </main>
@@ -4963,1127 +1901,14 @@
     <footer class="footer">
       <div class="footer__inner">
         <a class="footer__logo" href="/" aria-label="한미그룹 홈">
-          <img src="./images/logo.svg" alt="Hanmi 한미그룹" width="182" height="31" />
+          <img
+            src="./images/logo.svg"
+            alt="Hanmi 한미그룹"
+            width="182"
+            height="31"
+          />
         </a>
       </div>
     </footer>
-
-    <script>
-      (function () {
-        var btn = document.querySelector("[data-scroll]");
-        if (!btn) return;
-        btn.addEventListener("click", function () {
-          var hero = document.getElementById("main-visual");
-          var next = hero.nextElementSibling;
-          var top = next
-            ? next.getBoundingClientRect().top + window.scrollY
-            : hero.offsetHeight;
-          window.scrollTo({ top: top, behavior: "smooth" });
-        });
-      })();
-
-      /* 화면에 진입하는 콘텐츠 단위마다 등장 효과를 반복 적용 */
-      (function () {
-        var root = document.documentElement;
-        if (!root.classList.contains("has-scroll-reveal")) return;
-
-        var targetSelector = [
-          "#mirae > .mirae__title",
-          "#mirae > .mirae__art",
-          "#history .history__inner > .history__title",
-          "#history .history__row",
-          "#jobs .jobs__head",
-          "#jobs .jobs__item",
-          "#jobs .jobs__more",
-          "#welfare .welfare__head",
-          "#welfare .welfare__section-intro",
-          "#welfare .welfare__card",
-          "#tasks .tasks__head",
-          "#tasks .tasks__tabs",
-          "#tasks .tasks__location",
-          "#requirement .requirement__head",
-          "#requirement .requirement__tabs",
-          "#requirement .requirement__criterion",
-          "#requirement .requirement__notes",
-          "#requirement .requirement__notice",
-          "#requirement .requirement__process-group",
-          "#requirement .requirement__process-notes",
-          "#exposition .exposition__head",
-          "#exposition .exposition__hint",
-          "#exposition .exposition__tabs",
-          "#exposition .exposition__regions",
-          "#exposition .exposition__day",
-          "#con8 .con8__item",
-        ].join(", ");
-
-        var observer = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              entry.target.classList.toggle(
-                "scroll-reveal--visible",
-                entry.isIntersecting,
-              );
-            });
-          },
-          {
-            rootMargin: "0px 0px -45% 0px",
-            threshold: 0,
-          },
-        );
-
-        function observeTarget(target) {
-          if (target.classList.contains("scroll-reveal-item")) return;
-          target.classList.add("scroll-reveal-item");
-          observer.observe(target);
-        }
-
-        function observeTargetsWithin(node) {
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-          var element = node;
-          if (element.matches(targetSelector)) observeTarget(element);
-          element.querySelectorAll(targetSelector).forEach(observeTarget);
-        }
-
-        function unobserveTargetsWithin(node) {
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-          var element = node;
-          if (element.matches(targetSelector)) {
-            observer.unobserve(element);
-            element.classList.remove(
-              "scroll-reveal-item",
-              "scroll-reveal--visible",
-            );
-          }
-          element.querySelectorAll(targetSelector).forEach(function (target) {
-            observer.unobserve(target);
-            target.classList.remove(
-              "scroll-reveal-item",
-              "scroll-reveal--visible",
-            );
-          });
-        }
-
-        document.querySelectorAll(targetSelector).forEach(observeTarget);
-
-        ["#tasks-locations", "#exposition-calendar"].forEach(function (id) {
-          var container = document.querySelector(id);
-          if (!container) return;
-
-          new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-              mutation.removedNodes.forEach(unobserveTargetsWithin);
-              mutation.addedNodes.forEach(observeTargetsWithin);
-            });
-          }).observe(container, { childList: true, subtree: true });
-        });
-      })();
-
-      /* 스크롤 방향에 따라 고정 헤더 표시 */
-      (function () {
-        var header = document.querySelector(".header");
-        if (!header) return;
-
-        var previousScrollY = window.scrollY;
-        var ticking = false;
-        var scrollThreshold = 6;
-        var hideAfter = 100;
-
-        function updateHeader() {
-          var currentScrollY = Math.max(0, window.scrollY);
-          var scrollDelta = currentScrollY - previousScrollY;
-
-          if (document.body.classList.contains("is-menu-open")) {
-            header.classList.remove("header--hidden");
-            previousScrollY = currentScrollY;
-            ticking = false;
-            return;
-          }
-
-          if (currentScrollY <= hideAfter || scrollDelta < -scrollThreshold) {
-            header.classList.remove("header--hidden");
-          } else if (scrollDelta > scrollThreshold) {
-            header.classList.add("header--hidden");
-          }
-
-          if (Math.abs(scrollDelta) > scrollThreshold) {
-            previousScrollY = currentScrollY;
-          }
-          ticking = false;
-        }
-
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (ticking) return;
-            ticking = true;
-            window.requestAnimationFrame(updateHeader);
-          },
-          { passive: true },
-        );
-      })();
-
-      /* 모바일 전체 메뉴 */
-      (function () {
-        var body = document.body;
-        var toggle = document.querySelector(".gnb__toggle");
-        var list = document.getElementById("gnb-list");
-        if (!toggle || !list) return;
-
-        function setMenu(open) {
-          body.classList.toggle("is-menu-open", open);
-          if (open) {
-            document.querySelector(".header").classList.remove("header--hidden");
-          }
-          toggle.setAttribute("aria-expanded", String(open));
-          toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
-        }
-
-        toggle.addEventListener("click", function () {
-          setMenu(!body.classList.contains("is-menu-open"));
-        });
-        list.addEventListener("click", function (e) {
-          if (e.target.closest("a")) setMenu(false);
-        });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && body.classList.contains("is-menu-open")) {
-            setMenu(false);
-            toggle.focus();
-          }
-        });
-        /* 모바일 구간을 벗어나면(회전/리사이즈) 열린 메뉴 상태를 초기화 */
-        window
-          .matchMedia("(min-width: 601px)")
-          .addEventListener("change", function (e) {
-            if (e.matches) setMenu(false);
-          });
-      })();
-
-      /* 연혁 섹션: 펼치기 / 접기 */
-      (function () {
-        var section = document.getElementById("history");
-        if (!section) return;
-        var clip = section.querySelector(".history__clip");
-        var content = section.querySelector(".history__content");
-        var toggle = section.querySelector(".history__toggle");
-        var label = section.querySelector(".history__toggle-label");
-        if (!clip || !content || !toggle || !label) return;
-
-        var VISIBLE_RATIO = 2 / 3; /* 접힌 상태에서 보이는 비율 */
-        var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-        /* 콘텐츠 실제 높이를 px 로 계산해 CSS 변수로 전달 (height 트랜지션용) */
-        function measure() {
-          var full = content.offsetHeight;
-          clip.style.setProperty("--history-full", full + "px");
-          clip.style.setProperty(
-            "--history-collapsed",
-            Math.round(full * VISIBLE_RATIO) + "px",
-          );
-        }
-
-        function setExpanded(expanded) {
-          section.classList.toggle("is-expanded", expanded);
-          toggle.setAttribute("aria-expanded", String(expanded));
-          label.textContent = expanded ? "접기" : "펼치기";
-        }
-
-        toggle.addEventListener("click", function () {
-          var willExpand = !section.classList.contains("is-expanded");
-          setExpanded(willExpand);
-          if (willExpand) return;
-          /* 접을 때: 섹션 상단이 화면 위로 지나간 경우에만 상단으로 복귀 */
-          var top = section.getBoundingClientRect().top + window.scrollY;
-          if (window.scrollY > top) {
-            window.scrollTo({
-              top: top,
-              behavior: motion.matches ? "auto" : "smooth",
-            });
-          }
-        });
-
-        measure();
-        section.classList.add("is-collapsible");
-        toggle.hidden = false;
-
-        /* 이미지 로딩·리사이즈로 높이가 바뀌면 재측정 */
-        if ("ResizeObserver" in window) {
-          new ResizeObserver(measure).observe(content);
-        } else {
-          window.addEventListener("resize", measure);
-          window.addEventListener("load", measure);
-        }
-      })();
-
-      /* 지원자격 및 전형절차 탭 */
-      (function () {
-        var tabs = Array.from(document.querySelectorAll(".requirement__tab"));
-        if (!tabs.length) return;
-
-        function selectTab(tab) {
-          tabs.forEach(function (item) {
-            var selected = item === tab;
-            item.setAttribute("aria-selected", String(selected));
-            item.tabIndex = selected ? 0 : -1;
-            document.getElementById(item.getAttribute("aria-controls")).hidden =
-              !selected;
-          });
-        }
-
-        tabs.forEach(function (tab, index) {
-          tab.addEventListener("click", function () {
-            selectTab(tab);
-          });
-          tab.addEventListener("keydown", function (event) {
-            var nextIndex = index;
-            if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-            else if (event.key === "ArrowLeft") {
-              nextIndex = (index - 1 + tabs.length) % tabs.length;
-            } else {
-              return;
-            }
-            event.preventDefault();
-            tabs[nextIndex].focus();
-            selectTab(tabs[nextIndex]);
-          });
-        });
-      })();
-
-      /* 박람회 및 캠퍼스 방문 일정 */
-      (function () {
-        var section = document.getElementById("exposition");
-        if (!section) return;
-        var tabs = Array.from(section.querySelectorAll(".exposition__tab"));
-        var regions = section.querySelector(".exposition__regions");
-        var regionButtons = Array.from(section.querySelectorAll(".exposition__region"));
-        var calendar = section.querySelector(".exposition__calendar");
-        var mode = "fair";
-        var selectedRegion = "seoul";
-
-        var fairWeeks = [
-          [
-            { date: "8월 31일 (월)", events: ["KAIST"] },
-            { date: "9월 1일 (화)", events: ["서울대학교", "서강대학교", "연세대학교"] },
-            { date: "9월 2일 (수)", events: ["UNIST", "한양대학교"] },
-            { date: "9월 3일 (목)", events: ["GIST"] },
-            { date: "9월 4일 (금)", events: ["고려대학교", "성균관대학교(자연)"] },
-          ],
-          [
-            { date: "9월 7일 (월)", events: ["KIST", "동국대학교"] },
-            { date: "9월 8일 (화)", events: ["이화여자대학교", "중견기업박람회(대전)"] },
-            { date: "9월 9일 (수)", events: ["POSTECH"] },
-            { date: "" , events: [] },
-            { date: "10월 7일 (수)", events: ["서울고용센터"] },
-          ],
-        ];
-        var campusSchedule = null;
-        var campusScheduleError = null;
-        var regionNames = {
-          seoul: "서울",
-          gyeonggi: "경기",
-          gangwon: "강원",
-          gyeongsang: "경상",
-          chungcheong: "충청",
-          jeolla: "전라",
-        };
-        fetch("../data/campus_schedule.json")
-          .then(function (response) {
-            if (!response.ok) {
-              throw new Error("캠퍼스 일정 JSON을 불러오지 못했습니다: " + response.status);
-            }
-            return response.json();
-          })
-          .then(function (data) {
-            if (
-              !Array.isArray(data) ||
-              data.some(function (item) {
-                return (
-                  !item ||
-                  typeof item.region !== "string" ||
-                  typeof item.date !== "string" ||
-                  typeof item.university !== "string" ||
-                  typeof item.location !== "string" ||
-                  typeof item.time !== "string"
-                );
-              })
-            ) {
-              throw new Error("캠퍼스 일정 JSON의 형식이 올바르지 않습니다.");
-            }
-            data.forEach(function (item) {
-              parseCampusDate(item.date);
-            });
-            campusSchedule = data;
-            renderCalendar();
-          })
-          .catch(function (error) {
-            campusScheduleError = error;
-            console.error(error);
-            if (mode === "campus") renderCalendar();
-          });
-
-        function createElement(tag, className, text) {
-          var element = document.createElement(tag);
-          if (className) element.className = className;
-          if (text) element.textContent = text;
-          return element;
-        }
-
-        function parseCampusDate(value) {
-          var match = /^(\d{1,2})월\s*(\d{1,2})일\s*\(([일월화수목금토])\)$/.exec(value);
-          if (!match) {
-            throw new Error("캠퍼스 일정 날짜 형식이 올바르지 않습니다: " + value);
-          }
-          var month = Number(match[1]);
-          var day = Number(match[2]);
-          var date = new Date(Date.UTC(2026, month - 1, day));
-          var weekdays = ["일", "월", "화", "수", "목", "금", "토"];
-          if (
-            date.getUTCMonth() !== month - 1 ||
-            date.getUTCDate() !== day ||
-            weekdays[date.getUTCDay()] !== match[3]
-          ) {
-            throw new Error("캠퍼스 일정 날짜가 올바르지 않습니다: " + value);
-          }
-          return date;
-        }
-
-        function getCampusWeeks(region) {
-          var entries = campusSchedule.filter(function (item) {
-            return item.region === regionNames[region];
-          });
-          if (!entries.length) return [];
-
-          var lastRegionDate = Math.max.apply(
-            null,
-            entries.map(function (item) {
-              return parseCampusDate(item.date).getTime();
-            }),
-          );
-          var weeksByStart = new Map();
-          entries.forEach(function (item) {
-            var date = parseCampusDate(item.date);
-            var weekday = date.getUTCDay();
-            var monday = new Date(date);
-            monday.setUTCDate(date.getUTCDate() - (weekday === 0 ? 6 : weekday - 1));
-            var weekKey = monday.toISOString().slice(0, 10);
-            var dateKey = date.toISOString().slice(0, 10);
-            if (!weeksByStart.has(weekKey)) {
-              weeksByStart.set(weekKey, { monday: monday, days: new Map() });
-            }
-            var week = weeksByStart.get(weekKey);
-            if (!week.days.has(dateKey)) {
-              week.days.set(dateKey, {
-                date: item.date,
-                events: [],
-              });
-            }
-            week.days.get(dateKey).events.push({
-              name: item.university,
-              place: item.location,
-              time: item.time,
-            });
-          });
-
-          return Array.from(weeksByStart.values())
-            .sort(function (a, b) {
-              return a.monday - b.monday;
-            })
-            .map(function (week) {
-              var weekDays = [];
-              for (var offset = 0; offset < 5; offset += 1) {
-                var date = new Date(week.monday);
-                date.setUTCDate(date.getUTCDate() + offset);
-                if (date.getTime() > lastRegionDate) break;
-                var dateKey = date.toISOString().slice(0, 10);
-                var day = week.days.get(dateKey);
-                weekDays.push(
-                  day || {
-                    date:
-                      (date.getUTCMonth() + 1) +
-                      "월 " +
-                      date.getUTCDate() +
-                      "일 (" +
-                      ["일", "월", "화", "수", "목", "금", "토"][date.getUTCDay()] +
-                      ")",
-                    events: [],
-                  },
-                );
-              }
-              return weekDays;
-            });
-        }
-
-        function renderCalendar() {
-          var weeks = mode === "fair" ? fairWeeks : null;
-          calendar.replaceChildren();
-          calendar.setAttribute(
-            "aria-labelledby",
-            mode === "fair" ? "exposition-tab-fair" : "exposition-tab-campus",
-          );
-          if (mode === "campus") {
-            if (campusScheduleError) {
-              calendar.appendChild(
-                createElement(
-                  "p",
-                  "exposition__empty",
-                  "캠퍼스 일정을 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.",
-                ),
-              );
-              calendar.lastElementChild.setAttribute("role", "alert");
-              return;
-            }
-            if (!campusSchedule) {
-              calendar.appendChild(
-                createElement("p", "exposition__empty", "캠퍼스 일정을 불러오는 중입니다."),
-              );
-              return;
-            }
-            weeks = getCampusWeeks(selectedRegion);
-            if (!weeks.length) {
-              calendar.appendChild(
-                createElement("p", "exposition__empty", "해당 지역의 일정이 없습니다."),
-              );
-              return;
-            }
-          }
-          weeks.forEach(function (week) {
-            var weekElement = createElement("div", "exposition__week");
-            week.forEach(function (day) {
-              var dayElement = createElement("article", "exposition__day");
-              dayElement.appendChild(createElement("h3", "exposition__date", day.date));
-              var eventList = createElement("div", "exposition__events");
-              (day.events || []).forEach(function (event) {
-                var name = typeof event === "string" ? event : event.name;
-                var eventElement = createElement(
-                  event.place ? "button" : "span",
-                  "exposition__event",
-                  name,
-                );
-                if (event.place) {
-                  eventElement.type = "button";
-                  eventElement.setAttribute("aria-expanded", "false");
-                  eventElement.addEventListener("blur", function () {
-                    closeEventDetail(eventElement);
-                  });
-                  eventElement.addEventListener("click", function () {
-                    var existingDetail = eventElement.nextElementSibling;
-                    if (existingDetail && existingDetail.classList.contains("exposition__event-detail")) {
-                      if (existingDetail.closeTimer) {
-                        window.clearTimeout(existingDetail.closeTimer);
-                        existingDetail.closeTimer = null;
-                        existingDetail.classList.add("exposition__event-detail--visible");
-                        eventElement.setAttribute("aria-expanded", "true");
-                      } else {
-                        closeEventDetail(eventElement);
-                      }
-                      return;
-                    }
-                    var detail = createElement("div", "exposition__event-detail");
-                    var place = createElement("p");
-                    var placeLabel = createElement("strong", "", "장소");
-                    place.append(placeLabel, document.createTextNode(event.place));
-                    var time = createElement("p");
-                    var timeLabel = createElement("strong", "", "시간");
-                    time.append(timeLabel, document.createTextNode(event.time));
-                    detail.append(place, time);
-                    eventElement.after(detail);
-                    eventElement.setAttribute("aria-expanded", "true");
-                    detail.openTimer = window.setTimeout(function () {
-                      detail.openTimer = null;
-                      if (detail.parentNode && !detail.closeTimer) {
-                        detail.classList.add("exposition__event-detail--visible");
-                      }
-                    }, 20);
-                  });
-                }
-                eventList.appendChild(eventElement);
-              });
-              dayElement.appendChild(eventList);
-              weekElement.appendChild(dayElement);
-            });
-            calendar.appendChild(weekElement);
-          });
-        }
-
-        function closeEventDetail(eventElement) {
-          var detail = eventElement.nextElementSibling;
-          if (!detail || !detail.classList.contains("exposition__event-detail")) return;
-          if (detail.openTimer) {
-            window.clearTimeout(detail.openTimer);
-            detail.openTimer = null;
-          }
-          detail.classList.remove("exposition__event-detail--visible");
-          eventElement.setAttribute("aria-expanded", "false");
-          if (detail.closeTimer) return;
-          detail.closeTimer = window.setTimeout(function () {
-            if (detail.parentNode) detail.remove();
-          }, 500);
-        }
-
-        tabs.forEach(function (tab) {
-          tab.addEventListener("click", function () {
-            mode = tab.id === "exposition-tab-fair" ? "fair" : "campus";
-            tabs.forEach(function (item) {
-              var selected = item === tab;
-              item.setAttribute("aria-selected", String(selected));
-              item.tabIndex = selected ? 0 : -1;
-            });
-            regions.hidden = mode !== "campus";
-            renderCalendar();
-          });
-        });
-        regionButtons.forEach(function (button) {
-          button.addEventListener("click", function () {
-            selectedRegion = button.dataset.region;
-            regionButtons.forEach(function (item) {
-              item.setAttribute("aria-pressed", String(item === button));
-            });
-            renderCalendar();
-          });
-        });
-        renderCalendar();
-      })();
-
-      /* 지원 마감 카운트다운 */
-      (function () {
-        var countdown = document.getElementById("con9-countdown");
-        var status = document.getElementById("con9-status");
-        if (!countdown || !status) return;
-
-        var deadline = new Date(countdown.dataset.deadline).getTime();
-        if (!Number.isFinite(deadline)) {
-          console.error("지원 마감 일정을 확인할 수 없습니다.");
-          status.textContent = "지원 마감 일정을 확인할 수 없습니다.";
-          return;
-        }
-
-        var remainingText = countdown.querySelector(".con9__remaining");
-        var units = {
-          days: countdown.querySelector('[data-countdown="days"]'),
-          hours: countdown.querySelector('[data-countdown="hours"]'),
-          minutes: countdown.querySelector('[data-countdown="minutes"]'),
-          seconds: countdown.querySelector('[data-countdown="seconds"]'),
-        };
-        var timer;
-
-        function updateCountdown() {
-          var totalSeconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-          var days = Math.floor(totalSeconds / 86400);
-          var hours = Math.floor((totalSeconds % 86400) / 3600);
-          var minutes = Math.floor((totalSeconds % 3600) / 60);
-          var seconds = totalSeconds % 60;
-
-          units.days.textContent = String(days).padStart(2, "0");
-          units.hours.textContent = String(hours).padStart(2, "0");
-          units.minutes.textContent = String(minutes).padStart(2, "0");
-          units.seconds.textContent = String(seconds).padStart(2, "0");
-
-          if (totalSeconds === 0) {
-            remainingText.hidden = true;
-            status.textContent = "지원 기간이 종료되었습니다.";
-            if (timer) window.clearInterval(timer);
-          }
-        }
-
-        updateCountdown();
-        if (deadline > Date.now()) {
-          timer = window.setInterval(updateCountdown, 1000);
-        }
-      })();
-
-      /* 직무 탐색: 분야 탭, 근무지 아코디언, 상세 모달 */
-      (function () {
-        var section = document.querySelector(".tasks");
-        if (!section) return;
-
-        var categories = {
-          rnd: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "신약 연구",
-                    location: "본사 (서울시 송파구)",
-                    category: "R&D",
-                    duties: ["신규 의약품 후보물질 탐색 및 연구", "연구 데이터 분석과 실험 결과 정리", "유관 부서와 연구 과제 협업"],
-                    qualifications: ["생명과학·약학 등 관련 전공자", "연구 분야에 대한 관심과 기초 지식 보유자"],
-                  },
-                  {
-                    title: "바이오 연구",
-                    location: "본사 (서울시 송파구)",
-                    category: "R&D",
-                    duties: ["바이오 의약품 연구 및 개발", "실험 계획 수립과 결과 검토", "연구 문서 및 데이터 관리"],
-                    qualifications: ["바이오·생명과학 관련 전공자", "실험 및 분석 업무에 관심이 있는 분"],
-                  },
-                  {
-                    title: "분석 연구",
-                    location: "본사 (서울시 송파구)",
-                    category: "R&D",
-                    duties: ["의약품 분석법 개발 및 검증", "분석 장비 운용과 결과 보고", "연구 품질 향상을 위한 개선 활동"],
-                    qualifications: ["화학·약학 등 관련 전공자", "분석 실험에 대한 이해가 있는 분"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "연구 지원",
-                    location: "서울/수도권/영남",
-                    category: "R&D",
-                    duties: ["연구 과제 운영 및 자료 관리", "실험실 운영과 연구 일정 지원"],
-                    qualifications: ["관련 업무 경험 또는 전공자 우대"],
-                  },
-                ],
-              },
-            ],
-          },
-          production: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "제조",
-                    location: "본사 (서울시 송파구)",
-                    category: "생산/품질",
-                    duties: ["내용고형제(칭량, 과립, 타정, 코팅, 인쇄·선별) 제조공정 수행", "제조설비 운전 및 공정 중 점검", "제조기록서 작성 및 GMP 문서관리", "공정 개선활동 및 생산성 향상 업무"],
-                    qualifications: ["고등학교 졸업 이상 학력 소지자 (전공무관)", "교대 근무 가능자"],
-                  },
-                  {
-                    title: "품질관리",
-                    location: "본사 (서울시 송파구)",
-                    category: "생산/품질",
-                    duties: ["원료 및 제품의 품질 시험", "시험 결과 기록과 관련 문서 관리", "분석 장비 점검 및 유지관리"],
-                    qualifications: ["화학·생명과학 등 관련 전공자 우대", "꼼꼼하고 책임감 있게 업무를 수행하는 분"],
-                  },
-                  {
-                    title: "생산기술지원",
-                    location: "본사 (서울시 송파구)",
-                    category: "생산/품질",
-                    duties: ["생산 공정과 설비 개선 지원", "생산성 및 품질 지표 분석", "현장 개선 과제 운영"],
-                    qualifications: ["기계·화학공학 등 관련 전공자 우대"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "제조",
-                    location: "팔탄제조센터 (경기도 화성)",
-                    category: "생산/품질",
-                    duties: ["내용고형제(칭량, 과립, 타정, 코팅, 인쇄·선별) 제조공정 수행", "제조설비 운전 및 공정 중 점검", "제조기록서 작성 및 GMP 문서관리", "공정 개선활동 및 생산성 향상 업무"],
-                    qualifications: ["고등학교 졸업 이상 학력 소지자 (전공무관)", "교대 근무 가능자"],
-                  },
-                ],
-              },
-            ],
-          },
-          sales: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "전문의약품 영업",
-                    location: "본사 (서울시 송파구)",
-                    category: "영업",
-                    duties: ["의료기관 대상 제품 정보 및 학술 정보 전달", "거래처 관계 관리와 영업 계획 수립", "시장 동향 및 고객 의견 분석"],
-                    qualifications: ["원활한 커뮤니케이션 역량을 갖춘 분", "운전 가능자 우대"],
-                  },
-                  {
-                    title: "영업기획",
-                    location: "본사 (서울시 송파구)",
-                    category: "영업",
-                    duties: ["영업 전략 및 목표 수립 지원", "실적 데이터 분석과 보고", "영업 현장 지원 프로그램 운영"],
-                    qualifications: ["데이터 분석 및 문서 작성 역량 보유자"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "지역 영업",
-                    location: "서울/수도권/영남",
-                    category: "영업",
-                    duties: ["담당 지역 거래처 관리", "제품 정보 전달 및 고객 문의 대응"],
-                    qualifications: ["지역 근무 가능자", "고객 중심의 소통 역량을 갖춘 분"],
-                  },
-                ],
-              },
-            ],
-          },
-          management: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "인사",
-                    location: "본사 (서울시 송파구)",
-                    category: "경영관리",
-                    duties: ["인사 제도 및 인력 운영 지원", "채용·교육 프로그램 기획과 운영", "인사 데이터 및 관련 문서 관리"],
-                    qualifications: ["인사 업무에 대한 관심과 이해가 있는 분", "협업과 소통에 능숙한 분"],
-                  },
-                  {
-                    title: "재무회계",
-                    location: "본사 (서울시 송파구)",
-                    category: "경영관리",
-                    duties: ["회계 결산 및 재무 자료 작성", "비용 관리와 회계 관련 업무 지원", "내부 기준 및 관련 법규 준수"],
-                    qualifications: ["회계·경영 관련 전공자 우대"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "총무",
-                    location: "서울/수도권/영남",
-                    category: "경영관리",
-                    duties: ["사업장 운영 및 자산 관리", "구성원 업무 환경 지원"],
-                    qualifications: ["총무·행정 업무 경험자 우대"],
-                  },
-                ],
-              },
-            ],
-          },
-          clinical: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "임상시험 운영",
-                    location: "본사 (서울시 송파구)",
-                    category: "임상",
-                    duties: ["임상시험 계획 및 운영 관리", "시험기관·협력사 커뮤니케이션", "임상시험 관련 문서와 일정 관리"],
-                    qualifications: ["약학·간호학·생명과학 등 관련 전공자", "임상시험 관련 기준에 대한 이해 보유자 우대"],
-                  },
-                  {
-                    title: "임상 데이터 관리",
-                    location: "본사 (서울시 송파구)",
-                    category: "임상",
-                    duties: ["임상 데이터 검토 및 품질 관리", "데이터 이슈 확인과 해결 지원"],
-                    qualifications: ["데이터 관리 및 분석에 관심이 있는 분"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "임상 모니터링",
-                    location: "서울/수도권/영남",
-                    category: "임상",
-                    duties: ["임상시험 기관 방문 및 진행 현황 점검", "시험 관련 자료와 필수 문서 확인"],
-                    qualifications: ["관련 전공자 또는 임상시험 업무 경험자 우대"],
-                  },
-                ],
-              },
-            ],
-          },
-          global: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "해외사업 개발",
-                    location: "본사 (서울시 송파구)",
-                    category: "글로벌",
-                    duties: ["해외 시장 및 사업 기회 조사", "글로벌 파트너 발굴과 협업", "해외 사업 전략 및 실행 지원"],
-                    qualifications: ["외국어 커뮤니케이션 역량 보유자", "글로벌 사업에 대한 관심이 있는 분"],
-                  },
-                  {
-                    title: "해외 제품 등록",
-                    location: "본사 (서울시 송파구)",
-                    category: "글로벌",
-                    duties: ["해외 의약품 인허가 자료 준비", "국가별 등록 일정 및 자료 관리"],
-                    qualifications: ["약학·생명과학 등 관련 전공자 우대"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "글로벌 마케팅",
-                    location: "서울/수도권/영남",
-                    category: "글로벌",
-                    duties: ["글로벌 마케팅 자료 제작 지원", "해외 시장 및 경쟁 제품 동향 조사"],
-                    qualifications: ["외국어 및 문서 작성 역량 보유자"],
-                  },
-                ],
-              },
-            ],
-          },
-          healthcare: {
-            locations: [
-              {
-                name: "본사 (서울시 송파구)",
-                count: 9,
-                jobs: [
-                  {
-                    title: "헬스케어 서비스 기획",
-                    location: "본사 (서울시 송파구)",
-                    category: "헬스케어",
-                    duties: ["건강관리 서비스 기획과 운영", "사용자 요구 및 서비스 데이터 분석", "서비스 개선 과제 발굴"],
-                    qualifications: ["헬스케어 서비스에 관심이 있는 분", "기획 및 커뮤니케이션 역량 보유자"],
-                  },
-                  {
-                    title: "디지털 헬스케어",
-                    location: "본사 (서울시 송파구)",
-                    category: "헬스케어",
-                    duties: ["디지털 기반 건강관리 프로그램 운영", "서비스 사용 현황 분석과 개선 지원"],
-                    qualifications: ["디지털 서비스 또는 건강관리 분야 경험자 우대"],
-                  },
-                  {
-                    title: "건강 상담",
-                    location: "본사 (서울시 송파구)",
-                    category: "헬스케어",
-                    duties: ["고객 건강 관련 문의와 상담 지원", "상담 내용 정리 및 서비스 연계"],
-                    qualifications: ["보건·간호 관련 자격 또는 전공자 우대"],
-                  },
-                ],
-              },
-              {
-                name: "서울/수도권/영남",
-                count: 1,
-                jobs: [
-                  {
-                    title: "헬스케어 운영",
-                    location: "서울/수도권/영남",
-                    category: "헬스케어",
-                    duties: ["지역 건강관리 서비스 운영 지원", "이용자 문의 대응 및 현장 운영"],
-                    qualifications: ["지역 근무 가능자", "고객 응대 경험자 우대"],
-                  },
-                ],
-              },
-            ],
-          },
-        };
-
-        var tabs = Array.prototype.slice.call(
-          section.querySelectorAll(".tasks__tab"),
-        );
-        var locations = section.querySelector(".tasks__locations");
-        var dialog = section.querySelector(".tasks__modal");
-        var closeButton = section.querySelector(".tasks__modal-close");
-        var lastTrigger = null;
-        if (!tabs.length || !locations || !dialog || !closeButton) return;
-
-        function createJobButton(job, locationIndex, jobIndex) {
-          var button = document.createElement("button");
-          button.className = "tasks__job";
-          button.type = "button";
-          button.setAttribute("data-location-index", String(locationIndex));
-          button.setAttribute("data-job-index", String(jobIndex));
-
-          var title = document.createElement("span");
-          title.textContent = job.title;
-          var arrow = document.createElement("span");
-          arrow.className = "tasks__job-arrow";
-          arrow.setAttribute("aria-hidden", "true");
-          arrow.textContent = "→";
-          button.appendChild(title);
-          button.appendChild(arrow);
-          return button;
-        }
-
-        function renderCategory(categoryKey) {
-          var category = categories[categoryKey];
-          if (!category) return;
-
-          locations.replaceChildren();
-          locations.setAttribute(
-            "aria-labelledby",
-            "tasks-tab-" + categoryKey,
-          );
-          category.locations.forEach(function (location, locationIndex) {
-            var item = document.createElement("section");
-            item.className = "tasks__location";
-            var toggle = document.createElement("button");
-            var panelId = "tasks-panel-" + categoryKey + "-" + locationIndex;
-            toggle.className = "tasks__location-toggle";
-            toggle.type = "button";
-            toggle.setAttribute("aria-expanded", String(locationIndex === 0));
-            toggle.setAttribute("aria-controls", panelId);
-
-            var label = document.createElement("span");
-            label.textContent = location.name;
-            var count = document.createElement("span");
-            count.className = "tasks__count";
-            count.textContent = String(location.count);
-            count.setAttribute("aria-label", location.count + "개 직무");
-            var chevron = document.createElement("span");
-            chevron.className = "tasks__chevron";
-            chevron.setAttribute("aria-hidden", "true");
-            toggle.appendChild(label);
-            toggle.appendChild(count);
-            toggle.appendChild(chevron);
-
-            var panel = document.createElement("div");
-            panel.className = "tasks__panel";
-            panel.id = panelId;
-            panel.hidden = locationIndex !== 0;
-            var jobs = document.createElement("div");
-            jobs.className = "tasks__jobs";
-            if (location.jobs.length) {
-              location.jobs.forEach(function (job, jobIndex) {
-                jobs.appendChild(
-                  createJobButton(job, locationIndex, jobIndex),
-                );
-              });
-            } else {
-              var empty = document.createElement("p");
-              empty.className = "tasks__empty";
-              empty.textContent = "현재 안내할 직무가 없습니다.";
-              jobs.appendChild(empty);
-            }
-            panel.appendChild(jobs);
-            item.appendChild(toggle);
-            item.appendChild(panel);
-            if (locationIndex === 0) item.classList.add("is-open");
-            locations.appendChild(item);
-          });
-        }
-
-        function setActiveTab(tab) {
-          tabs.forEach(function (item) {
-            var active = item === tab;
-            item.setAttribute("aria-selected", String(active));
-            item.tabIndex = active ? 0 : -1;
-          });
-          renderCategory(tab.getAttribute("data-category"));
-        }
-
-        function appendListItems(list, entries) {
-          list.replaceChildren();
-          entries.forEach(function (entry) {
-            var item = document.createElement("li");
-            item.textContent = entry;
-            list.appendChild(item);
-          });
-        }
-
-        function openJob(job) {
-          section.querySelector(".tasks__modal-title").textContent = job.title;
-          var meta = section.querySelector(".tasks__modal-meta");
-          meta.replaceChildren();
-          var category = document.createElement("strong");
-          category.textContent = job.category;
-          meta.appendChild(category);
-          meta.appendChild(document.createTextNode("  |  " + job.location));
-          section.querySelector(".tasks__modal-career").textContent =
-            "*신입/경력";
-          appendListItems(
-            section.querySelector(".tasks__modal-duties"),
-            job.duties,
-          );
-          appendListItems(
-            section.querySelector(".tasks__modal-qualifications"),
-            job.qualifications,
-          );
-          lastTrigger = document.activeElement;
-          dialog.showModal();
-          document.body.classList.add("has-tasks-modal");
-        }
-
-        tabs.forEach(function (tab, tabIndex) {
-          tab.addEventListener("click", function () {
-            setActiveTab(tab);
-          });
-          tab.addEventListener("keydown", function (event) {
-            var nextIndex = tabIndex;
-            if (event.key === "ArrowRight") {
-              nextIndex = (tabIndex + 1) % tabs.length;
-            } else if (event.key === "ArrowLeft") {
-              nextIndex = (tabIndex - 1 + tabs.length) % tabs.length;
-            } else if (event.key === "Home") {
-              nextIndex = 0;
-            } else if (event.key === "End") {
-              nextIndex = tabs.length - 1;
-            } else {
-              return;
-            }
-            event.preventDefault();
-            tabs[nextIndex].focus();
-            setActiveTab(tabs[nextIndex]);
-          });
-        });
-
-        locations.addEventListener("click", function (event) {
-          var toggle = event.target.closest(".tasks__location-toggle");
-          if (toggle) {
-            var currentItem = toggle.parentElement;
-            var shouldOpen = toggle.getAttribute("aria-expanded") !== "true";
-            Array.prototype.forEach.call(
-              locations.querySelectorAll(".tasks__location"),
-              function (item) {
-                var button = item.querySelector(".tasks__location-toggle");
-                var panel = item.querySelector(".tasks__panel");
-                var active = item === currentItem && shouldOpen;
-                item.classList.toggle("is-open", active);
-                button.setAttribute("aria-expanded", String(active));
-                panel.hidden = !active;
-              },
-            );
-            return;
-          }
-
-          var jobButton = event.target.closest(".tasks__job");
-          if (!jobButton) return;
-          var categoryKey = locations
-            .getAttribute("aria-labelledby")
-            .replace("tasks-tab-", "");
-          var location = categories[categoryKey].locations[
-            Number(jobButton.getAttribute("data-location-index"))
-          ];
-          var job = location.jobs[
-            Number(jobButton.getAttribute("data-job-index"))
-          ];
-          if (job) openJob(job);
-        });
-
-        closeButton.addEventListener("click", function () {
-          dialog.close();
-        });
-        dialog.addEventListener("click", function (event) {
-          if (event.target === dialog) {
-            dialog.close();
-          }
-        });
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && dialog.open) {
-            dialog.close();
-          }
-        });
-        dialog.addEventListener("close", function () {
-          document.body.classList.remove("has-tasks-modal");
-          if (lastTrigger && document.contains(lastTrigger)) {
-            lastTrigger.focus();
-          }
-        });
-
-        renderCategory("healthcare");
-      })();
-    </script>
-    <script src="../data/hanmi-eye-tracking/hanmi-eye-tracking/metadata.js"></script>
-    <script src="../data/hanmi-eye-tracking/hanmi-eye-tracking/player.js"></script>
   </body>
 </html>

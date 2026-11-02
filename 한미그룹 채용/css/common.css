@@ -1,0 +1,23 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --red: #e60012;
+  --red-grad: linear-gradient(90deg, #e60012 0%, #ff5d32 100%);
+  --font: "Pretendard", "Inter", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --ease: 0.2s ease;
+  --wide: 1920px;
+  --inner: 1440px;
+}
+html {
+  scroll-behavior: auto;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--black);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}

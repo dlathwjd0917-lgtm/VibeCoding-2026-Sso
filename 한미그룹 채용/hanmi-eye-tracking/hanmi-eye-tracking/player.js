@@ -1,4 +1,4 @@
-/* Version 3: original PNG sequence + stable left-eye geometry. No CDN or build required. */
+/* Original PNG sequence + per-frame eye overlay. No CDN or build required. */
 (() => {
   'use strict';
   const scriptURL = document.currentScript.src;
@@ -12,12 +12,21 @@
       this.frames = [];
       this.index = 0; this.elapsed = 0; this.last = 0; this.raf = 0;
       this.ready = false; this.visible = true; this.paused = false;
-      this.tracking = true; this.pointer = null; this.gaze = { x: 0, y: 0 };
+      this.pointerMode = matchMedia('(hover: hover) and (pointer: fine)');
+      this.tracking = this.pointerMode.matches;
+      this.pointer = null; this.gaze = { x: 0, y: 0 };
       this.reduce = matchMedia('(prefers-reduced-motion: reduce)');
       this.paused = this.reduce.matches;
       this.tick = this.tick.bind(this);
       this.onVisibility = () => { this.last = 0; this.update(); };
       document.addEventListener('visibilitychange', this.onVisibility);
+      this.onPointerModeChange = event => {
+        this.tracking = event.matches;
+        this.pointer = null;
+        this.gaze = { x: 0, y: 0 };
+        this.update();
+      };
+      this.pointerMode.addEventListener('change', this.onPointerModeChange);
       this.canvas.addEventListener('pointermove', e => {
         if (e.pointerType === 'touch') return;
         const r = this.canvas.getBoundingClientRect();
@@ -54,8 +63,8 @@
           const i=next++;
           const img=new Image();
           await new Promise((resolve,reject)=>{
-            img.onload=resolve;img.onerror=()=>reject(new Error(this.meta.src.replace('{n}',String(i+1))));
-            img.src=assetURL(this.meta.src.replace('{n}',String(i+1)));
+            img.onload=resolve;img.onerror=()=>reject(new Error(`run_${i+1}.png`));
+            img.src=assetURL(`run_${i+1}.png`);
           });
           if(img.decode)await img.decode();
           this.frames[i]=img;loaded++;
@@ -113,16 +122,16 @@
       ctx.clearRect(0,0,1920,1080);
       ctx.drawImage(img,off[0],off[1]);
       // 매 프레임 원본 눈을 덮고 새 흰자와 눈동자를 합성합니다.
-      // 이미지 파일은 수정하지 않으며, tracking을 끄면 원본 눈이 표시됩니다.
+      // 데스크톱에서만 시선을 합성하고, 그 외 기기에서는 원본 눈을 유지합니다.
+      if(!this.tracking)return;
       if(!this.tracking)return;
       for(const eye of this.meta.eyes[this.index]){
         const x=off[0]+eye.x,y=off[1]+eye.y;
         const rx=eye.rx,ry=eye.ry;
-        ctx.save();ctx.beginPath();
-        ctx.ellipse(x,y,rx,ry,eye.rotation,0,Math.PI*2);ctx.clip();
+        ctx.save();ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.clip();
         const white=ctx.createRadialGradient(x-rx*.3,y-ry*.4,2,x,y,ry*1.3);
         white.addColorStop(0,'#ffffff');white.addColorStop(.65,'#fcfcfd');white.addColorStop(1,'#dce8ed');
-        ctx.fillStyle=white;ctx.fillRect(x-rx*2,y-ry*2,rx*4,ry*4);
+        ctx.fillStyle=white;ctx.fillRect(x-rx,y-ry,rx*2,ry*2);
         const px=x+this.gaze.x*rx*.29,py=y+this.gaze.y*ry*.23;
         const pupil=ctx.createRadialGradient(px-rx*.12,py-ry*.12,1,px,py,ry*.59);
         pupil.addColorStop(0,'#34434a');pupil.addColorStop(1,'#101b21');
@@ -130,14 +139,11 @@
         ctx.fillStyle='rgba(255,255,255,.93)';ctx.beginPath();ctx.ellipse(px-rx*.16,py-ry*.25,rx*.12,ry*.13,0,0,Math.PI*2);ctx.fill();
         ctx.fillStyle='rgba(255,255,255,.35)';ctx.beginPath();ctx.arc(px+rx*.16,py+ry*.18,rx*.06,0,Math.PI*2);ctx.fill();ctx.restore();
       }
-      // 돋보기 테두리는 눈보다 앞에 있으므로 원본에서 다시 합성합니다.
-      ctx.save();ctx.beginPath();
-      for(const [x,y,w] of this.meta.occluders[this.index])ctx.rect(off[0]+x-.5,off[1]+y-.5,w+1,2);
-      ctx.clip();ctx.drawImage(img,off[0],off[1]);ctx.restore();
     }
     destroy() {
       cancelAnimationFrame(this.raf);this.observer.disconnect();
       document.removeEventListener('visibilitychange',this.onVisibility);
+      this.pointerMode.removeEventListener('change',this.onPointerModeChange);
       this.reduce.removeEventListener('change',this.onReduce);
       this.ready=false;this.frames=[];
     }
