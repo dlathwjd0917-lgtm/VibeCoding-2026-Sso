@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
     />
+    <link
+      rel="stylesheet"
+      href="../data/hanmi-eye-tracking/hanmi-eye-tracking/player.css"
+    />
     <style>
       /* CSS 변수구역 */
       /* :root{변수코드
@@ -404,6 +408,44 @@
         50% {
           opacity: 0.55;
           transform: scale(0.85);
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .updown {
+          animation: char-updown 2.4s ease-in-out infinite;
+        }
+        .leftright {
+          animation: char-leftright 2.8s ease-in-out infinite;
+        }
+        .bigsmall {
+          animation: char-bigsmall 2.4s ease-in-out infinite;
+        }
+      }
+      @keyframes char-updown {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10%);
+        }
+      }
+      @keyframes char-leftright {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(10%);
+        }
+      }
+      @keyframes char-bigsmall {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
         }
       }
 
@@ -3874,13 +3916,15 @@
           alt="언덕 옆에서 반짝이는 노란 별"
           aria-hidden="true"
         />
-        <img
-          class="mirae__art"
-          src="images/mirae_walking.png"
-          alt="초록 언덕 위를 걸으며 새로운 미래를 향해 나아가는 파란 캐릭터"
-          width="2048"
-          height="1258"
-        />
+        <div class="mirae__art hanmi-walker" data-hanmi-walker>
+          <canvas
+            width="1920"
+            height="1080"
+            role="img"
+            aria-label="초록 언덕 위를 걸으며 새로운 미래를 향해 나아가는 파란 캐릭터"
+          ></canvas>
+          <span data-status role="status">이미지 준비 중</span>
+        </div>
       </section>
 
       <section class="history" id="history" aria-labelledby="history-title">
@@ -6039,5 +6083,7 @@
         renderCategory("healthcare");
       })();
     </script>
+    <script src="../data/hanmi-eye-tracking/hanmi-eye-tracking/metadata.js"></script>
+    <script src="../data/hanmi-eye-tracking/hanmi-eye-tracking/player.js"></script>
   </body>
 </html>
