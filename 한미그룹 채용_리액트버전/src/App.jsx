@@ -16,10 +16,10 @@ import {
 import WelfareSection from "./components/WelfareSection.jsx";
 
 const scripts = [
-  "/js/scroll.js",
-  "/js/main.js",
-  "/hanmi-eye-tracking/hanmi-eye-tracking/metadata.js",
-  "/hanmi-eye-tracking/hanmi-eye-tracking/player.js",
+  `${import.meta.env.BASE_URL}js/scroll.js`,
+  `${import.meta.env.BASE_URL}js/main.js`,
+  `${import.meta.env.BASE_URL}hanmi-eye-tracking/hanmi-eye-tracking/metadata.js`,
+  `${import.meta.env.BASE_URL}hanmi-eye-tracking/hanmi-eye-tracking/player.js`,
 ];
 
 function loadScript(src) {

@@ -12,7 +12,7 @@ export function Header() {
   return (
 <header className="header">
   <div className="header__inner">
-    <a className="logo" href="/" aria-label="한미그룹 홈"><img src="./images/logo.svg" alt="Hanmi 한미그룹" width={182} height={31} /></a>
+    <a className="logo" href="./" aria-label="한미그룹 홈"><img src="./images/logo.svg" alt="Hanmi 한미그룹" width={182} height={31} /></a>
     <nav className="gnb" aria-label="주요 메뉴">
       <ul className="gnb__list" id="gnb-list">
         <li className="gnb__item">
@@ -58,7 +58,7 @@ export function SiteFooter() {
   return (
 <footer className="footer">
   <div className="footer__inner">
-    <a className="footer__logo" href="/" aria-label="한미그룹 홈">
+    <a className="footer__logo" href="./" aria-label="한미그룹 홈">
       <img src="./images/logo.svg" alt="Hanmi 한미그룹" width={182} height={31} />
     </a>
   </div>

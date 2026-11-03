@@ -672,8 +672,9 @@
           height: auto;
           padding: 105px 20px 0;
           overflow-y: auto;
-          background: var(--white) url(../images/menu_char.png) no-repeat right
-            14px bottom 33px / 143px auto;
+          background: var(--white)
+            url("./2026년 한미그룹 하반기 공개채용_files/mo_menu_char.png")
+            no-repeat right 14px bottom 33px / 143px auto;
           transform: translateX(100%);
           visibility: hidden;
           transition:

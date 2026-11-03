@@ -3,8 +3,8 @@ import benefitCategories from "../data/benefits_data.json";
 function getIconPath(index) {
   const directory =
     index <= 10
-      ? "/images/복지이미지"
-      : "/css/2026년 한미그룹 하반기 공개채용_files";
+      ? "./images/복지이미지"
+      : "./css/2026년 한미그룹 하반기 공개채용_files";
 
   return `${directory}/wf_ico${index}.png`;
 }

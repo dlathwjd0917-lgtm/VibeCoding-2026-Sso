@@ -309,7 +309,7 @@
           chungcheong: "충청",
           jeolla: "전라",
         };
-        fetch("/data/campus_schedule.json")
+        fetch("./data/campus_schedule.json")
           .then(function (response) {
             if (!response.ok) {
               throw new Error("캠퍼스 일정 JSON을 불러오지 못했습니다: " + response.status);
